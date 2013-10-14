@@ -56,34 +56,34 @@ class Movie {
 
 
 
-    private String setMovieName(String movieName) {
+    private void setMovieName(String movieName) {
         this.movieName = movieName;
     }
-    private String setTypeOfMovie(String typeOfMovie) {
+    private void setTypeOfMovie(String typeOfMovie) {
         this.typeOfMovie = typeOfMovie;
     }
-    private String[] setCast(String[] cast) {
+    private void setCast(String[] cast) {
         this.cast = cast;
     }
-    private String[] setDirector(String[] director) {
+    private void setDirector(String[] director) {
         this.director = director;
     }
-    private String setLanguage(String language) {
+    private void setLanguage(String language) {
         this.language = language;
     }
-    private int setRuntime(int runtime) {
+    private void setRuntime(int runtime) {
         this.runtime = runtime;
     }
-    private String[] setDescription(String[] description) {
+    private void setDescription(String[] description) {
         this.description = description;
     }
-    private Time setOpeningTime(Time openingTime) {
+    private void setOpeningTime(Time openingTime) {
         this.openingTime = openingTime;
     }
-    private Time[] setShowtimeList(Time[] showtimeList) {
+    private void setShowtimeList(Time[] showtimeList) {
         this.showtimeList() = showtimeList;
     }
-    private String setRating(String rating) {
+    private void setRating(String rating) {
         this.rating = rating;
     }
 }
