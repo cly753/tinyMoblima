@@ -59,7 +59,7 @@ class Time {
     private boolean weekday;
     private boolean publicHoliday;
 
-    public time(){}
+    public Time(){}
 
     public boolean storeCurrentTime(){}
     public boolean printTime(){}
