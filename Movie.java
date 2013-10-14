@@ -10,7 +10,7 @@ class Movie {
     private Time[] showtimeList;
     private String rating;
     
-    private Movie(String movieName, String typeOfMovie, String[] cast, String[] director, String language,
+    public Movie(String movieName, String typeOfMovie, String[] cast, String[] director, String language,
                   int runtime, String[] description, Time openingTime, Time[] showtimeList, String rating) {
         this.setMovieName(movieName);
         this.setTypeOfMovie(typeOfMovie);
