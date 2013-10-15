@@ -1,8 +1,11 @@
 Y2S1CE2002PROJECT
 =================
 
+
+
 Movie Class
 -----------
+
 ```java
 class Movie {
     private String movieName;
@@ -40,10 +43,13 @@ class Movie {
     private void setOpeningTime(Time openingTime) {}
     private void setShowtimeList(Time[] showtimeList) {}
     private void setRating(String rating) {}
-}```
+}
+```
+
 
 Moviegoer Class
 ---------------
+
 ```java
 class Moviegoer {
     private String name;
@@ -67,8 +73,10 @@ class Moviegoer {
 }
 ```
 
+
 Time Class
 ----------
+
 ```java
 class Time {
     private Integer year;
@@ -107,8 +115,10 @@ class Time {
 }
 ```
 
+
 Seat Class
 ----------
+
 ```java
 class Seat {
     private Integer row;
@@ -129,8 +139,10 @@ class Seat {
 }
 ```
 
+
 Ticket Class
 ------------
+
 ```java
 class Ticket {
     //private int movieId;
