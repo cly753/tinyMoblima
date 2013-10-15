@@ -4,17 +4,43 @@ Y2S1CE2002PROJECT
 Movie Class
 -----------
 ```java
-    String movieName,
-    String typeOfMovie,
-    String[] cast,
-    String[] director,
-    String language,
-    int runtime,
-    String[] description,
-    Time openingTime,
-    Time[] showtimeList,
-    String rating
-```
+class Movie {
+    private String movieName;
+    private String typeOfMovie;
+    private String[] cast;
+    private String[] director;
+    private String language;
+    private int runtime;
+    private String[] description;
+    private Time openingTime;
+    private Time[] showtimeList;
+    private String rating;
+    
+    public Movie(String movieName, String typeOfMovie, String[] cast, String[] director, String language,
+                  int runtime, String[] description, Time openingTime, Time[] showtimeList, String rating) {}
+    
+    private String getMovieName() {}
+    private String getTypeOfMovie() {}
+    private String[] getCast() {}
+    private String[] getDirector() {}
+    private String getLanguage() {}
+    private int getRuntime() {}
+    private String[] getDescription() {}
+    private Time getOpeningTime() {}
+    private Time[] getShowtimeList() {}
+    private String getRating() {}
+
+    private void setMovieName(String movieName) {}
+    private void setTypeOfMovie(String typeOfMovie) {}
+    private void setCast(String[] cast) {}
+    private void setDirector(String[] director) {}
+    private void setLanguage(String language) {}
+    private void setRuntime(int runtime) {}
+    private void setDescription(String[] description) {}
+    private void setOpeningTime(Time openingTime) {}
+    private void setShowtimeList(Time[] showtimeList) {}
+    private void setRating(String rating) {}
+}```
 
 Moviegoer Class
 ---------------
@@ -100,5 +126,47 @@ class Seat {
     public boolean getAssign(){}
     // public boolean setMoviegoerId(boolean id){}
     // public Integer getMoviegoerId(){}
+}
+```
+
+Ticket Class
+------------
+```java
+class Ticket {
+    //private int movieId;
+    private String movieName;
+    private String typeOfMovie;
+    private String classOfCinema;
+    private String locationOfCinema;
+    private String typeOfMoviegoer;
+    //private Time buyTime;
+    //private Time bookTime;
+    private Time showTime;
+    private double price;
+    private int seatID;
+    private int ticketID;
+    
+    public Ticket(String movieName, String typeOfMovie, String classOfCinema, String locationOfCinema,
+                  String typeOfMoviegoer, Time showTime, double price, int seatID, int ticketID) {}
+        
+    private String getMovieName() {}
+    private String getTypeOfMovie() {}
+    private String getClassOfCinema() {}
+    private String getLocationOfCinema() {}
+    private String getTypeOfMoviegoer() {}
+    private Time getShowTime() {}
+    private double getPrice() {}
+    private int getSeatID() {}
+    private int getTicketID() {}
+    
+    private void setMovieName(String movieName) {}
+    private void setTypeOfMovie(String typeOfMovie) {}
+    private void setClassOfCinema(String classOfCinema) {}
+    private void setLocationOfCinema(String locationOfCinema) {}
+    private void setTypeOfMoviegoer(String typeOfMoviegoer) {}
+    private void setShowTime(Time showTime) {}
+    private void setPrice(double price) {}
+    private void setSeatID(int seatID) {}
+    private void setTicketID(int ticketID) {}
 }
 ```
