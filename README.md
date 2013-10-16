@@ -182,3 +182,15 @@ class Ticket {
     private void setTicketID(int ticketID) {}
 }
 ```
+
+Menu class
+----------
+    a rough menu and suggested action after select
+```java
+class Menu {
+    public static void welcome()
+    public static void overall()
+    public static void staffMenu()
+    public static void addModifyMovie()
+}
+```
