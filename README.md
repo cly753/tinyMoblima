@@ -1,10 +1,27 @@
-Y2S1CE2002PROJECT
-=================
+##Y2S1CE2002PROJECT
+***
+
+---
+###to be
+
+    pls read Menu class first
+- [ ] overall control
+- [ ] search
+- [ ] list all/past movies
+- [ ] show the detail of a movie
+- [ ] book movie (show seats, get customer's info, reserve a movie)
+- [ ] check history (not paid / all)
+- [ ] check customer login
+- [ ] check staff login
+- [ ] add a movie
+- [ ] change ticket price
+- [ ] update other details
+- [ ] remove a movie
 
 
 
-Movie Class
------------
+---
+###Movie Class
 
 ```java
 class Movie {
@@ -47,8 +64,9 @@ class Movie {
 ```
 
 
-Moviegoer Class
----------------
+
+---
+###Moviegoer Class
 
 ```java
 class Moviegoer {
@@ -74,8 +92,9 @@ class Moviegoer {
 ```
 
 
-Time Class
-----------
+
+---
+###Time Class
 
 ```java
 class Time {
@@ -116,8 +135,9 @@ class Time {
 ```
 
 
-Seat Class
-----------
+
+---
+###Seat Class
 
 ```java
 class Seat {
@@ -140,8 +160,9 @@ class Seat {
 ```
 
 
-Ticket Class
-------------
+
+---
+###Ticket Class
 
 ```java
 class Ticket {
@@ -183,8 +204,10 @@ class Ticket {
 }
 ```
 
-Menu class
-----------
+
+
+---
+###Menu class
     a rough menu and suggested action after select
 ```java
 class Menu {
