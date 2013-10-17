@@ -1,10 +1,27 @@
-Y2S1CE2002PROJECT
-=================
+##Y2S1CE2002PROJECT
+***
+
+---
+###to be
+
+    pls read Menu class first
+- [ ✓ ] overall control
+- [ ✓ ] search
+- [ ✓ ] list all/past movies
+- [ ✓ ] show the detail of a movie
+- [ ✓ ] book movie (show seats, get customer's info, reserve a movie)
+- [ ✓ ] check history (not paid / all)
+- [ ✓ ] check customer login
+- [ ✓ ] check staff login
+- [ ✓ ] add a movie
+- [ ✓ ] change ticket price
+- [ ✓ ] update other details
+- [ ✓ ] remove a movie
 
 
 
-Movie Class
------------
+---
+###Movie Class
 
 ```java
 class Movie {
@@ -33,22 +50,23 @@ class Movie {
     private Time[] getShowtimeList() {}
     private String getRating() {}
 
-    private void setMovieName(String movieName) {}
-    private void setTypeOfMovie(String typeOfMovie) {}
-    private void setCast(String[] cast) {}
-    private void setDirector(String[] director) {}
-    private void setLanguage(String language) {}
-    private void setRuntime(int runtime) {}
-    private void setDescription(String[] description) {}
-    private void setOpeningTime(Time openingTime) {}
-    private void setShowtimeList(Time[] showtimeList) {}
-    private void setRating(String rating) {}
+    private boolean setMovieName(String movieName) {}
+    private boolean setTypeOfMovie(String typeOfMovie) {}
+    private boolean setCast(String[] cast) {}
+    private boolean setDirector(String[] director) {}
+    private boolean setLanguage(String language) {}
+    private boolean setRuntime(int runtime) {}
+    private boolean setDescription(String[] description) {}
+    private boolean setOpeningTime(Time openingTime) {}
+    private boolean setShowtimeList(Time[] showtimeList) {}
+    private boolean setRating(String rating) {}
 }
 ```
 
 
-Moviegoer Class
----------------
+
+---
+###Moviegoer Class
 
 ```java
 class Moviegoer {
@@ -74,8 +92,9 @@ class Moviegoer {
 ```
 
 
-Time Class
-----------
+
+---
+###Time Class
 
 ```java
 class Time {
@@ -116,8 +135,9 @@ class Time {
 ```
 
 
-Seat Class
-----------
+
+---
+###Seat Class
 
 ```java
 class Seat {
@@ -140,8 +160,9 @@ class Seat {
 ```
 
 
-Ticket Class
-------------
+
+---
+###Ticket Class
 
 ```java
 class Ticket {
@@ -159,7 +180,7 @@ class Ticket {
     private int ticketID;
     
     public Ticket(String movieName, String typeOfMovie, String classOfCinema, String locationOfCinema,
-                  String typeOfMoviegoer, Time showTime, double price, int seatID, int ticketID) {}
+                  String typeOfMoviegoer, Time showTime, int seatID, int ticketID) {}
         
     private String getMovieName() {}
     private String getTypeOfMovie() {}
@@ -171,14 +192,30 @@ class Ticket {
     private int getSeatID() {}
     private int getTicketID() {}
     
-    private void setMovieName(String movieName) {}
-    private void setTypeOfMovie(String typeOfMovie) {}
-    private void setClassOfCinema(String classOfCinema) {}
-    private void setLocationOfCinema(String locationOfCinema) {}
-    private void setTypeOfMoviegoer(String typeOfMoviegoer) {}
-    private void setShowTime(Time showTime) {}
-    private void setPrice(double price) {}
-    private void setSeatID(int seatID) {}
-    private void setTicketID(int ticketID) {}
+    private boolean setMovieName(String movieName) {}
+    private boolean setTypeOfMovie(String typeOfMovie) {}
+    private boolean setClassOfCinema(String classOfCinema) {}
+    private boolean setLocationOfCinema(String locationOfCinema) {}
+    private boolean setTypeOfMoviegoer(String typeOfMoviegoer) {}
+    private boolean setShowTime(Time showTime) {}
+    private boolean setSeatID(int seatID) {}
+    private boolean setTicketID(int ticketID) {}
+
+    private booean setPrice(){}
+    //price is set according to typeOfMoviegoer typeOfMovie and showTime
+}
+```
+
+
+
+---
+###Menu class
+    a rough menu and suggested action after select
+```java
+class Menu {
+    public static void welcome()
+    public static void overall()
+    public static void staffMenu()
+    public static void addModifyMovie()
 }
 ```

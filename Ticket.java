@@ -1,3 +1,5 @@
+package Moblima;
+
 class Ticket {
     //private int movieId;
     private String movieName;
@@ -13,18 +15,19 @@ class Ticket {
     private int ticketID;
     
     public Ticket(String movieName, String typeOfMovie, String classOfCinema, String locationOfCinema,
-                  String typeOfMoviegoer, Time showTime, double price, int seatID, int ticketID) {
+                  String typeOfMoviegoer, Time showTime, int seatID, int ticketID) {
         this.setMovieName(movieName);
-        this.setTypeOfMovie(typeOfMovieg);
+        this.setTypeOfMovie(typeOfMovie);
         this.setClassOfCinema(classOfCinema);
         this.setLocationOfCinema(locationOfCinema);
         this.setTypeOfMoviegoer(typeOfMoviegoer);
         this.setShowTime(showTime);
-        this.setPrice(price);
         this.setSeatID(seatID);
         this.setTicketID(ticketID);
+
+        this.setPrice();
     }
-        
+    
     private String getMovieName() {
         return this.movieName;
     }
@@ -53,31 +56,73 @@ class Ticket {
         return this.ticketID;
     }
     
-    private void setMovieName(String movieName) {
+    private boolean setMovieName(String movieName) {
         this.movieName = movieName;
+        return true;
     }
-    private void setTypeOfMovie(String typeOfMovie) {
+    private boolean setTypeOfMovie(String typeOfMovie) {
         this.typeOfMovie = typeOfMovie;
+        return true;
     }
-    private void setClassOfCinema(String classOfCinema) {
+    private boolean setClassOfCinema(String classOfCinema) {
         this.classOfCinema = classOfCinema;
+        return true;
     }
-    private void setLocationOfCinema(String locationOfCinema) {
+    private boolean setLocationOfCinema(String locationOfCinema) {
         this.locationOfCinema = locationOfCinema;
+        return true;
     }
-    private void setTypeOfMoviegoer(String typeOfMoviegoer) {
+    private boolean setTypeOfMoviegoer(String typeOfMoviegoer) {
         this.typeOfMoviegoer = typeOfMoviegoer;
+        return true;
     }
-    private void setShowTime(Time showTime) {
+    private boolean setShowTime(Time showTime) {
         this.showTime = showTime;
+        return true;
     }
-    private void setPrice(double price) {
-        this.price = price;
-    }
-    private void setSeatID(int seatID) {
+    private boolean setSeatID(int seatID) {
         this.seatID = seatID;
+        return true;
     }
-    private void setTicketID(int ticketID) {
+    private boolean setTicketID(int ticketID) {
         this.ticketID = ticketID;
-    }    
+        return true;
+    }
+
+    private boolean setPrice() {
+        if (this.typeOfMoviegoer = "Senior Citizen") {
+            if (this.typeOfMovie = "Digital Movie") {
+                if(this.showTime.getWeekday()) {
+                    this.price = 4;
+                    return true;
+                }
+            }
+        }
+        if (this.typeOfMoviegoer = "Student") {
+            if (this.typeOfMovie = "Digital Movie") {
+                if (this.showTime.getWeekday()) {
+                    this.price = 7;
+                    return true;
+                }
+            } else {
+                this.price = 9;
+                return true;
+            }
+        }
+        if (this.showTime.getWeekday()) {
+            if (this.typeOfMovie = "Digital Movie") {
+                this.price = 9.5;
+            } else {
+                this.price = 11;
+            }
+            return true;
+        } else {
+            if (this.typeOfMovie = "Digital Movie") {
+                this.price = 11;
+            } else {
+                this.price = 15;
+            }
+            return true;
+        }
+    }
 }

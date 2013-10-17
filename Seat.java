@@ -1,3 +1,5 @@
+package Moblima;
+
 class Seat {
     private Integer row;
     private Integer no;

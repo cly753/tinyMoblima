@@ -1,3 +1,5 @@
+package Moblima;
+
 class Movie {
     private String movieName;
     private String typeOfMovie;
@@ -56,34 +58,44 @@ class Movie {
 
 
 
-    private void setMovieName(String movieName) {
+    private boolean setMovieName(String movieName) {
         this.movieName = movieName;
+        return true;
     }
-    private void setTypeOfMovie(String typeOfMovie) {
+    private boolean setTypeOfMovie(String typeOfMovie) {
         this.typeOfMovie = typeOfMovie;
+        return true;
     }
-    private void setCast(String[] cast) {
+    private boolean setCast(String[] cast) {
         this.cast = cast;
+        return true;
     }
-    private void setDirector(String[] director) {
+    private boolean setDirector(String[] director) {
         this.director = director;
+        return true;
     }
-    private void setLanguage(String language) {
+    private boolean setLanguage(String language) {
         this.language = language;
+        return true;
     }
-    private void setRuntime(int runtime) {
+    private boolean setRuntime(int runtime) {
         this.runtime = runtime;
+        return true;
     }
-    private void setDescription(String[] description) {
+    private boolean setDescription(String[] description) {
         this.description = description;
+        return true;
     }
-    private void setOpeningTime(Time openingTime) {
+    private boolean setOpeningTime(Time openingTime) {
         this.openingTime = openingTime;
+        return true;
     }
-    private void setShowtimeList(Time[] showtimeList) {
+    private boolean setShowtimeList(Time[] showtimeList) {
         this.showtimeList() = showtimeList;
+        return true;
     }
-    private void setRating(String rating) {
+    private boolean setRating(String rating) {
         this.rating = rating;
+        return true;
     }
 }
