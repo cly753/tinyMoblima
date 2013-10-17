@@ -1,3 +1,5 @@
+package Moblima;
+
 class Ticket {
     //private int movieId;
     private String movieName;
@@ -53,31 +55,31 @@ class Ticket {
         return this.ticketID;
     }
     
-    private void setMovieName(String movieName) {
+    private boolean setMovieName(String movieName) {
         this.movieName = movieName;
     }
-    private void setTypeOfMovie(String typeOfMovie) {
+    private boolean setTypeOfMovie(String typeOfMovie) {
         this.typeOfMovie = typeOfMovie;
     }
-    private void setClassOfCinema(String classOfCinema) {
+    private boolean setClassOfCinema(String classOfCinema) {
         this.classOfCinema = classOfCinema;
     }
-    private void setLocationOfCinema(String locationOfCinema) {
+    private boolean setLocationOfCinema(String locationOfCinema) {
         this.locationOfCinema = locationOfCinema;
     }
-    private void setTypeOfMoviegoer(String typeOfMoviegoer) {
+    private boolean setTypeOfMoviegoer(String typeOfMoviegoer) {
         this.typeOfMoviegoer = typeOfMoviegoer;
     }
-    private void setShowTime(Time showTime) {
+    private boolean setShowTime(Time showTime) {
         this.showTime = showTime;
     }
-    private void setPrice(double price) {
+    private boolean setPrice(double price) {
         this.price = price;
     }
-    private void setSeatID(int seatID) {
+    private boolean setSeatID(int seatID) {
         this.seatID = seatID;
     }
-    private void setTicketID(int ticketID) {
+    private boolean setTicketID(int ticketID) {
         this.ticketID = ticketID;
     }    
 }
