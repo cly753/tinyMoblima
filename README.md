@@ -5,18 +5,18 @@
 ###to be
 
     pls read Menu class first
-- [ ] overall control
-- [ ] search
-- [ ] list all/past movies
-- [ ] show the detail of a movie
-- [ ] book movie (show seats, get customer's info, reserve a movie)
-- [ ] check history (not paid / all)
-- [ ] check customer login
-- [ ] check staff login
-- [ ] add a movie
-- [ ] change ticket price
-- [ ] update other details
-- [ ] remove a movie
+- [ ✓ ] overall control
+- [ ✓ ] search
+- [ ✓ ] list all/past movies
+- [ ✓ ] show the detail of a movie
+- [ ✓ ] book movie (show seats, get customer's info, reserve a movie)
+- [ ✓ ] check history (not paid / all)
+- [ ✓ ] check customer login
+- [ ✓ ] check staff login
+- [ ✓ ] add a movie
+- [ ✓ ] change ticket price
+- [ ✓ ] update other details
+- [ ✓ ] remove a movie
 
 
 
