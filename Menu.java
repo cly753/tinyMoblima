@@ -31,8 +31,7 @@ class Menu {
 
     public static void addModifyMovie() {
         System.out.println("1.Add a movie"); // call addMovie
-        System.out.println("2.Change ticket price"); // call setPrice in Movie class
-        System.out.println("3.Update a movie"); // call xxx in Movie class
-        System.out.println("4.Remove a movie"); // call xxx in Movie class
+        System.out.println("2.Update a movie"); // call xxx in Movie class
+        System.out.println("3.Remove a movie"); // call xxx in Movie class
     }
 }
