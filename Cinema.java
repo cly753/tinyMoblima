@@ -1,6 +1,6 @@
 package Moblima;
 
-public class Cinema {
+class Cinema {
     private final Integer row;
     private final Integer column;
     private Seat theSeat[][];

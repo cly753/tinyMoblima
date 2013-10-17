@@ -2,7 +2,7 @@ package Moblima;
 
 import java.util.ArrayList;
 
-public class MovieLib {
+class MovieLib {
     private ArrayList<Movie> lib;
 
     public MovieLib() {

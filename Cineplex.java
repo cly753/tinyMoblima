@@ -1,6 +1,6 @@
 package Moblima;
 
-public class Cineplex {
+class Cineplex {
     private Cinema theCinema[] = new Cinema[3];
 
     private String info[];
