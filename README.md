@@ -1,8 +1,28 @@
-Y2S1CE2002PROJECT
-=================
+##Y2S1CE2002PROJECT
+***
 
-Movie Class
------------
+---
+###to be
+
+    pls read Menu class first
+- [ ✓ ] overall control
+- [ ✓ ] search
+- [ ✓ ] list all/past movies
+- [ ✓ ] show the detail of a movie
+- [ ✓ ] book movie (show seats, get customer's info, reserve a movie)
+- [ ✓ ] check history (not paid / all)
+- [ ✓ ] check customer login
+- [ ✓ ] check staff login
+- [ ✓ ] add a movie
+- [ ✓ ] change ticket price
+- [ ✓ ] update other details
+- [ ✓ ] remove a movie
+
+
+
+---
+###Movie Class
+
 ```java
 class Movie {
     private String movieName;
@@ -40,10 +60,14 @@ class Movie {
     private void setOpeningTime(Time openingTime) {}
     private void setShowtimeList(Time[] showtimeList) {}
     private void setRating(String rating) {}
-}```
+}
+```
 
-Moviegoer Class
----------------
+
+
+---
+###Moviegoer Class
+
 ```java
 class Moviegoer {
     private String name;
@@ -67,8 +91,11 @@ class Moviegoer {
 }
 ```
 
-Time Class
-----------
+
+
+---
+###Time Class
+
 ```java
 class Time {
     private Integer year;
@@ -107,8 +134,11 @@ class Time {
 }
 ```
 
-Seat Class
-----------
+
+
+---
+###Seat Class
+
 ```java
 class Seat {
     private Integer row;
@@ -129,8 +159,11 @@ class Seat {
 }
 ```
 
-Ticket Class
-------------
+
+
+---
+###Ticket Class
+
 ```java
 class Ticket {
     //private int movieId;
@@ -168,5 +201,19 @@ class Ticket {
     private void setPrice(double price) {}
     private void setSeatID(int seatID) {}
     private void setTicketID(int ticketID) {}
+}
+```
+
+
+
+---
+###Menu class
+    a rough menu and suggested action after select
+```java
+class Menu {
+    public static void welcome()
+    public static void overall()
+    public static void staffMenu()
+    public static void addModifyMovie()
 }
 ```
