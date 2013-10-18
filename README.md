@@ -17,6 +17,14 @@
 
 
 ---
+###UML
+    State Machine Diagram
+    
+![StateMachineDiagram] (/State%20Machine%20Diagram1.png "StateMachineDiagram")
+
+
+
+---
 ###Movie Class
 
 ```java
