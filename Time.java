@@ -14,11 +14,25 @@ class Time {
                                             "JUL", "AUG", "SEP",
                                             "OCT", "NOV", "DEC"};
 
+    private static ArrayList<String> pubHoliList = new ArrayList<String>; // format: yyyymmdd
+    private static ArrayList<String> weekendList = new ArrayList<String>; // format: yyyymmdd
+
     private boolean weekday;
     private boolean publicHoliday;
 
     public Time() {
 
+    }
+
+    public static Time manualNewATime(Scanner sc) {
+        Time newTime = new Time();
+        newTime.setYear(sc.nextInt());
+        newTime.setMonth(sc.nextInt());
+        newTime.setDay(sc.nextInt());
+        newTime.setHour(sc.nextInt());
+        newTime.setMinute(sc.nextInt());
+
+        return newTime;
     }
 
     public boolean storeCurrentTime() {
@@ -44,6 +58,7 @@ class Time {
 
     public boolean setYear(Integer year) {
         this.year = year;
+        updatePubHoliAndWkend();
         return true;
     }
     public Integer getYear() {
@@ -52,6 +67,7 @@ class Time {
 
     public boolean setMonth(Integer month) {
         this.month = month;
+        updatePubHoliAndWkend();
         return true;
     }
     public Integer getMonth() {
@@ -60,6 +76,7 @@ class Time {
 
     public boolean setDay(Integer date) {
         this.date = date;
+        updatePubHoliAndWkend();
         return true;
     }
     public Integer getDay() {
@@ -96,5 +113,21 @@ class Time {
     }
     public boolean getPublicHoliday() {
         return publicHoliday;
+    }
+
+
+    public boolean updatePubHoliAndWkend() {
+        String timeStr = Integer.toString(this.year) + Integer.toString(this.month) + Integer.toString(this.day);
+
+        for (int i = 0; i < pubHoliList.size(); i++) {
+            if (pubHoliList.get(i).compareTo(timeStr) == 0){
+                publicHoliday = true;
+            }
+        }
+        for (int i = 0; i < weekendList.size(); i++) {
+            if (weekendList.get(i).compareTo(timeStr) == 0){
+                this.setWeekday(false);
+            }
+        }
     }
 }
