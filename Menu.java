@@ -23,8 +23,8 @@ class Menu {
         int choice;
         while (true) {
             System.out.println("Please Enter Your Choice:");
-            System.out.println("1. Search movies"); // call search
-            System.out.println("2. List all movies"); // call listAllMovie
+            System.out.println("1. List all movies"); // call listAllMovie
+            System.out.println("2. Search movies"); // call search
             System.out.println("3. Book movie"); // select and call search/listAllMovie
             System.out.println("4. Check status/history"); // call checkLogin
             System.out.println("5. Pay"); // call checkLogin
@@ -37,7 +37,11 @@ class Menu {
                 break;
             }
             switch (choice) {
-                case 1, 3:
+                case 1:
+                    System.out.println("List all movies:");
+                    movieLib.listAllMovie();
+                    break;
+                case 2, 3:
                     String nameOfMovie;
                     System.out.println("Please Enter the movie name:");
                     nameOfMovie = sc.next();
@@ -45,10 +49,6 @@ class Menu {
                         //if find the movie, then it's available for booking
                         this.book(nameOfMovie);
                     }
-                    break;
-                case 2:
-                    System.out.println("List all movies:");
-                    movieLib.listAllMovie();
                     break;
                 case 4:
                     if (this.checkLogin()) {
@@ -81,20 +81,84 @@ class Menu {
         }
     }
     public static void staffMenu() {
-        System.out.println("1.Add/Modify a movie"); // next level: add modify remove
-        System.out.println("2.Set holidays"); // call setHoliday in Time class
-        System.out.println("3.Generate revenue report"); // call generateRevenueReport in Revenue class
-        System.out.println("17.exit"); // previous level: toplevel
+        int choice;
+        while (true) {
+            System.out.println("Enter your choice, BOSS!");
+            System.out.println("1. Add a movie");
+            System.out.println("2. Modify a movie"); // next level: add modify remove
+            System.out.println("3. Set holidays"); // call setHoliday in Time class
+            System.out.println("4. Generate revenue report"); // call generateRevenueReport in Revenue class
+            System.out.println("0.exit"); // previous level: toplevel
+            choice = sc.nextInt();
+            if (choice == 0) {
+                System.out.println("Bye-Bye Boss!");
+                break;
+            }
+            switch (choice) {
+                case 1:
+                    this.addMovie();
+                    break;
+                case 2:
+                    this.modifyMovie();
+                    break;
+                case 3:
+                    this.setHoliday();
+                    break;
+                case 4:
+                    this.generateRevenueReport();
+                    break;
+                defult:
+                    System.out.println("Wrong Input.");
+                    break;
+            }
+        }
     }
 
     public static void addModifyRemove() {
-        System.out.println("1.list movies"); // call listMovie in MovieLib class
-        System.out.println("2.Add a movie"); // call addMovie in MovieLib class
-        System.out.println("3.Update a movie"); // next level: modify >>> call xxx in Movie class
-        System.out.println("4.Remove a movie"); // call remove in MovieLib class
-        System.out.println("17.back"); // previous level: staff menu
+        int choice;
+        while (true) {
+            System.out.println("Please Enter your choice:");
+            System.out.println("1. list movies"); // call listMovie in MovieLib class
+            System.out.println("2. Search a movie"); // call search in MovieLib class
+            System.out.println("3. Add a movie"); // call addMovie in MovieLib class
+            System.out.println("4. Update a movie"); // next level: modify >>> call xxx in Movie class
+            System.out.println("5. Remove a movie"); // call remove in MovieLib class
+            System.out.println("0.back"); // previous level: staff menu
+            choice = sc.nextInt();
+            if (choice == 0) {
+                System.out.println("Back...");
+                break;
+            }
+            switch (choice) {
+                case 1:
+                    System.out.println("List all movies:");
+                    movieLib.listAllMovie();
+                    break;
+                case 2, 4, 5:
+                    String nameOfMovie;
+                    System.out.println("Please Enter the movie name:");
+                    nameOfMovie = sc.next();
+                    if (movieLib.search(nameOfMovie)) {
+                        //if find the movie, then it's available for booking
+                        if (choice == 4) {
+                            movieLib.modify(nameOfMovie);
+                        }
+                        if (choice == 5) {
+                            movieLib.remove(nameOfMovie);
+                        }
+                    }
+                    break;
+                case 3:
+                    System.out.println("Add a movie:");
+                    movieLib.addMovie();
+                    break;
+                defult:
+                    System.out.println("Wrong Input.");
+                    break;
+            }
+        }
     }
-
+    
     public static void modify() { // call modify in MovieLib class
         System.out.println("-1.list movies"); // call listMovie in MovieLib class
         System.out.println("0.show menu");
