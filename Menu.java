@@ -1,12 +1,5 @@
 package Moblima;
 
-//
-// a rough menu
-// only menu
-// and
-// suggested action after select
-//
-
 
 class Menu {
     
@@ -16,7 +9,13 @@ class Menu {
     public static Moviegoer customer;
     
     public static void welcome() {
-        System.out.println("Welcome to xxx");
+        System.out.println("++++++++++++++++++++++++++++++++++");
+        System.out.println("|                                | ");
+        System.out.println("|                                | ");
+        System.out.println("|       Welcome to Moblima       | ");
+        System.out.println("|         Captain cly753         | ");
+        System.out.println("|                                | ");
+        System.out.println("++++++++++++++++++++++++++++++++++");
     }
 
     public static void toplevel() {
