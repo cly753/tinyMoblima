@@ -17,7 +17,6 @@ class Movie {
     public Movie() {
         //TODO =.=
     }
-    
     public Movie(String movieName, String typeOfMovie, String[] cast, String[] director, String language,
                   int runtime, String[] description, Time openingTime, Time[] showtimeList, String rating) {
         this.setMovieName(movieName);
@@ -135,4 +134,42 @@ class Movie {
         }
         return true;
     }
+
+    public void showInfo() {
+        int choice;
+        
+        System.out.println("Movie Name: " + this.movieName);
+        System.out.println("Movie Type: " + this.typeOfMovie);
+        System.out.print("Cast: ");
+        for (int i = 0; i < this.cast.length - 1; i++) {
+            System.out.print(this.cast[i] + " ");
+        }
+        System.out.println(this.cast[cast.length - 1]);
+        
+        System.out.print("Director: ");
+        for (int i = 0; i < this.director.length - 1; i++) {
+            System.out.print(this.director[i] + " ");
+        }
+        System.out.println(this.director[this.director.length - 1]);
+        
+        System.out.println("---More--- input 1");
+        choice = sc.nextInt();
+        if (choice != 1) {
+            return;
+        }
+        System.out.println("Language: " + this.language);
+        System.out.println("Opening Time: " + this.openingTime.printFormat());
+        System.out.println("Runtime: " + this.runtime);
+        System.out.println("Rating: " + this.rating);
+        System.out.println("---More--- input 1");
+        choice = sc.nextInt();
+        if (choice != 1) {
+            return;
+        }
+        System.out.println("===============description===============");
+        for (int i = 0; i < this.description.length - 1; i++) {
+            System.out.print(this.description[i] + " ");
+        }
+        System.out.println(this.description[this.description.length - 1]);
+    }   
 }

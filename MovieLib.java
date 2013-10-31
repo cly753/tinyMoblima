@@ -9,7 +9,7 @@ class MovieLib {
         lib = new ArrayList<Movie>;
     }
 
-    public boolean searchMovie(String query) {
+    public Movie[] searchMovie(String query) {
         //if find the query then return true
         ArrayList<Movie> result = new ArrayList<Movie>;
         for (int i = 0; i < lib.length; i++) {
@@ -24,14 +24,12 @@ class MovieLib {
         if (result.size() != 0) {
             System.out.println("Movie Found!");
             for (int i = 0; i < result.size(); i++) {
-                System.out.println(i + "." + result.get(i).movieName);
+                System.out.println((i + 1) + result.get(i).movieName);
             }
-            return true;
-        } else {
-            return false;
         }
+        return result.toArray();
     }
-
+    
     public boolean add() {
         //here is the format of adding a movie.
         //hopefully will be our data format inside a txt file.

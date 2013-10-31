@@ -41,12 +41,60 @@ class Menu {
                     lib.listAllMovie();
                     break;
                 case 2, 3:
-                    String nameOfMovie;
                     System.out.println("Please Enter the movie name:");
-                    nameOfMovie = sc.next();
-                    if (lib.search(nameOfMovie) && choice == 3) {
-                        //if find the movie, then it's available for booking
-                        this.book(nameOfMovie);
+                    String nameOfMovie = sc.next();
+                    Movie[] searchResult = lib.search(nameOfMovie);
+                    if (searchResult.length == 0) {
+                        System.out.println("Sorry, cannot find any movie!");
+                        break;
+                    }
+                    
+                    if (searchResult.length == 1 && choice == 3) {
+                        //if find the only one movie, then it's available for booking
+                        System.out.println("Do want to see details about this movie?");
+                        System.out.println("1 for yes, others for no");
+                        int showOrNot = sc.nextInt();
+                        if (showOrNot == 1) {
+                            searchResult[0].showInfo();//movie shows its info 
+                        }
+                        System.out.println("Do want to book this movie?");
+                        System.out.println("1 for yes, others for no");
+                        int bookOrNot = sc.nextInt();
+                        if (bookOrNot == 1) {
+                            this.book(searchResult[0].movieName);
+                        } else {
+                            System.out.println("Back...");
+                        }
+                        break;
+                    }
+                    while (true) {
+                        System.out.println("Which movie do you want to see details?");
+                        System.out.println("Please input the index in front of it: ");
+                        System.out.println("input 0 to return");
+                        int selectMovie = sc.nextInt();
+                        if (selectMovie == 0) {
+                            System.our.println("Back...");
+                            break;
+                        }
+                        while (!(0 < selectMovie && selectMovie <= searchResult.length)) {
+                            System.out.println("Wrong Input.");
+                            System.out.println("Please try again!");
+                            int selectMovie = sc.nextInt();
+                            if (selectMovie == 0) {
+                                System.our.println("Back...");
+                                break;
+                            }
+                        }
+                        if (selectMovie == 0) {
+                            break;
+                        }
+                        searchResult[selectMovie].showInfo();//movie shows its info 
+                        System.out.println("Do want to book this movie?");
+                        System.out.println("1 for yes, others for no");
+                        int bookOrNot = sc.nextInt();
+                        if (bookOrNot == 1) {
+                            this.book(searchResult[0].movieName);
+                        }
                     }
                     break;
                 case 4:

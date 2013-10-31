@@ -19,7 +19,6 @@ class Time {
 
     private boolean weekday;
     private boolean publicHoliday;
-
     public Time() {
 
     }
