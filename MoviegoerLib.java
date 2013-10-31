@@ -6,7 +6,7 @@ class MoviegoerLib {
     }
 
 
-    public boolean add() {
+    public Moviegoer add() {
         String username, String password, String name, Sting mobileNumber, String emailAddress, Integer ag
 
         System.out.println("username: ");
@@ -27,16 +27,21 @@ class MoviegoerLib {
         System.out.println("age: ");
         Integer newAge =sc.nextInt();
 
-        Moviegoer newGoer = new Moviegoer(
-                                    newUsername, 
-                                    newPassword, 
-                                    newName, 
-                                    newMobileNumber,
-                                    newEmailAddress,
-                                    newAge);
+        System.out.print("confirm? 1/0");
+        if (sc.nextInt() == 1) {
+            Moviegoer newGoer = new Moviegoer(
+                                        newUsername, 
+                                        newPassword, 
+                                        newName, 
+                                        newMobileNumber,
+                                        newEmailAddress,
+                                        newAge);
+            goerLib.add(newGoer);
+        }
+        else
+            newGoer = null;
         
-        goerLib.add(newGoer);
-        return true;
+        return newGoer;
     }
 
     public boolean delete(Moviegoer goer) {
@@ -83,16 +88,16 @@ class MoviegoerLib {
     public Moviegoer checkLogin(String nameTry, String pwdTry) {
         Integer goerSize = goerLib.size();
         ListIterator<Integer> iter = goerLib.listIterator(0);
-        Moviegoer temp = NULL;
+        Moviegoer temp = null;
         while (iter.hasNext()) {
             temp = iter.next();
             if (temp.username.compareTo(nameTry))
                 if (temp.password.compareTo(pwdTry))
                     return temp;
                 else
-                    return NULL;
+                    return null;
         }
-        return NULL;
+        return null;
     }
 
     public static boolean pay(Moviegoer goer, int index) {

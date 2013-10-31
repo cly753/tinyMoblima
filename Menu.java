@@ -29,6 +29,7 @@ class Menu {
             System.out.println("5. Pay"); // call checkLogin
             System.out.println("6. Login");
             System.out.ptintln("7. Logout");
+            System.out.ptintln("8. Register");
             System.out.println("0. Exit");
             choice = sc.nextInt();
             if (choice == 0) {
@@ -90,7 +91,7 @@ class Menu {
                     break;
                 case 4, 5, 6:
 
-                    if (curUser == NULL) {
+                    if (curUser == null) {
                         String username;
                         String password;
                         System.out.println("please login");
@@ -101,7 +102,7 @@ class Menu {
 
                         curUser = goerLib.checkLogin(username, password);
 
-                        if (curUser != NULL) {
+                        if (curUser != null) {
                             System.out.println("login succeed.");
                         }
                     }
@@ -139,7 +140,7 @@ class Menu {
                     }
                     break;
                 case 6:
-                    if (curUser != NULL) {
+                    if (curUser != null) {
                         String username;
                         String password;
                         System.out.print("username: ");
@@ -149,7 +150,7 @@ class Menu {
 
                         curUser = goerLib.checkLogin(username, password);
 
-                        if (curUser != NULL)
+                        if (curUser != null)
                             System.out.println("login succeeded.");
                         else
                             System.out.println("login failed.");
@@ -158,7 +159,10 @@ class Menu {
                     }
                     break;
                 case 7:
-                    curUser = NULL;
+                    curUser = null;
+                    break;
+                case 8:
+                    curUser = goerLib.add();
                     break;
                 default:
                     System.out.println("Wrong input.");
