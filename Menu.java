@@ -34,9 +34,14 @@ class Menu {
             choice = sc.nextInt();
             if (choice == 0) {
                 System.out.println("Exit...");
-                break;
+                return ;
             }
             switch (choice) {
+                case 9:
+                    System.out.print("password: ");
+                    if (sc.next().compareTo(adminPwd) == 0)
+                        staffMenu();                      
+                    break;
                 case 1:
                     System.out.println("List all movies:");
                     movieLib.listMovie();
@@ -56,7 +61,7 @@ class Menu {
                         System.out.println("1 for yes, others for no");
                         int showOrNot = sc.nextInt();
                         if (showOrNot == 1) {
-                            searchResult[0].showInfo();//movie shows its info 
+                            searchResult[0].showInfo();
                         }
                         System.out.println("Do want to book this movie?");
                         System.out.println("1 for yes, others for no");
@@ -167,8 +172,7 @@ class Menu {
                 default:
                     System.out.println("Wrong input.");
                     break;
-            }
-            
+            }      
         }
     }
     public static void staffMenu() {
