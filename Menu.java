@@ -38,12 +38,12 @@ class Menu {
             switch (choice) {
                 case 1:
                     System.out.println("List all movies:");
-                    lib.listAllMovie();
+                    movieLib.listAllMovie();
                     break;
                 case 2, 3:
                     System.out.println("Please Enter the movie name:");
                     String nameOfMovie = sc.next();
-                    Movie[] searchResult = lib.search(nameOfMovie);
+                    Movie[] searchResult = movieLib.search(nameOfMovie);
                     if (searchResult.length == 0) {
                         System.out.println("Sorry, cannot find any movie!");
                         break;
@@ -138,7 +138,7 @@ class Menu {
             System.out.println("0.exit"); // previous level: toplevel
             choice = sc.nextInt();
             if (choice == 0) {
-                System.out.println("Bye-Bye Boss!");
+                System.out.println("Bye-Bye Boss! ");
                 break;
             }
             switch (choice) {
@@ -179,27 +179,27 @@ class Menu {
             switch (choice) {
                 case 1:
                     System.out.println("List all movies:");
-                    lib.listAllMovie();
+                    movieLib.listAllMovie();
                     break;
                 case 2, 4, 5:
                     String nameOfMovie;
                     System.out.println("Please Enter the movie name:");
                     nameOfMovie = sc.next();
-                    if (lib.search(nameOfMovie)) {
+                    if (movieLib.search(nameOfMovie)) {
                         //if find the movie, then it's available for booking
                         if (choice == 4) {
                             this.modify(nameOfMovie);
                         }
                         if (choice == 5) {
-                            lib.remove(nameOfMovie);
+                            movieLib.remove(nameOfMovie);
                         }
                     }
                     break;
                 case 3:
                     System.out.println("Add a movie:");
-                    lib.add();
+                    movieLib.add();
                     break;
-                defult:
+                default:
                     System.out.println("Wrong Input.");
                     break;
             }
@@ -233,7 +233,7 @@ class Menu {
                 System.out.println("Wrong Input.");
                 continue;
             }
-            if (lib.modify(nameOfMovie, choice)) {
+            if (movieLib.modify(nameOfMovie, choice)) {
                 System.out.println("Successful modified");
             }
         }

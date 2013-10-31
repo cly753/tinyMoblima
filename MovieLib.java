@@ -3,21 +3,21 @@ package Moblima;
 import java.util.ArrayList;
 
 class MovieLib {
-    private ArrayList<Movie> lib;
+    private ArrayList<Movie> movieLib;
 
     public MovieLib() {
-        lib = new ArrayList<Movie>;
+        movieLib = new ArrayList<Movie>;
     }
 
     public Movie[] searchMovie(String query) {
         //if find the query then return true
         ArrayList<Movie> result = new ArrayList<Movie>;
-        for (int i = 0; i < lib.length; i++) {
-            if (lib.get(i).movieName.compareTo(query) == 0) {
-                result.add(0, lib.get(i));
+        for (int i = 0; i < movieLib.length; i++) {
+            if (movieLib.get(i).movieName.compareTo(query) == 0) {
+                result.add(0, movieLib.get(i));
             } else {
-                if (lib.get(i).movieName.matches(query + "+")) {
-                    result.add(result.size(), lib.get(i));
+                if (movieLib.get(i).movieName.matches(query + "+")) {
+                    result.add(result.size(), movieLib.get(i));
                 }
             }
         }
@@ -79,16 +79,16 @@ class MovieLib {
                                    openingTime,
                                    rating);
         
-        lib.add(0, newMovie);
+        movieLib.add(0, newMovie);
         return true;
     }
 
     public boolean remove(String movieName) {
         int i;
         boolean flag = false;
-        for (i = 0; i < lib.size(); i++) {
-            if (lib.get(i).movieName.compareTo(movieName) == 0) {
-                lib.remove(i);
+        for (i = 0; i < movieLib.size(); i++) {
+            if (movieLib.get(i).movieName.compareTo(movieName) == 0) {
+                movieLib.remove(i);
                 flag = true;
             }
         }
@@ -100,58 +100,58 @@ class MovieLib {
     public boolean modify(String movieName, int choice) {
         int i;
 
-        for (i = 0; i < lib.size(); i++) {
-            if (lib.get(i).movieName.compareTo(movieName) == 0) {
+        for (i = 0; i < movieLib.size(); i++) {
+            if (movieLib.get(i).movieName.compareTo(movieName) == 0) {
                 break;
             }
         }
         
-        if (i == lib.size()) {
+        if (i == movieLib.size()) {
             return false;
         }
         
         switch (choice) {
             case 1:
                 System.out.print("New name: ");
-                lib.get(i).setMovieName(sc.nextLine());
+                movieLib.get(i).setMovieName(sc.nextLine());
                 break;
             case 2:
                 System.out.print("New type: ");
-                lib.get(i).setTypeOfMovie(sc.next());
+                movieLib.get(i).setTypeOfMovie(sc.next());
                 break;
             case 3:
                 System.out.print("New cast: ");
-                lib.get(i).setCast(sc.nextLine().split(" "));
+                movieLib.get(i).setCast(sc.nextLine().split(" "));
                 break;
             case 4:
                 System.out.print("New director: ");
-                lib.get(i).setDirector(sc.nextLine().split(" "));
+                movieLib.get(i).setDirector(sc.nextLine().split(" "));
                 break;
             case 5:
                 System.out.print("New language: ");
-                lib.get(i).setLanguage(sc.next());
+                movieLib.get(i).setLanguage(sc.next());
                 break;
             case 6:
                 System.out.print("New runtime: ");
-                lib.get(i).setRuntime(sc.nextInt());
+                movieLib.get(i).setRuntime(sc.nextInt());
                 break;
             case 7:
                 System.out.print("New description: ");
-                lib.get(i).setDescription(sc.nextLine());
+                movieLib.get(i).setDescription(sc.nextLine());
                 break;
             case 8:
                 System.out.print("New openingTime: ");
-                lib.get(i).setOpeningTime(Time.manualNewATime());
+                movieLib.get(i).setOpeningTime(Time.manualNewATime());
                 break;
             case 9:
                 System.out.print("New showtime : ");
-                lib.get(i).addShowtime(Time.manualNewATime());
+                movieLib.get(i).addShowtime(Time.manualNewATime());
                 break;
             case 10:
-                lib.get(i).deleteShowtime(sc);
+                movieLib.get(i).deleteShowtime(sc);
                 break;
             case 11:
-                lib.get(i).setRatingBB(sc);
+                movieLib.get(i).setRatingBB(sc);
                 break;
             default:
                 System.out.println("invalid. again: ");
@@ -160,14 +160,14 @@ class MovieLib {
         return true;
     }
     
-    public static void listMovie(MovieLib lib, Scanner sc) {
+    public static void listMovie(MovieLib movieLib, Scanner sc) {
         System.out.print("From: ");
         int start = sc.nextInt();
         System.out.print("To: ");
         int end = sc.nextInt();
 
-        ListIterator iterA = new lib.listIterator(start);
-        ListIterator iterB = new lib.listIterator(end);
+        ListIterator iterA = new movieLib.listIterator(start);
+        ListIterator iterB = new movieLib.listIterator(end);
 
         while (iterA != iterB && iterA.hasNext()) {
             System.out.println(start + "." + iterA.next().movieName);

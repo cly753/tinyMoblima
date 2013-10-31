@@ -14,9 +14,6 @@ class Movie {
 
     private static final String ratingList[] = {"G", "PG", "R18"};
     
-    public Movie() {
-        //TODO =.=
-    }
     public Movie(String movieName, String typeOfMovie, String[] cast, String[] director, String language,
                   int runtime, String[] description, Time openingTime, Time[] showtimeList, String rating) {
         this.setMovieName(movieName);
@@ -35,7 +32,7 @@ class Movie {
         newMovie.setRatingBB(sc);
         }*/
     //deleted by Shengliang
-    //modified this function to lib.add() at MovieLib
+    //modified this function to movieLib.add() at MovieLib
     
     public String getMovieName() {
         return this.movieName;

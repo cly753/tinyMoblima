@@ -2,15 +2,19 @@ package Moblima;
 
 import java.util.ArrayList;
 
-class Moviegoer {
+class Moviegoer extends User {
     private String name;
     private String mobileNumber;
     private String emailAddress;
     private Integer age;
     private ArrayList<Ticket> history;
 
-    public Moviegoer() {
-
+    public Moviegoer(String username, String password, String name, Sting mobileNumber, String emailAddress, Integer age) {
+        super(username, password);
+        this.name = name;
+        this.mobileNumber = mobileNumber;
+        this.emailAddress = emailAddress;
+        this.age = age;
     }
 
     public boolean setName(String name) {
