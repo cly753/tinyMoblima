@@ -61,7 +61,7 @@ class Menu {
                         System.out.println("1 for yes, others for no");
                         int bookOrNot = sc.nextInt();
                         if (bookOrNot == 1) {
-                            this.book(searchResult[0].getMovieName()); ///////////
+                            //// **** ????
                         } else {
                             System.out.println("Back...");
                         }
@@ -174,7 +174,7 @@ class Menu {
             System.out.println("1. Add/Modify/Remove a movie");
             System.out.println("2. Set holidays"); // call setHoliday in Time class
             System.out.println("3. Generate revenue report"); // call generateRevenueReport in Revenue class
-            System.out.println("0.exit"); // previous level: toplevel
+            System.out.println("0. exit"); // previous level: toplevel
             choice = sc.nextInt();
             if (choice == 0) {
                 System.out.println("Bye-Bye Da Shen! ");

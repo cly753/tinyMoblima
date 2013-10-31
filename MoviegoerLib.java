@@ -97,12 +97,15 @@ class MoviegoerLib {
 
     public static boolean pay(Moviegoer goer, int index) {
         Time tempTime = new Time();
+        Ticket ti;
 
         System.out.println("1.Visa 2.Master? ");
         int card = sc.nextInt();
 
-        tempTime.storeCurrentTime();
-        goer.getUnpaid().get(index).setBuyTime(tempTime);
+        ti = goer.getUnpaid().remove(index);       
+        ti.setBuyTime(tempTime.storeCurrentTime());
+        
+        goer.getPaid().add(ti);
 
         System.out.println("paid!");
         return true;
