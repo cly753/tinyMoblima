@@ -294,3 +294,14 @@ class MovieLib {
     public static void listMovie(MovieLib lib, Scanner sc) {}
 }
 ```
+---
+###Revenue class
+```java
+class Revenue {
+    public static void getDailyCineplexRevenue(Cineplex currentCineplex, Time day) {}
+    public static void getMonthlyCineplexRevenue(Cineplex currentCineplex, Time day) {}
+    public static void getDailyTotalRevenue(Time day) {}
+    public static void getMonthlyTotalRevenue(Time day) {}
+    public static void getTotalRevenue() {}
+}
+```
