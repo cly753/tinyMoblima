@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 public class Main {
 
-    private static Movie movieLib[];
-    private static Moviegoer mgoerLib[];
-    private static Cineplex cLib[];
+    private static MovieLib mLib = new MovieLib();
+    private static MoviegoerLib gLib = new MoviegoerLib();
+    private static Cineplexe cLib[];
 
     private static Scanner sc;
     private static Integer choice;

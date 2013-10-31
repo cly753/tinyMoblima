@@ -39,11 +39,11 @@ class MoviegoerLib {
         return true;
     }
 
-    public boolean delete(Moviegoer toDelete) {
+    public boolean delete(Moviegoer goer) {
         System.out.println("password: ");
         String tempPassword  = sc.next();
 
-        if (toDelete.getPassword().compareTo(tempPassword)) {
+        if (goer.getPassword().compareTo(tempPassword)) {
             int i = goerLib.indexOf(toDelete)
             if (goerLib.indexOf(toDelete) != -1) {
                 goerLib.remove(i);
@@ -54,24 +54,24 @@ class MoviegoerLib {
         return false;
     }
 
-    public static boolean modify(Moviegoer toModify, int choice) {
+    public static boolean modify(Moviegoer goer, int choice) {
         
         switch (choice) {
             case 1:
                 System.out.print("New name: ");
-                toModify.setName(sc.nextLine());
+                goer.setName(sc.nextLine());
                 break;
             case 2:
                 System.out.print("New mobile number: ");
-                toModify.setMobileNumber(sc.next());
+                goer.setMobileNumber(sc.next());
                 break;
             case 3:
                 System.out.print("New email address: ");
-                toModify.setEmailAddress(sc.next());
+                goer.setEmailAddress(sc.next());
                 break;
             case 4:
                 System.out.print("New age: ");
-                toModify.setAge(sc.nextInt());
+                goer.setAge(sc.nextInt());
                 break;
             default:
                 System.out.println("invalid. again: ");
@@ -95,5 +95,37 @@ class MoviegoerLib {
         return NULL;
     }
 
+    public static boolean pay(Moviegoer goer, int index) {
+        Time tempTime = new Time();
 
+        System.out.println("1.Visa 2.Master? ");
+        int card = sc.nextInt();
+
+        tempTime.storeCurrentTime();
+        goer.getHistory().get(index).setBuyTime(tempTime);
+
+        System.out.println("paid!");
+        return true;
+    }
+
+    public static boolean showHistory(Moviegoer goer) {
+        ListIterator<Ticket> iter = goer.getHistory().listIterator();
+        Ticket ti;
+        int i = 5;
+        int track = 0;
+        while (iter.hasNext()) {
+            ti = iter.next();
+            System.out.println(track++);
+            Ticket.display(ti);
+            if (ti.buyTime == -1)
+                System.out.print("Not paid");
+            else
+                System.out.print("paid");
+            if (--i == 0 && iter.hasNext()) {
+                System.out.print("Continue? 1/0");
+                if (sc.nextInt() == 0)
+                    break;
+            }
+        }
+    }
 }

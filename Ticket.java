@@ -7,11 +7,11 @@ class Ticket {
     private String classOfCinema;
     private String locationOfCinema;
     private String typeOfMoviegoer;
-    //private Time buyTime;
-    //private Time bookTime;
+    private Time buyTime;
+    private Time bookTime;
     private Time showTime;
     private double price;
-    private int seatID;
+    private int seatID; // ??? row col?
     private int ticketID;
     
     public Ticket(String movieName, String typeOfMovie, String classOfCinema, String locationOfCinema,
@@ -27,79 +27,93 @@ class Ticket {
 
         this.setPrice();
     }
+
+    public static display(Ticket ti) {
+        System.out.println(ti.getMovieName() + " " + ti.getTypeOfMovie());
+        System.out.println(ti.getShowTime());
+        System.out.println(ti.getSetSeatID() + " " + ti.getTicketID() + " " + ti.getTypeOfMoviegoer());
+        System.out.println(ti.getClassOfCinema() + " " + ti.getLocationOfCinema());
+    }
     
-    private String getMovieName() {
+    public String getMovieName() {
         return this.movieName;
     }
-    private String getTypeOfMovie() {
+    public String getTypeOfMovie() {
         return this.typeOfMovie;
     }
-    private String getClassOfCinema() {
+    public String getClassOfCinema() {
         return this.classOfCinema;
     }
-    private String getLocationOfCinema() {
+    public String getLocationOfCinema() {
         return this.locationOfCinema;
     }
-    private String getTypeOfMoviegoer() {
+    public String getTypeOfMoviegoer() {
         return this.typeOfMoviegoer;
     }
-    private Time getShowTime() {
+    public Time getShowTime() {
         return this.showTime;
     }
-    private double getPrice() {
+    public double getPrice() {
         return this.price;
     }
-    private int getSeatID() {
+    public int getSeatID() {
         return this.seatID;
     }
-    private int getTicketID() {
+    public int getTicketID() {
         return this.ticketID;
     }
+    public Time getBuyTime() {
+        return buyTime;
+    }
     
-    private boolean setMovieName(String movieName) {
+    public boolean setMovieName(String movieName) {
         this.movieName = movieName;
         return true;
     }
-    private boolean setTypeOfMovie(String typeOfMovie) {
+    public boolean setTypeOfMovie(String typeOfMovie) {
         this.typeOfMovie = typeOfMovie;
         return true;
     }
-    private boolean setClassOfCinema(String classOfCinema) {
+    public boolean setClassOfCinema(String classOfCinema) {
         this.classOfCinema = classOfCinema;
         return true;
     }
-    private boolean setLocationOfCinema(String locationOfCinema) {
+    public boolean setLocationOfCinema(String locationOfCinema) {
         this.locationOfCinema = locationOfCinema;
         return true;
     }
-    private boolean setTypeOfMoviegoer(String typeOfMoviegoer) {
+    public boolean setTypeOfMoviegoer(String typeOfMoviegoer) {
         this.typeOfMoviegoer = typeOfMoviegoer;
         return true;
     }
-    private boolean setShowTime(Time showTime) {
+    public boolean setShowTime(Time showTime) {
         this.showTime = showTime;
         return true;
     }
-    private boolean setSeatID(int seatID) {
+    public boolean setSeatID(int seatID) {
         this.seatID = seatID;
         return true;
     }
-    private boolean setTicketID(int ticketID) {
+    public boolean setTicketID(int ticketID) {
         this.ticketID = ticketID;
         return true;
     }
+    public boolean setBuyTime(Time buyTime) {
+        this.buyTime = buyTime;
+        return true;
+    }
 
-    private boolean setPrice() {
-        if (this.typeOfMoviegoer = "Senior Citizen") {
-            if (this.typeOfMovie = "Digital Movie") {
+    public boolean setPrice() {
+        if (this.typeOfMoviegoer == "Senior Citizen") {
+            if (this.typeOfMovie == "Digital Movie") {
                 if(this.showTime.getWeekday()) {
                     this.price = 4;
                     return true;
                 }
             }
         }
-        if (this.typeOfMoviegoer = "Student") {
-            if (this.typeOfMovie = "Digital Movie") {
+        if (this.typeOfMoviegoer == "Student") {
+            if (this.typeOfMovie == "Digital Movie") {
                 if (this.showTime.getWeekday()) {
                     this.price = 7;
                     return true;
@@ -110,14 +124,14 @@ class Ticket {
             }
         }
         if (this.showTime.getWeekday()) {
-            if (this.typeOfMovie = "Digital Movie") {
+            if (this.typeOfMovie == "Digital Movie") {
                 this.price = 9.5;
             } else {
                 this.price = 11;
             }
             return true;
         } else {
-            if (this.typeOfMovie = "Digital Movie") {
+            if (this.typeOfMovie == "Digital Movie") {
                 this.price = 11;
             } else {
                 this.price = 15;

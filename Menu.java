@@ -120,7 +120,7 @@ class Menu {
                     loginState = false;
                     userType = -1;
                     break;
-                defult:
+                default:
                     System.out.println("Wrong input.");
                     break;
             }
@@ -184,7 +184,7 @@ class Menu {
                 case 2, 4, 5:
                     String nameOfMovie;
                     System.out.println("Please Enter the movie name:");
-                    nameOfMovie = sc.next();
+                    nameOfMovie = sc.next();bbbbbb
                     if (movieLib.search(nameOfMovie)) {
                         //if find the movie, then it's available for booking
                         if (choice == 4) {

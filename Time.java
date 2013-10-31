@@ -20,7 +20,6 @@ class Time {
     private boolean weekday;
     private boolean publicHoliday;
     public Time() {
-
     }
 
     public static Time manualNewATime(Scanner sc) {

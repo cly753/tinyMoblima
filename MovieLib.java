@@ -97,61 +97,49 @@ class MovieLib {
         return true;
     }
 
-    public boolean modify(String movieName, int choice) {
-        int i;
-
-        for (i = 0; i < movieLib.size(); i++) {
-            if (movieLib.get(i).movieName.compareTo(movieName) == 0) {
-                break;
-            }
-        }
-        
-        if (i == movieLib.size()) {
-            return false;
-        }
-        
+    public boolean modify(Movie toModify, int choice) {
         switch (choice) {
             case 1:
                 System.out.print("New name: ");
-                movieLib.get(i).setMovieName(sc.nextLine());
+                toModify.setMovieName(sc.nextLine());
                 break;
             case 2:
                 System.out.print("New type: ");
-                movieLib.get(i).setTypeOfMovie(sc.next());
+                toModify.setTypeOfMovie(sc.next());
                 break;
             case 3:
                 System.out.print("New cast: ");
-                movieLib.get(i).setCast(sc.nextLine().split(" "));
+                toModify.setCast(sc.nextLine().split(" "));
                 break;
             case 4:
                 System.out.print("New director: ");
-                movieLib.get(i).setDirector(sc.nextLine().split(" "));
+                toModify.setDirector(sc.nextLine().split(" "));
                 break;
             case 5:
                 System.out.print("New language: ");
-                movieLib.get(i).setLanguage(sc.next());
+                toModify.setLanguage(sc.next());
                 break;
             case 6:
                 System.out.print("New runtime: ");
-                movieLib.get(i).setRuntime(sc.nextInt());
+                toModify.setRuntime(sc.nextInt());
                 break;
             case 7:
                 System.out.print("New description: ");
-                movieLib.get(i).setDescription(sc.nextLine());
+                toModify.setDescription(sc.nextLine());
                 break;
             case 8:
                 System.out.print("New openingTime: ");
-                movieLib.get(i).setOpeningTime(Time.manualNewATime());
+                toModify.setOpeningTime(Time.manualNewATime());
                 break;
             case 9:
                 System.out.print("New showtime : ");
-                movieLib.get(i).addShowtime(Time.manualNewATime());
+                toModify.addShowtime(Time.manualNewATime());
                 break;
             case 10:
-                movieLib.get(i).deleteShowtime(sc);
+                toModify.deleteShowtime(sc);
                 break;
             case 11:
-                movieLib.get(i).setRatingBB(sc);
+                toModify.setRatingBB(sc);
                 break;
             default:
                 System.out.println("invalid. again: ");
