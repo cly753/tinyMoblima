@@ -13,7 +13,7 @@ class Menu {
         System.out.println("|                                | ");
         System.out.println("|                                | ");
         System.out.println("|       Welcome to Moblima       | ");
-        System.out.println("|         Captain cly753         | ");
+        System.out.println("|           Da Shen Lu           | ");
         System.out.println("|                                | ");
         System.out.println("++++++++++++++++++++++++++++++++++");
     }
