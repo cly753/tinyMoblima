@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 public class Main {
 
+    private static Moviegoer curUser = NULL;
+
     private static MovieLib mLib = new MovieLib();
     private static MoviegoerLib gLib = new MoviegoerLib();
     private static Cineplexe cLib[];

@@ -38,12 +38,12 @@ class Menu {
             switch (choice) {
                 case 1:
                     System.out.println("List all movies:");
-                    movieLib.listAllMovie();
+                    movieLib.listMovie();
                     break;
                 case 2, 3:
                     System.out.println("Please Enter the movie name:");
                     String nameOfMovie = sc.next();
-                    Movie[] searchResult = movieLib.search(nameOfMovie);
+                    ArrayList<Movie> searchResult = movieLib.search(nameOfMovie);
                     if (searchResult.length == 0) {
                         System.out.println("Sorry, cannot find any movie!");
                         break;
@@ -61,64 +61,104 @@ class Menu {
                         System.out.println("1 for yes, others for no");
                         int bookOrNot = sc.nextInt();
                         if (bookOrNot == 1) {
-                            this.book(searchResult[0].movieName);
+                            this.book(searchResult[0].getMovieName()); ///////////
                         } else {
                             System.out.println("Back...");
                         }
                         break;
                     }
+
                     while (true) {
                         System.out.println("Which movie do you want to see details?");
                         System.out.println("Please input the index in front of it: ");
-                        System.out.println("input 0 to return");
+                        System.out.println("input other to return");
                         int selectMovie = sc.nextInt();
-                        if (selectMovie == 0) {
-                            System.our.println("Back...");
+
+                        if (selectMovie < 0 || selectMovie >= searchResult.length)) {
+                            System.out.println("back...");
                             break;
                         }
-                        while (!(0 < selectMovie && selectMovie <= searchResult.length)) {
-                            System.out.println("Wrong Input.");
-                            System.out.println("Please try again!");
-                            int selectMovie = sc.nextInt();
-                            if (selectMovie == 0) {
-                                System.our.println("Back...");
-                                break;
-                            }
-                        }
-                        if (selectMovie == 0) {
-                            break;
-                        }
-                        searchResult[selectMovie].showInfo();//movie shows its info 
+
+                        searchResult.get(selectMovie).showInfo();
+
                         System.out.println("Do want to book this movie?");
                         System.out.println("1 for yes, others for no");
                         int bookOrNot = sc.nextInt();
-                        if (bookOrNot == 1) {
+                        if (bookOrNot == 1)
                             this.book(searchResult[0].movieName);
+                    }
+                    break;
+                case 4, 5, 6:
+
+                    if (curUser == NULL) {
+                        String username;
+                        String password;
+                        System.out.println("please login");
+                        System.out.print("username: ");
+                        username = sc.next();
+                        System.out.print("password: ");
+                        password = sc.next();
+
+                        curUser = goerLib.checkLogin(username, password);
+
+                        if (curUser != NULL) {
+                            System.out.println("login succeed.");
+                        }
+                    }
+
+                    if (choice == 6) {
+                        break;
+                    }
+                    
+                    if (choice == 4) {
+                        MoviegoerLib.showHistory(goerLib, false);
+
+                        if (goerLib.unpaid().size() != 0) {
+                            System.out.print("pay(index) or go back(other)?");
+                            int toPay = sc.nextInt();
+
+                            if (0 <= toPay && toPay < goerLib.unpaid().size())
+                                MoviegoerLib.pay(movieLib, toPay);
+                            else
+                                break;
+                        }
+                    }
+
+                    if (choice == 5) {
+                        MoviegoerLib.showHistory(goerLib, true);
+
+                        if (goerLib.unpaid().size() == 1)
+                            MoviegoerLib.pay(movieLib, 0);
+                        else {
+                            System.out.print("pay(index) or go back(other)?");
+                            int toPay = sc.nextInt();
+
+                            if (0 <= toPay && toPay < goerLib.unpaid().size())
+                                MoviegoerLib.pay(movieLib, toPay);
                         }
                     }
                     break;
-                case 4:
-                    if (this.checkLogin()) {
-                        loginState = true;
-                        userType = 1;
-                    }
-                    break;
-                case 5:
-                    if (loginState) {
-                        this.pay();
-                    }
-                    break;
                 case 6:
-                    if (!loginState) {
-                        this.login();
+                    if (curUser != NULL) {
+                        String username;
+                        String password;
+                        System.out.print("username: ");
+                        username = sc.next();
+                        System.out.print("password: ");
+                        password = sc.next();
+
+                        curUser = goerLib.checkLogin(username, password);
+
+                        if (curUser != NULL)
+                            System.out.println("login succeeded.");
+                        else
+                            System.out.println("login failed.");
                     } else {
-                        System.out.println("You have logged in. You may want to log out first.");
-                        System.out.println("If so, please choose 7.");
+                        System.out.println("Already logged in. Log out first.");
                     }
                     break;
                 case 7:
-                    loginState = false;
-                    userType = -1;
+                    curUser = NULL;
                     break;
                 default:
                     System.out.println("Wrong input.");
@@ -130,31 +170,28 @@ class Menu {
     public static void staffMenu() {
         int choice;
         while (true) {
-            System.out.println("Enter your choice, BOSS!");
-            System.out.println("1. Add a movie");
-            System.out.println("2. Modify a movie"); // next level: add modify remove
-            System.out.println("3. Set holidays"); // call setHoliday in Time class
-            System.out.println("4. Generate revenue report"); // call generateRevenueReport in Revenue class
+            System.out.println("Enter your choice, Da Shen!");
+            System.out.println("1. Add/Modify/Remove a movie");
+            System.out.println("2. Set holidays"); // call setHoliday in Time class
+            System.out.println("3. Generate revenue report"); // call generateRevenueReport in Revenue class
             System.out.println("0.exit"); // previous level: toplevel
             choice = sc.nextInt();
             if (choice == 0) {
-                System.out.println("Bye-Bye Boss! ");
+                System.out.println("Bye-Bye Da Shen! ");
                 break;
             }
             switch (choice) {
                 case 1:
-                    this.addMovie();
+                    this.addModifyRemove();
                     break;
                 case 2:
-                    this.modifyMovie();
+                    System.out.print("New public holiday(yyyymmdd): ");
+                    Time.setPubHoliday(sc.next());
                     break;
                 case 3:
-                    this.setHoliday();
-                    break;
-                case 4:
                     this.generateRevenueReport();
                     break;
-                defult:
+                default:
                     System.out.println("Wrong Input.");
                     break;
             }
@@ -179,21 +216,21 @@ class Menu {
             switch (choice) {
                 case 1:
                     System.out.println("List all movies:");
-                    movieLib.listAllMovie();
+                    movieLib.listMovie();
                     break;
                 case 2, 4, 5:
-                    String nameOfMovie;
                     System.out.println("Please Enter the movie name:");
-                    nameOfMovie = sc.next();bbbbbb
-                    if (movieLib.search(nameOfMovie)) {
-                        //if find the movie, then it's available for booking
-                        if (choice == 4) {
-                            this.modify(nameOfMovie);
-                        }
-                        if (choice == 5) {
-                            movieLib.remove(nameOfMovie);
-                        }
+                    String nameOfMovie = sc.next();
+                    ArrayList<Movie> result = movieLib.searchMovie(nameOfMovie);
+                    
+                    if (choice != 2) {
+                        System.out.print("select: ");
+                        int sel = sc.nextInt();
                     }
+                    if (choice == 4)
+                        MovieLib.modify(result.get(sel));
+                    else if (choice == 5)
+                        movieLib.remove(movieLib.indexOf(result.get(sel)));
                     break;
                 case 3:
                     System.out.println("Add a movie:");

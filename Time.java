@@ -20,6 +20,7 @@ class Time {
     private boolean weekday;
     private boolean publicHoliday;
     public Time() {
+
     }
 
     public static Time manualNewATime(Scanner sc) {
@@ -105,12 +106,12 @@ class Time {
         return weekday;
     }
 
-    public boolean setPublicHoliday(boolean publicHoliday) {
-        this.publicHoliday = publicHoliday;
+    public static boolean setPublicHoliday(String publicHoliday) {
+        pubHoliList.add(publicHoliday);
         return true;
     }
-    public boolean getPublicHoliday() {
-        return publicHoliday;
+    public static boolean getPublicHoliday() {
+        return pubHoliList;
     }
 
 

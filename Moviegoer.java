@@ -7,7 +7,8 @@ class Moviegoer extends User {
     private String mobileNumber;
     private String emailAddress;
     private Integer age;
-    private ArrayList<Ticket> history;
+    private ArrayList<Ticket> paid;
+    private ArrayList<Ticket> unpaid;
 
     public Moviegoer(String username, String password, String name, Sting mobileNumber, String emailAddress, Integer age) {
         super(username, password);
@@ -49,11 +50,18 @@ class Moviegoer extends User {
         return age;
     }
 
-    public boolean setHistory(Ticket newTicket) {
-        return history.add(newTicket);
+    public boolean setPaid(Ticket newTicket) {
+        return paid.add(newTicket);
     }
-    public ArrayList<Ticket> getHistory() {
-        return history;
+    public ArrayList<Ticket> getPaid() {
+        return paid;
+    }
+
+    public boolean setUnpaid(Ticket newTicket) {
+        return unpaid.add(newTicket);
+    }
+    public ArrayList<Ticket> getUnpaid() {
+        return unpaid;
     }
 
 }

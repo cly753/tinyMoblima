@@ -9,8 +9,7 @@ class MovieLib {
         movieLib = new ArrayList<Movie>;
     }
 
-    public Movie[] searchMovie(String query) {
-        //if find the query then return true
+    public ArrayList<Movie> searchMovie(String query) {
         ArrayList<Movie> result = new ArrayList<Movie>;
         for (int i = 0; i < movieLib.length; i++) {
             if (movieLib.get(i).movieName.compareTo(query) == 0) {
@@ -24,10 +23,10 @@ class MovieLib {
         if (result.size() != 0) {
             System.out.println("Movie Found!");
             for (int i = 0; i < result.size(); i++) {
-                System.out.println((i + 1) + result.get(i).movieName);
+                System.out.println(i + result.get(i).movieName);
             }
         }
-        return result.toArray();
+        return result;
     }
     
     public boolean add() {
@@ -97,7 +96,7 @@ class MovieLib {
         return true;
     }
 
-    public boolean modify(Movie toModify, int choice) {
+    public static boolean modify(Movie toModify, int choice) {
         switch (choice) {
             case 1:
                 System.out.print("New name: ");
@@ -148,14 +147,14 @@ class MovieLib {
         return true;
     }
     
-    public static void listMovie(MovieLib movieLib, Scanner sc) {
+    public void listMovie() {
         System.out.print("From: ");
         int start = sc.nextInt();
         System.out.print("To: ");
         int end = sc.nextInt();
 
-        ListIterator iterA = new movieLib.listIterator(start);
-        ListIterator iterB = new movieLib.listIterator(end);
+        ListIterator iterA = movieLib.listIterator(start);
+        ListIterator iterB = movieLib.listIterator(end);
 
         while (iterA != iterB && iterA.hasNext()) {
             System.out.println(start + "." + iterA.next().movieName);

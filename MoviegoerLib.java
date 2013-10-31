@@ -102,29 +102,41 @@ class MoviegoerLib {
         int card = sc.nextInt();
 
         tempTime.storeCurrentTime();
-        goer.getHistory().get(index).setBuyTime(tempTime);
+        goer.getUnpaid().get(index).setBuyTime(tempTime);
 
         System.out.println("paid!");
         return true;
     }
 
-    public static boolean showHistory(Moviegoer goer) {
-        ListIterator<Ticket> iter = goer.getHistory().listIterator();
+    public static void showHistory(Moviegoer goer, boolean onlyUnpaid) {
+        int unpaidSize = goer.getUnpaid().size();
+        int paidSize = goer.getPaid().size();
         Ticket ti;
-        int i = 5;
+        int pageSize = 5;
+
         int track = 0;
-        while (iter.hasNext()) {
-            ti = iter.next();
-            System.out.println(track++);
+
+        for (int i = 0; i < unpaidSize; i++) {
+            ti = goer.getUnpaid().get(i);
+
             Ticket.display(ti);
-            if (ti.buyTime == -1)
-                System.out.print("Not paid");
-            else
-                System.out.print("paid");
-            if (--i == 0 && iter.hasNext()) {
+            System.out.print(i + "Not paid");
+        }
+        
+        if (onlyUnpaid)
+            return ;
+
+        for (int i = 0; i < paidSize; i++)
+            ti = goer.getPaid().get(i);
+
+            Ticket.display(ti);
+            System.out.print("paid");
+
+            if (--pageSize == 0 && i < historySize - 1) {
                 System.out.print("Continue? 1/0");
                 if (sc.nextInt() == 0)
                     break;
+                paidSize = 5;
             }
         }
     }
