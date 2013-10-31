@@ -9,121 +9,164 @@ class MovieLib {
         lib = new ArrayList<Movie>;
     }
 
-    public static Movie[] searchMovie(MovieLib lib, String query) {
-
+    public boolean searchMovie(String query) {
+        //if find the query then return true
         ArrayList<Movie> result = new ArrayList<Movie>;
-
         for (int i = 0; i < lib.length; i++) {
             if (lib.get(i).movieName.compareTo(query) == 0) {
                 result.add(0, lib.get(i));
-            }
-            else if (lib.get(i).movieName.matches(query + "+")) {
-                result.add(result.size(), lib.get(i));
+            } else {
+                if (lib.get(i).movieName.matches(query + "+")) {
+                    result.add(result.size(), lib.get(i));
+                }
             }
         }
-
-        for (int i = 0; i < result.size(); i++) {
-            System.out.println(i + "." + result.get(i).movieName);
+        if (result.size() != 0) {
+            System.out.println("Movie Found!");
+            for (int i = 0; i < result.size(); i++) {
+                System.out.println(i + "." + result.get(i).movieName);
+            }
+            return true;
+        } else {
+            return false;
         }
-
-        return result.toArray();
     }
 
-    public static boolean add(MovieLib lib, Scanner sc) {
-        lib.add(0, Movie.manualNewAMovie(sc));
+    public boolean add() {
+        //here is the format of adding a movie.
+        //hopefully will be our data format inside a txt file.
+        
+        System.out.println("Name: ");
+        String nameOfNewMovie = sc.nextline();
+
+        System.out.println("Type: ");
+        String typeOfNewMove  = sc.next();
+
+        System.out.println("Cast: ");
+        String[] castOfNewMovie = sc.nextLine().split(" ");
+
+        System.out.println("Director: ");
+        String[] directorOfNewMovie = sc.nextLine().split(" ");
+
+        System.out.println("Language: ");
+        String languageOfNewMovie = sc.next();
+
+        System.out.println("Runtime: ");
+        int runtimeOfNewMovie =sc.nextInt();
+
+        System.out.println("Description:");
+        String[] description = sc.nextLine().split(" ");
+
+        System.out.println("number of Showtime: ");
+        int numOfShowtime = sc.nextInt();
+        Time[] showtimeOfMovie = new Time[numOfShowtime];
+        for (int i = 0; i < numOfShowtime; i++) {
+            Time showtimeOfMovie = Time.manualNewATime();
+        }
+
+        System.out.print("Opening time: ");
+        Time OpeningTime = Time.manualNewATime();
+        
+        System.out.print("Rating: ");
+        String ratingOfNewMovie = sc.next();
+        
+        Movie newMovie = new Movie(nameOfMovie,
+                                   typeOfNewMove, 
+                                   castOfNewMovie, 
+                                   directorOfNewMovie, 
+                                   languageOfNewMovie,
+                                   runtimeOfNewMovie,
+                                   description,
+                                   showtimeOfMovie,
+                                   openingTime,
+                                   rating);
+        
+        lib.add(0, newMovie);
         return true;
     }
 
-    public static boolean remove(MovieLib lib, String movieName) {
-        Integer i;
-
+    public boolean remove(String movieName) {
+        int i;
+        boolean flag = false;
         for (i = 0; i < lib.size(); i++) {
             if (lib.get(i).movieName.compareTo(movieName) == 0) {
                 lib.remove(i);
+                flag = true;
             }
         }
-
-        if (i == lib.size())
+        if (!flag)
             return false;
         return true;
     }
 
-    public static boolean modify(MovieLib lib, String movieName, Integer choice, Scanner sc) {
-        Integer i;
+    public boolean modify(String movieName, int choice) {
+        int i;
 
         for (i = 0; i < lib.size(); i++) {
             if (lib.get(i).movieName.compareTo(movieName) == 0) {
                 break;
             }
         }
-
-        if (i == lib.size())
+        
+        if (i == lib.size()) {
             return false;
-
-        Menu.modify();
-        while (choice != 17) {
-            switch (choice)
-                case -1:
-                    listMovie(sc);
-                case 0:
-                    Menu.modify();
-                case 1:
-                    System.out.print("New name: ");
-                    lib.get(i).setMovieName(sc.nextLine());
-                    break;
-                case 2:
-                    System.out.print("New type: ");
-                    lib.get(i).setTypeOfMovie(sc.next());
-                    break;
-                case 3:
-                    System.out.print("New cast: ");
-                    lib.get(i).setCast(sc.nextLine().split(" "));
-                    break;
-                case 4:
-                    System.out.print("New director: ");
-                    lib.get(i).setDirector(sc.nextLine().split(" "));
-                    break;
-                case 5:
-                    System.out.print("New language: ");
-                    lib.get(i).setLanguage(sc.next());
-                    break;
-                case 6:
-                    System.out.print("New runtime: ");
-                    lib.get(i).setRuntime(sc.nextInt());
-                    break;
-                case 7:
-                    System.out.print("New description: ");
-                    lib.get(i).setDescription(sc.nextLine());
-                    break;
-                case 8:
-                    System.out.print("New openingTime: ");
-                    lib.get(i).setOpeningTime(Time.manualNewATime());
-                    break;
-                case 9:
-                    System.out.print("New showtime : ");
-                    lib.get(i).addShowtime(Time.manualNewATime());
-                    break;
-                case 10:
-                    lib.get(i).deleteShowtime(sc);
-                    break;
-                case 11:
-                    lib.get(i).setRatingBB(sc);
-                    break;
-                case 17:
-                    break;
-                default:
-                    System.out.println("invalid. again: ");
-                    choice = sc.nextInt();
-                    break;
+        }
+        
+        switch (choice) {
+            case 1:
+                System.out.print("New name: ");
+                lib.get(i).setMovieName(sc.nextLine());
+                break;
+            case 2:
+                System.out.print("New type: ");
+                lib.get(i).setTypeOfMovie(sc.next());
+                break;
+            case 3:
+                System.out.print("New cast: ");
+                lib.get(i).setCast(sc.nextLine().split(" "));
+                break;
+            case 4:
+                System.out.print("New director: ");
+                lib.get(i).setDirector(sc.nextLine().split(" "));
+                break;
+            case 5:
+                System.out.print("New language: ");
+                lib.get(i).setLanguage(sc.next());
+                break;
+            case 6:
+                System.out.print("New runtime: ");
+                lib.get(i).setRuntime(sc.nextInt());
+                break;
+            case 7:
+                System.out.print("New description: ");
+                lib.get(i).setDescription(sc.nextLine());
+                break;
+            case 8:
+                System.out.print("New openingTime: ");
+                lib.get(i).setOpeningTime(Time.manualNewATime());
+                break;
+            case 9:
+                System.out.print("New showtime : ");
+                lib.get(i).addShowtime(Time.manualNewATime());
+                break;
+            case 10:
+                lib.get(i).deleteShowtime(sc);
+                break;
+            case 11:
+                lib.get(i).setRatingBB(sc);
+                break;
+            default:
+                System.out.println("invalid. again: ");
+                return false;
         }
         return true;
     }
-
+    
     public static void listMovie(MovieLib lib, Scanner sc) {
         System.out.print("From: ");
-        Integer start = sc.nextInt();
+        int start = sc.nextInt();
         System.out.print("To: ");
-        Integer end = sc.nextInt();
+        int end = sc.nextInt();
 
         ListIterator iterA = new lib.listIterator(start);
         ListIterator iterB = new lib.listIterator(end);
