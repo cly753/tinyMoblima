@@ -9,8 +9,6 @@ class Cinema {
     private Seat[][] seat;
     private int numOfEmptySeat;
     private String[] description;
-    //I suggest we use txt file to store 3 Cinemas info
-    //And load it every time before start
     private BufferedReader br;
     
     public Cinema() {
@@ -37,6 +35,25 @@ class Cinema {
         this.setNameOfCinema(nameOfCinema);
         this.setClassOfCinema();
         this.setDescription();
+    }
+
+    public static void presentSeat(Cinema ci) {
+        System.out.print("  ");
+        for (int j = 0; j < column; j++)
+            System.out.print(" " + j);
+        System.out.println();
+        for (int j = 0; j < column; j++)
+            System.out.print(" _");
+        System.out.println();
+        for (int i = 0; i < row; i++) {
+            System.out.print("\n" + i + "|");
+            for (int j = 0; j < column; j++)
+                if (seat[i][j].getAsisgn())
+                    System.out.print(" O");
+                else
+                    System.out.print(" x");
+        }
+        System.out.println();
     }
     
     public boolean setNumOfSeat() {

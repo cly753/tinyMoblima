@@ -154,33 +154,21 @@ class MoviegoerLib {
         Cineplex cineplex;
         Cinema cinema;
 
-
-        (String movieName, String typeOfMovie, String nameOfCinema, String classOfCinema, String locationOfCineplex,
-                  String typeOfMoviegoer, Time showTime, int seatID, int ticketID
-
         System.out.println("Select a showtime");
         for (int i = 0; i < toBook.getShowTime().size(); i++) {
             System.out.print(i + " " + toBook.getShowTime().get(i).printTime());
         }
 
-        // select a cinema
-        for (int i = 0; i < cinLib.getCineplex().getCinema().size(); i++)
-            System.out.println(cinLib.getCineplex().get(i).getNameOfCineplex());
+        for (int i = 0; i < cineplexLib.getCineplex().getCinema().size(); i++)
+            System.out.println(cineplexLib.get(i).getNameOfCineplex());
         System.out.print("Select a cineplex: ");
-        cineplex = cinLib.getCineplex().get(sc.nextInt());
+        cineplex = cineplexLib.get(sc.nextInt());
         for (int i = 0; i < cineplex.getCinema().size(); i++)
             System.out.println(cineplex.getCinema().get(i).getNameOfCinema() + " " + cineplex.getCinema().get(i).getTypeOfCinema());
         System.out.print("Select a cinema: ");
-        cinema = cinLib.getCineplex().get(sc.nextInt());
-        //
-        //
-        //
+        cinema = cineplex.getCinema().get(sc.nextInt());
         
-        // call present seats in cinema class
-        //
-        //
-        //
-        //
+        Cinema.presentSeat(cinema);
 
         System.out.println("Select a seat");
         System.out.print("row:");
