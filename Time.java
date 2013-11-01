@@ -1,7 +1,5 @@
 package Moblima;
 
-import java.util.Calendar;
-
 class Time {
     private Integer year;
     private Integer month;

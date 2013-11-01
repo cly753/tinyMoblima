@@ -1,7 +1,5 @@
 package Moblima;
 
-import java.util.ArrayList;
-
 class Moviegoer extends User {
     private String name;
     private String mobileNumber;

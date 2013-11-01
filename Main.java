@@ -1,18 +1,15 @@
 package Moblima;
 
-import java.util.Scanner;
-import java.util.ArrayList;
+import java.util.*;
+import java.io.*;
 
 public class Main {
-    private static final String adminPwd = "moblima";
-
-    private static Moviegoer curUser = null;
-
-    private static MovieLib movieLib = new MovieLib();
-    private static MoviegoerLib goerLib = new MoviegoerLib();
-    private static Cineplexe cLib[] = new Cineplex[3];
-
-    private static Scanner sc;
+    public static final String adminPwd = "moblima";
+    public static Moviegoer curUser = null;
+    public static MovieLib movieLib = new MovieLib();
+    public static MoviegoerLib goerLib = new MoviegoerLib();
+    public static Cineplexe cLib[] = new Cineplex[3];
+    public static Scanner sc;
 
     public static void main(String[] args) {;
 

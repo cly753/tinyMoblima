@@ -1,3 +1,5 @@
+package Moblima;
+
 class MoviegoerLib {
     private Linkedlist<Moviegoer> goerLib;
 

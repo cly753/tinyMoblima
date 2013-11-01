@@ -1,7 +1,5 @@
 package Moblima;
 
-import java.util.ArrayList;
-
 class MovieLib {
     private ArrayList<Movie> movieLib;
 
