@@ -148,4 +148,32 @@ class MoviegoerLib {
             }
         }
     }
+
+    public static Ticket book(Moviegoer goer, Movie toBook) {
+        String movieName;
+
+
+        (String movieName, String typeOfMovie, String nameOfCinema, String classOfCinema, String locationOfCinema,
+                  String typeOfMoviegoer, Time showTime, int seatID, int ticketID
+
+        // select a showtime
+        for (int i = 0; i < toBook.getShowTime().size(); i++) {
+            System.out.print(i + " " + toBook.getShowTime().get(i).printTime());
+        }
+        
+        // select a seat
+        // select a cinema
+
+        Ticket ti = new Ticket(
+                            toBook.getMovieName(), 
+                            toBook.getTypeOfMovie(), 
+                            nameOfCinema, classOfCinema, 
+                            locationOfCinema, 
+                            goer.getTypeOfMoviegoer(), 
+                            toBook.getShowTime(),
+                            seatID,
+                            ticketID);
+
+        goer.setUnpaid(ti);
+    }
 }
