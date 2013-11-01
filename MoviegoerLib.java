@@ -151,27 +151,53 @@ class MoviegoerLib {
 
     public static Ticket book(Moviegoer goer, Movie toBook) {
         String movieName;
+        Cineplex cineplex;
+        Cinema cinema;
 
 
-        (String movieName, String typeOfMovie, String nameOfCinema, String classOfCinema, String locationOfCinema,
+        (String movieName, String typeOfMovie, String nameOfCinema, String classOfCinema, String locationOfCineplex,
                   String typeOfMoviegoer, Time showTime, int seatID, int ticketID
 
-        // select a showtime
+        System.out.println("Select a showtime");
         for (int i = 0; i < toBook.getShowTime().size(); i++) {
             System.out.print(i + " " + toBook.getShowTime().get(i).printTime());
         }
-        
-        // select a seat
+
         // select a cinema
+        for (int i = 0; i < cinLib.getCineplex().getCinema().size(); i++)
+            System.out.println(cinLib.getCineplex().get(i).getNameOfCineplex());
+        System.out.print("Select a cineplex: ");
+        cineplex = cinLib.getCineplex().get(sc.nextInt());
+        for (int i = 0; i < cineplex.getCinema().size(); i++)
+            System.out.println(cineplex.getCinema().get(i).getNameOfCinema() + " " + cineplex.getCinema().get(i).getTypeOfCinema());
+        System.out.print("Select a cinema: ");
+        cinema = cinLib.getCineplex().get(sc.nextInt());
+        //
+        //
+        //
+        
+        // call present seats in cinema class
+        //
+        //
+        //
+        //
+
+        System.out.println("Select a seat");
+        System.out.print("row:");
+        int row = sc.nextInt();
+        System.out.print("col:");
+        int col = sc.nextInt();
 
         Ticket ti = new Ticket(
                             toBook.getMovieName(), 
                             toBook.getTypeOfMovie(), 
-                            nameOfCinema, classOfCinema, 
-                            locationOfCinema, 
+                            cinema.getNameOfCinema, 
+                            cinema.getClassOfCinema, 
+                            cinplex.getLocationOfCineplex, 
                             goer.getTypeOfMoviegoer(), 
                             toBook.getShowTime(),
-                            seatID,
+                            row,
+                            col,
                             ticketID);
 
         goer.setUnpaid(ti);

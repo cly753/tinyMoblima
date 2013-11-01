@@ -23,12 +23,12 @@ class Cinema {
 
         theClass = 0;
     }
-    public Cinema(int row, int colum, String nameOfCinema) {
-        seat = new Seat[row][colum];
+    public Cinema(int row, int column, String nameOfCinema) {
+        seat = new Seat[row][column];
         this.setNumOfSeat();
         seat = new Seat[numOfSeat];
         for (int i = 0; i < row; i++) {
-            for (int j = 0; j < colum; j++) {
+            for (int j = 0; j < column; j++) {
                 seat[i][j] = new Seat(i, j);
             }
         }
@@ -40,7 +40,7 @@ class Cinema {
     }
     
     public boolean setNumOfSeat() {
-        this.numOfSeat = row * colum;
+        this.numOfSeat = row * column;
         return true;
     }
     public int getNumOfSeat() {
@@ -90,7 +90,7 @@ class Cinema {
     }
     
     public void assignSeat(int row, int column) {
-        if (this.seat[row][colum].getAssign()) {
+        if (this.seat[row][column].getAssign()) {
             System.out.println("Seat already assgined to a customer.");
             return;
         }
