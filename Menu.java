@@ -71,7 +71,7 @@ public class Menu {
                         System.out.println("1 for yes, others for no");
                         int bookOrNot = sc.nextInt();
                         if (bookOrNot == 1) {
-                            book(searchResult.get(0));
+                            book(curUser, searchResult.get(0));
                         } else {
                             System.out.println("Back...");
                         }
@@ -95,7 +95,7 @@ public class Menu {
                         System.out.println("1 for yes, others for no");
                         int bookOrNot = sc.nextInt();
                         if (bookOrNot == 1)
-                            this.book(searchResult.get(0));
+                            book(curUser, searchResult.get(0));
                     }
                     break;
                 case 4:
