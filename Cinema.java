@@ -87,8 +87,8 @@ class Cinema {
     }
     
     public boolean setDescription() {
-        String[] cinemaDescription
-                try {
+        String[] cinemaDescription;
+        try {
             StringBuilder sb = new StringBuilder();
             String line = this.br.readLine();
             
