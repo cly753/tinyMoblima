@@ -49,7 +49,7 @@ class Cinema {
         for (int i = 0; i < ci.row; i++) {
             System.out.print("\n" + i + "|");
             for (int j = 0; j < ci.column; j++)
-                if (seat[i][j].getAssign())
+                if (ci.seat[i][j].getAssign())
                     System.out.print(" O");
                 else
                     System.out.print(" x");
@@ -78,7 +78,7 @@ class Cinema {
     }
     
     public boolean setClassOfCinema() {
-        String cinemaClass = br.nextLine();
+        String cinemaClass = br.readLine();
         this.classOfCinema = cinemaClass;
         return true;
     }
@@ -111,7 +111,7 @@ class Cinema {
     public boolean assignSeat(int row, int column) {
         if (this.seat[row][column].getAssign()) {
             System.out.println("Seat already assgined to a customer.");
-            return;
+            return false;
         }
         this.seat[row][column].assign();
         numOfEmptySeat--;
