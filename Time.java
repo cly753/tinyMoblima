@@ -1,5 +1,8 @@
 package Moblima;
 
+import java.util.*;
+import java.io.*;
+
 class Time {
     private Integer year;
     private Integer month;
@@ -12,15 +15,20 @@ class Time {
                                             "JUL", "AUG", "SEP",
                                             "OCT", "NOV", "DEC"};
 
-    private static ArrayList<String> pubHoliList = new ArrayList<String>; // format: yyyymmdd
-    private static ArrayList<String> weekendList = new ArrayList<String>; // format: yyyymmdd
+    private static ArrayList<String> pubHoliList = new ArrayList<String>();
+    // format: yyyymmdd
+    private static ArrayList<String> weekendList = new ArrayList<String>();
+    // format: yyyymmdd
 
     private boolean weekday;
     private boolean publicHoliday;
     public Time() {
 
     }
-
+    //=================
+    //Error
+    //=================
+    //Cannot be used at MovieLib.java line 64, 68 134,..
     public static Time manualNewATime(Scanner sc) {
         Time newTime = new Time();
         newTime.setYear(sc.nextInt());

@@ -1,5 +1,8 @@
 package Moblima;
 
+import java.util.*;
+import java.io.*;
+
 class Movie {
     private String movieName;
     private String typeOfMovie;
@@ -58,7 +61,7 @@ class Movie {
     public Time getOpeningTime() {
         return this.openingTime;
     }
-    public Time[] getShowtimeList() {
+    public ArrayList<Time> getShowtimeList() {
         return this.showtimeList();
     }
     public String getRating() {
@@ -97,10 +100,10 @@ class Movie {
         this.openingTime = openingTime;
         return true;
     }
-    public boolean deleteShowtime(Scanner sc) {
+    public boolean deleteShowtime() {
         int x;
         for (int i = 0; i < showtimeList.size(); i++) {
-            System.out.println(i.);
+            System.out.print(i + " ");
             showtimeList.get(i).printTime();
             System.out.println();
         }
@@ -112,7 +115,7 @@ class Movie {
         this.rating = rating;
         return true;
     }
-    public boolean setRatingBB(Scanner sc) {
+    public boolean setRatingBB() {
         for (int i = 0; i < ratingList.length; i++) {
             System.out.print((i+1) + "." + ratingList[i]);
         }

@@ -1,7 +1,9 @@
 package Moblima;
 
+import java.util.*;
+import java.io.*;
 
-class Menu {
+public class Menu {
     
     public static Scanner sc = new Scanner(System.in);
     public static int userType = -1;
@@ -46,7 +48,8 @@ class Menu {
                     System.out.println("List all movies:");
                     movieLib.listMovie();
                     break;
-                case 2, 3:
+                case 2:
+                case 3:
                     System.out.println("Please Enter the movie name:");
                     String nameOfMovie = sc.next();
                     ArrayList<Movie> searchResult = movieLib.search(nameOfMovie);
@@ -80,7 +83,7 @@ class Menu {
                         System.out.println("input other to return");
                         int selectMovie = sc.nextInt();
 
-                        if (selectMovie < 0 || selectMovie >= searchResult.length)) {
+                        if (selectMovie < 0 || selectMovie >= searchResult.length) {
                             System.out.println("back...");
                             break;
                         }
@@ -94,8 +97,9 @@ class Menu {
                             this.book(searchResult[0].movieName);
                     }
                     break;
-                case 4, 5, 6:
-
+                case 4:
+                case 5:
+                case 6:
                     if (curUser == null) {
                         String username;
                         String password;
@@ -226,7 +230,9 @@ class Menu {
                     System.out.println("List all movies:");
                     movieLib.listMovie();
                     break;
-                case 2, 4, 5:
+                case 2:
+                case 4:
+                case 5:
                     System.out.println("Please Enter the movie name:");
                     String nameOfMovie = sc.next();
                     ArrayList<Movie> result = movieLib.searchMovie(nameOfMovie);

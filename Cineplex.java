@@ -1,5 +1,8 @@
 package Moblima;
 
+import java.util.*;
+import java.io.*;
+
 class Cineplex {
     private final int numOfCinema = 3;
     private ArrayList<Cinema> cinemaList = new ArrayList<Cinema>();

@@ -1,5 +1,8 @@
 package Moblima;
 
+import java.util.*;
+import java.io.*;
+
 class Moviegoer extends User {
     private String name;
     private String mobileNumber;
@@ -8,7 +11,7 @@ class Moviegoer extends User {
     private ArrayList<Ticket> paid;
     private ArrayList<Ticket> unpaid;
 
-    public Moviegoer(String username, String password, String name, Sting mobileNumber, String emailAddress, Integer age) {
+    public Moviegoer(String username, String password, String name, String mobileNumber, String emailAddress, Integer age) {
         super(username, password);
         this.name = name;
         this.mobileNumber = mobileNumber;
@@ -49,14 +52,16 @@ class Moviegoer extends User {
     }
 
     public boolean setPaid(Ticket newTicket) {
-        return paid.add(newTicket);
+        paid.add(newTicket);
+        return true;
     }
     public ArrayList<Ticket> getPaid() {
         return paid;
     }
 
     public boolean setUnpaid(Ticket newTicket) {
-        return unpaid.add(newTicket);
+        unpaid.add(newTicket);
+        return true;
     }
     public ArrayList<Ticket> getUnpaid() {
         return unpaid;

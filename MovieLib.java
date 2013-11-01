@@ -1,27 +1,32 @@
 package Moblima;
 
-class MovieLib {
-    private ArrayList<Movie> movieLib;
+import java.util.*;
+import java.io.*;
 
+class MovieLib {
+    private ArrayList<Movie> movieList;
+    public static Scanner sc = new Scanner(System.in);
+    //try to debug, currently use sc
+    
     public MovieLib() {
-        movieLib = new ArrayList<Movie>;
+        movieList = new ArrayList<Movie>();
     }
 
     public ArrayList<Movie> searchMovie(String query) {
-        ArrayList<Movie> result = new ArrayList<Movie>;
-        for (int i = 0; i < movieLib.length; i++) {
-            if (movieLib.get(i).movieName.compareTo(query) == 0) {
-                result.add(0, movieLib.get(i));
+        ArrayList<Movie> result = new ArrayList<Movie>();
+        for (int i = 0; i < movieList.size(); i++) {
+            if (movieList.get(i).getMovieName().compareTo(query) == 0) {
+                result.add(0, movieList.get(i));
             } else {
-                if (movieLib.get(i).movieName.matches(query + "+")) {
-                    result.add(result.size(), movieLib.get(i));
+                if (movieList.get(i).getMovieName().matches(query + "+")) {
+                    result.add(result.size(), movieList.get(i));
                 }
             }
         }
         if (result.size() != 0) {
             System.out.println("Movie Found!");
             for (int i = 0; i < result.size(); i++) {
-                System.out.println(i + result.get(i).movieName);
+                System.out.println(i + " " + result.get(i).getMovieName());
             }
         }
         return result;
@@ -32,7 +37,7 @@ class MovieLib {
         //hopefully will be our data format inside a txt file.
         
         System.out.println("Name: ");
-        String nameOfNewMovie = sc.nextline();
+        String nameOfNewMovie = sc.nextLine();
 
         System.out.println("Type: ");
         String typeOfNewMove  = sc.next();
@@ -56,36 +61,36 @@ class MovieLib {
         int numOfShowtime = sc.nextInt();
         Time[] showtimeOfMovie = new Time[numOfShowtime];
         for (int i = 0; i < numOfShowtime; i++) {
-            Time showtimeOfMovie = Time.manualNewATime();
+            showtimeOfMovie[i] = Time.manualNewATime();
         }
 
         System.out.print("Opening time: ");
-        Time OpeningTime = Time.manualNewATime();
+        Time openingTime = Time.manualNewATime();
         
         System.out.print("Rating: ");
         String ratingOfNewMovie = sc.next();
         
-        Movie newMovie = new Movie(nameOfMovie,
+        Movie newMovie = new Movie(nameOfNewMovie,
                                    typeOfNewMove, 
                                    castOfNewMovie, 
                                    directorOfNewMovie, 
                                    languageOfNewMovie,
                                    runtimeOfNewMovie,
                                    description,
-                                   showtimeOfMovie,
                                    openingTime,
-                                   rating);
+                                   showtimeOfMovie,
+                                   ratingOfNewMovie);
         
-        movieLib.add(0, newMovie);
+        movieList.add(0, newMovie);
         return true;
     }
 
     public boolean remove(String movieName) {
         int i;
         boolean flag = false;
-        for (i = 0; i < movieLib.size(); i++) {
-            if (movieLib.get(i).movieName.compareTo(movieName) == 0) {
-                movieLib.remove(i);
+        for (i = 0; i < movieList.size(); i++) {
+            if (movieList.get(i).getMovieName().compareTo(movieName) == 0) {
+                movieList.remove(i);
                 flag = true;
             }
         }
@@ -122,21 +127,23 @@ class MovieLib {
                 break;
             case 7:
                 System.out.print("New description: ");
-                toModify.setDescription(sc.nextLine());
+                toModify.setDescription(sc.nextLine().split(" "));
                 break;
             case 8:
                 System.out.print("New openingTime: ");
-                toModify.setOpeningTime(Time.manualNewATime());
+                Time openingTime = Time.manualNewATime();
+                toModify.setOpeningTime(openingTime);
                 break;
             case 9:
                 System.out.print("New showtime : ");
-                toModify.addShowtime(Time.manualNewATime());
+                Time showTime = Time.manualNewATime();
+                toModify.addShowtime(showTime);
                 break;
             case 10:
-                toModify.deleteShowtime(sc);
+                toModify.deleteShowtime();
                 break;
             case 11:
-                toModify.setRatingBB(sc);
+                toModify.setRatingBB();
                 break;
             default:
                 System.out.println("invalid. again: ");
@@ -151,11 +158,13 @@ class MovieLib {
         System.out.print("To: ");
         int end = sc.nextInt();
 
-        ListIterator iterA = movieLib.listIterator(start);
-        ListIterator iterB = movieLib.listIterator(end);
-
+        ListIterator iterA = movieList.listIterator(start);
+        ListIterator iterB = movieList.listIterator(end);
+        //======================
+        //iterA.next() wrong
+        //======================
         while (iterA != iterB && iterA.hasNext()) {
-            System.out.println(start + "." + iterA.next().movieName);
+            System.out.println(start + "." + iterA.next().getMovieName());
             start++;
         }
     }

@@ -1,5 +1,8 @@
 package Moblima;
 
+import java.util.*;
+import java.io.*;
+
 class Cinema {
     private final Integer row;
     private final Integer column;

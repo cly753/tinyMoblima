@@ -1,3 +1,5 @@
+package Moblima;
+
 class User {
     private String password;
     private String username;
@@ -15,8 +17,10 @@ class User {
     }
     public boolean setPassword(String password) {
         this.password = password;
+        return true;
     }
     public boolean setUsername(String username) {
         this.username = username;
+        return true;
     }
 }
