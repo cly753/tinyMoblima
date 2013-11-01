@@ -5,7 +5,6 @@ import java.io.*;
 
 class MovieLib {
     private ArrayList<Movie> movieList;
-    public static Scanner sc = new Scanner(System.in);
     //try to debug, currently use sc
     
     public MovieLib() {
@@ -33,6 +32,7 @@ class MovieLib {
     }
     
     public boolean add() {
+    	Scanner sc = new Scanner(System.in);
         //here is the format of adding a movie.
         //hopefully will be our data format inside a txt file.
         
@@ -100,6 +100,8 @@ class MovieLib {
     }
 
     public static boolean modify(Movie toModify, int choice) {
+    	Scanner sc = new Scanner(System.in);
+    	
         switch (choice) {
             case 1:
                 System.out.print("New name: ");
@@ -153,19 +155,30 @@ class MovieLib {
     }
     
     public void listMovie() {
+    	Scanner sc = new Scanner(System.in);
         System.out.print("From: ");
         int start = sc.nextInt();
-        System.out.print("To: ");
+        System.out.print("To (max - " + movieList.size() + " : ");
         int end = sc.nextInt();
-
-        ListIterator iterA = movieList.listIterator(start);
-        ListIterator iterB = movieList.listIterator(end);
-        //======================
-        //iterA.next() wrong
-        //======================
-        while (iterA != iterB && iterA.hasNext()) {
-            System.out.println(start + "." + iterA.next().getMovieName());
-            start++;
+        
+        if (0 <= start && start <= end && end < movieList.size()) {
+        	ListIterator<Movie> iterA = movieList.listIterator(start);
+        	ListIterator<Movie> iterB = movieList.listIterator(end);
+        	
+        	while (iterA != iterB && iterA.hasNext()) {
+                System.out.println(start + "." + iterA.next().getMovieName());
+                start++;
+            }
         }
+        else
+        	System.out.println("invalid range...");
+    }
+
+    public ArrayList<Movie> get() {
+    	return movieList;
+    }
+    
+    public Movie get(int i) {
+    	return movieList.get(i);
     }
 }

@@ -104,8 +104,7 @@ class Movie {
     public boolean deleteShowtime() {
         int x;
         for (int i = 0; i < showtimeList.size(); i++) {
-            System.out.print(i + " ");
-            showtimeList.get(i).printTime();
+            System.out.print(i + " " + showtimeList.get(i).getStr());
             System.out.println();
         }
         System.out.print("Delete: ");
@@ -162,7 +161,8 @@ class Movie {
             return;
         }
         System.out.println("Language: " + this.language);
-        System.out.println("Opening Time: " + this.openingTime.printTime());
+        System.out.println("Opening Time: ");
+        openingTime.printTime();
         System.out.println("Runtime: " + this.runtime);
         System.out.println("Rating: " + this.rating);
         System.out.println("---More--- input 1");

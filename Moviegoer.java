@@ -13,6 +13,8 @@ class Moviegoer extends User {
 
     public Moviegoer(String username, String password, String name, String mobileNumber, String emailAddress, Integer age) {
         super(username, password);
+        paid = new ArrayList<Ticket>();
+        unpaid = new ArrayList<Ticket>();
         this.name = name;
         this.mobileNumber = mobileNumber;
         this.emailAddress = emailAddress;

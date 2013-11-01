@@ -4,11 +4,11 @@ import java.util.*;
 import java.io.*;
 
 class Time {
-    private Integer year;
-    private Integer month;
-    private Integer day;
-    private Integer hour;
-    private Integer minute;
+    private int year;
+    private int month;
+    private int day;
+    private int hour;
+    private int minute;
 
     private static final String strMonth[] = {"JAN", "FEB", "MAR",
                                             "APR", "MAY", "JUN",
@@ -29,7 +29,8 @@ class Time {
     //Error
     //=================
     //Cannot be used at MovieLib.java line 64, 68 134,..
-    public static Time manualNewATime(Scanner sc) {
+    public static Time manualNewATime() {
+    	Scanner sc = new Scanner(System.in);
         Time newTime = new Time();
         newTime.setYear(sc.nextInt());
         newTime.setMonth(sc.nextInt());
@@ -41,12 +42,12 @@ class Time {
     }
 
     public Time storeCurrentTime() {
-        this.year = Calendar.get(YEAR);
-        this.month = Calendar.get(MONTH);
-        this.day = Calendar.get(DATE);
-        this.hour = Calendar.get(HOUR);
-        this.minute = Calendar.get(MINUTE);
-        if (DAY_OF_WEEK != 1 && DAY_OF_WEEK != 7)
+        year = Calendar.getInstance().get(Calendar.YEAR);
+        month = Calendar.getInstance().get(Calendar.MONTH);
+        this.day = Calendar.getInstance().get(Calendar.DATE);
+        this.hour = Calendar.getInstance().get(Calendar.HOUR);
+        this.minute = Calendar.getInstance().get(Calendar.MINUTE);
+        if (Calendar.DAY_OF_WEEK != 1 && Calendar.DAY_OF_WEEK != 7)
             weekday = true;
         else
             weekday = false;
@@ -56,10 +57,16 @@ class Time {
         return this;
     }
 
-    public boolean printTime() {
+    public void printTime() {
         System.out.format("%2d %s %4d\n   %2d:%2d", day,
                         strMonth[month], year, hour, minute);
     }
+    
+	public String getStr() {
+		String str = String.format("%2d %s %4d\n   %2d:%2d", day,
+                        strMonth[month], year, hour, minute);
+		return str;
+	}
 
     public boolean setYear(Integer year) {
         this.year = year;
@@ -79,8 +86,8 @@ class Time {
         return month;
     }
 
-    public boolean setDay(Integer date) {
-        this.date = date;
+    public boolean setDay(Integer day) {
+        this.day = day;
         updatePubHoliAndWkend();
         return true;
     }
@@ -116,12 +123,12 @@ class Time {
         pubHoliList.add(publicHoliday);
         return true;
     }
-    public static boolean getPublicHoliday() {
+    public static ArrayList<String> getPublicHoliday() {
         return pubHoliList;
     }
 
 
-    public boolean updatePubHoliAndWkend() {
+    public void updatePubHoliAndWkend() {
         String timeStr = Integer.toString(this.year) + Integer.toString(this.month) + Integer.toString(this.day);
 
         for (int i = 0; i < pubHoliList.size(); i++) {

@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) {;
 
         Menu.welcome();
-        Menu.toplevel();
+        Menu.toplevel(curUser, movieLib, goerLib, cLib);
 
     }
 

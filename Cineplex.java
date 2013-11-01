@@ -6,12 +6,37 @@ import java.io.*;
 class Cineplex {
     private final int numOfCinema = 3;
     private ArrayList<Cinema> cinemaList = new ArrayList<Cinema>();
-    private String info;
-    //private static String infoField[] = {"Name", "Location", "CineplexId"};
+    private String name;
+    private String location;
+    //private int id;
 
-    public Cineplex() {
+    public Cineplex() throws IOException {
         for (int i = 0; i < numOfCinema; i++) {
-            cinemaList.add(new Cinema());
+            cinemaList.add(new Cinema(10, 20, "SCE"));
         }
+    }
+    
+    public String getName() {
+    	return name;
+    }
+    public boolean setName(String name) {
+    	this.name = name;
+    	return true;
+    }
+    
+    public String getLocation() {
+    	return location;
+    }
+    public boolean setLocation(String location) {
+    	this.location = location;
+    	return true;
+    }
+    
+    public Cinema get(int i) {
+    	return cinemaList.get(i);
+    }
+
+    public ArrayList<Cinema> get() {
+    	return cinemaList;
     }
 }

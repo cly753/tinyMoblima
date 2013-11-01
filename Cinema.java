@@ -23,7 +23,9 @@ class Cinema {
         }
         theClass = 0;
         }*/
-    public Cinema(int row, int column, String nameOfCinema) {
+    public Cinema(int row, int column, String nameOfCinema) throws IOException {
+    	this.row = row;
+    	this.column = column;
         seat = new Seat[row][column];
         this.setNumOfSeat();
         for (int i = 0; i < row; i++) {
@@ -77,7 +79,7 @@ class Cinema {
         return this.nameOfCinema;
     }
     
-    public boolean setClassOfCinema() {
+    public boolean setClassOfCinema() throws IOException {
         String cinemaClass = br.readLine();
         this.classOfCinema = cinemaClass;
         return true;
@@ -86,16 +88,16 @@ class Cinema {
         return this.classOfCinema;
     }
     
-    public boolean setDescription() {
+    public boolean setDescription() throws IOException {
         String[] cinemaDescription;
         try {
             StringBuilder sb = new StringBuilder();
-            String line = this.br.readLine();
+            String line = br.readLine();
             
             while (line != null) {
                 sb.append(line);
                 sb.append("\n");
-                line = this.br.readLine();
+                line = br.readLine();
             }
             cinemaDescription = sb.toString().split("\n");
         } finally {

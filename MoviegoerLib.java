@@ -19,6 +19,7 @@ class MoviegoerLib {
         System.out.println("password: ");
         String newPassword  = sc.next();
 
+        sc.nextLine();
         System.out.println("name: ");
         String newName = sc.nextLine();
 
@@ -53,7 +54,7 @@ class MoviegoerLib {
         System.out.println("password: ");
         String tempPassword  = sc.next();
         if (goer.getPassword().compareTo(tempPassword) == 0) {
-            int i = goerLib.indexOf(toDelete);
+            int i = goerLib.indexOf(goer);
             if (goerLib.indexOf(goer) != -1) {
                 goerLib.remove(i);
                 return true;
@@ -63,7 +64,7 @@ class MoviegoerLib {
         return false;
     }
 
-    public static boolean modify(Moviegoer goer, int choice) {
+    public static boolean modify(Moviegoer goer, int choice, Cineplex cLib[]) {
         
         switch (choice) {
             case 1:
@@ -90,8 +91,7 @@ class MoviegoerLib {
     }
 
     public Moviegoer checkLogin(String nameTry, String pwdTry) {
-        Integer goerSize = goerLib.size();
-        ListIterator<Integer> iter = goerLib.listIterator(0);
+        ListIterator<Moviegoer> iter = goerLib.listIterator(0);
         Moviegoer temp = null;
         while (iter.hasNext()) {
             temp = iter.next();
@@ -120,7 +120,6 @@ class MoviegoerLib {
     }
 
     public static void showHistory(Moviegoer goer, boolean onlyUnpaid) {
-        // TODO add historySize
         int unpaidSize = goer.getUnpaid().size();
         int paidSize = goer.getPaid().size();
         Ticket ti;
@@ -143,7 +142,7 @@ class MoviegoerLib {
             Ticket.display(ti);
             System.out.print("paid");
 
-            if (--pageSize == 0 && i < historySize - 1) {
+            if (--pageSize == 0 && i < paidSize - 1) {
                 System.out.print("Continue? 1/0");
                 if (sc.nextInt() == 0)
                     break;
@@ -152,7 +151,7 @@ class MoviegoerLib {
         }
     }
 
-    public static Ticket book(Moviegoer goer, Movie toBook) {
+    public static Ticket book(Moviegoer goer, Movie toBook, Cineplex cLib[]) {
         String movieName;
         Cineplex cineplex;
         Cinema cinema;
@@ -160,22 +159,22 @@ class MoviegoerLib {
         System.out.println("Select a showtime");
         ArrayList<Time> showtimeList = toBook.getShowtimeList();
         for (int i = 0; i < showtimeList.size(); i++) {
-            System.out.print(i + " " + showtimeList.get(i).printTime());
+            System.out.print(i + " " + showtimeList.get(i).getStr());
         }
-        Time selectedTime = showTimeList.get(sc.nextInt());
+        Time selectedTime = showtimeList.get(sc.nextInt());
         
-        for (int i = 0; i < cineplexLib.getCineplex().getCinema().size(); i++) {
-            System.out.println(cineplexLib.get(i).getNameOfCineplex());
+        for (int i = 0; i < cLib.length; i++) {
+            System.out.println(cLib[i].getName());
         }
         
         System.out.print("Select a cineplex: ");
-        cineplex = cineplexLib.get(sc.nextInt());
-        for (int i = 0; i < cineplex.getCinema().size(); i++) {
-            System.out.println(cineplex.getCinema().get(i).getNameOfCinema() + " " + cineplex.getCinema().get(i).getTypeOfCinema());
+        cineplex = cLib[sc.nextInt()];
+        for (int i = 0; i < cLib.length; i++) {
+            System.out.println(cineplex.get(i).getNameOfCinema() + " " + cineplex.get(i).getClassOfCinema());
         }
         
         System.out.print("Select a cinema: ");
-        cinema = cineplex.getCinema().get(sc.nextInt());
+        cinema = cineplex.get(sc.nextInt());
         
         Cinema.presentSeat(cinema);
 
@@ -191,7 +190,7 @@ class MoviegoerLib {
                             toBook.getTypeOfMovie(), 
                             cinema.getNameOfCinema(), 
                             cinema.getClassOfCinema(), 
-                            cinplex.getLocationOfCineplex(), 
+                            cineplex.getLocation(), 
                             goer.getTypeOfMoviegoer(), 
                             selectedTime,
                             row,
@@ -200,5 +199,9 @@ class MoviegoerLib {
 
         goer.setUnpaid(ti);
         return ti;
+    }
+
+    public LinkedList<Moviegoer> get() {
+    	return goerLib;
     }
 }
