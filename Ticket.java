@@ -159,7 +159,7 @@ class Ticket {
     public static void display(Ticket ti) {
         System.out.println(ti.getMovieName() + " " + ti.getTypeOfMovie());
         System.out.println(ti.getShowTime());
-        System.out.println(ti.getSetSeatID() + " " + ti.getTicketID() + " " + ti.getTypeOfMoviegoer());
+        System.out.println(ti.getSeatRow() + " " + ti.getSeatColumn() + " "  + ti.getTicketID() + " " + ti.getTypeOfMoviegoer());
         System.out.println(ti.getClassOfCinema() + " " + ti.getLocationOfCinema());
     }
 }

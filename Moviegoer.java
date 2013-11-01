@@ -27,7 +27,7 @@ class Moviegoer extends User {
         return name;
     }
 
-    public boolean setMoblieNumber(String mobileNumber) {
+    public boolean setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
         return true;
     }
@@ -67,4 +67,14 @@ class Moviegoer extends User {
         return unpaid;
     }
 
+    public String getTypeOfMoviegoer() {
+        if (age < 18) {
+            return "Student";
+        } else {
+            if (age > 65) {
+                return "Senior Citizen";
+            }
+        }
+        return "others";
+    }
 }

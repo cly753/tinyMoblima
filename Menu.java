@@ -30,8 +30,9 @@ public class Menu {
             System.out.println("4. Check status/history"); // call checkLogin
             System.out.println("5. Pay"); // call checkLogin
             System.out.println("6. Login");
-            System.out.ptintln("7. Logout");
-            System.out.ptintln("8. Register");
+            System.out.println("7. Logout");
+            System.out.println("8. Register");
+            System.out.println("9. Staff");
             System.out.println("0. Exit");
             choice = sc.nextInt();
             if (choice == 0) {
@@ -41,7 +42,7 @@ public class Menu {
             switch (choice) {
                 case 9:
                     System.out.print("password: ");
-                    if (sc.next().compareTo(adminPwd) == 0)
+                    if (sc.next().compareTo(Main.adminPwd) == 0)
                         staffMenu();                      
                     break;
                 case 1:
@@ -53,7 +54,7 @@ public class Menu {
                     System.out.println("Please Enter the movie name:");
                     String nameOfMovie = sc.next();
                     ArrayList<Movie> searchResult = movieLib.search(nameOfMovie);
-                    if (searchResult.length == 0) {
+                    if (searchResult.size() == 0) {
                         System.out.println("Sorry, cannot find any movie!");
                         break;
                     }
@@ -64,13 +65,13 @@ public class Menu {
                         System.out.println("1 for yes, others for no");
                         int showOrNot = sc.nextInt();
                         if (showOrNot == 1) {
-                            searchResult[0].showInfo();
+                            searchResult.get(0).showInfo();
                         }
                         System.out.println("Do want to book this movie?");
                         System.out.println("1 for yes, others for no");
                         int bookOrNot = sc.nextInt();
                         if (bookOrNot == 1) {
-                            //// **** ????
+                            book(searchResult.get(0));
                         } else {
                             System.out.println("Back...");
                         }
@@ -83,7 +84,7 @@ public class Menu {
                         System.out.println("input other to return");
                         int selectMovie = sc.nextInt();
 
-                        if (selectMovie < 0 || selectMovie >= searchResult.length) {
+                        if (selectMovie < 0 || selectMovie >= searchResult.size()) {
                             System.out.println("back...");
                             break;
                         }
@@ -94,7 +95,7 @@ public class Menu {
                         System.out.println("1 for yes, others for no");
                         int bookOrNot = sc.nextInt();
                         if (bookOrNot == 1)
-                            this.book(searchResult[0].movieName);
+                            this.book(searchResult.get(0));
                     }
                     break;
                 case 4:

@@ -14,19 +14,20 @@ class Movie {
     private Time openingTime;
     private ArrayList<Time> showtimeList;
     private String rating;
-
+    public static Scanner sc = new Scanner(System.in);
+    
     private static final String ratingList[] = {"G", "PG", "R18"};
     
     public Movie(String movieName, String typeOfMovie, String[] cast, String[] director, String language,
-                  int runtime, String[] description, Time openingTime, Time[] showtimeList, String rating) {
+                  int runtime, String[] description, Time openingTime, Time[] showtimeArray, String rating) {
         this.setMovieName(movieName);
         this.setTypeOfMovie(typeOfMovie);
         this.setCast(cast);
         this.setDirector(director);
         this.setLanguage(language);
         this.setRuntime(runtime);
-        this.setDiscription(description);
-        this.setShowtimeList(showtimeList);
+        this.setDescription(description);
+        this.setShowtimeList(showtimeArray);
         this.setRating(rating);
     }
 
@@ -62,7 +63,7 @@ class Movie {
         return this.openingTime;
     }
     public ArrayList<Time> getShowtimeList() {
-        return this.showtimeList();
+        return this.showtimeList;
     }
     public String getRating() {
         return this.rating;
@@ -109,7 +110,10 @@ class Movie {
         }
         System.out.print("Delete: ");
         x = sc.nextInt();
-        return this.showtimeList.remove(x);
+        this.showtimeList.remove(x);
+        return true;
+        //how about this.....
+        //instead of return this.showtimeList.remove(x)
     }
     public boolean setRating(String rating) {
         this.rating = rating;
@@ -125,12 +129,12 @@ class Movie {
     }
 
     public boolean addShowtime(Time newShowtime) {
-        this.showtimeList.add();
+        this.showtimeList.add(newShowtime);
         return true;
     }
-    public boolean setShowtimeList(Time[] showtimeList) {
-        for (int i = 0; i < showtimeList.size(); i++) {
-            this.addShowtime(showtimeList[i]);
+    public boolean setShowtimeList(Time[] showtimeArray) {
+        for (int i = 0; i < showtimeArray.length; i++) {
+            this.addShowtime(showtimeArray[i]);
         }
         return true;
     }
@@ -158,7 +162,7 @@ class Movie {
             return;
         }
         System.out.println("Language: " + this.language);
-        System.out.println("Opening Time: " + this.openingTime.printFormat());
+        System.out.println("Opening Time: " + this.openingTime.printTime());
         System.out.println("Runtime: " + this.runtime);
         System.out.println("Rating: " + this.rating);
         System.out.println("---More--- input 1");

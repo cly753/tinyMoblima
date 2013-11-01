@@ -7,9 +7,9 @@ class MoviegoerLib {
     private LinkedList<Moviegoer> goerLib;
 
     public MoviegoerLib() {
-        goerLib = new Linkedlist<Moviegoer>();
+        goerLib = new LinkedList<Moviegoer>();
     }
-    public Scanner sc = new Scanner(System.in);
+    public static Scanner sc = new Scanner(System.in);
     public Moviegoer add() {
         //String username, String password, String name, Sting mobileNumber, String emailAddress, Integer age
 
@@ -32,8 +32,9 @@ class MoviegoerLib {
         Integer newAge =sc.nextInt();
 
         System.out.print("confirm? 1/0");
+        Moviegoer newGoer;
         if (sc.nextInt() == 1) {
-            Moviegoer newGoer = new Moviegoer(
+            newGoer = new Moviegoer(
                                         newUsername, 
                                         newPassword, 
                                         newName, 
@@ -51,10 +52,9 @@ class MoviegoerLib {
     public boolean delete(Moviegoer goer) {
         System.out.println("password: ");
         String tempPassword  = sc.next();
-
-        if (goer.getPassword().compareTo(tempPassword)) {
+        if (goer.getPassword().compareTo(tempPassword) == 0) {
             int i = goerLib.indexOf(toDelete);
-            if (goerLib.indexOf(toDelete) != -1) {
+            if (goerLib.indexOf(goer) != -1) {
                 goerLib.remove(i);
                 return true;
             }
@@ -95,8 +95,8 @@ class MoviegoerLib {
         Moviegoer temp = null;
         while (iter.hasNext()) {
             temp = iter.next();
-            if (temp.username.compareTo(nameTry) == 0)
-                if (temp.password.compareTo(pwdTry) == 0)
+            if (temp.getUsername().compareTo(nameTry) == 0)
+                if (temp.getPassword().compareTo(pwdTry) == 0)
                     return temp;
                 else
                     return null;
@@ -162,6 +162,7 @@ class MoviegoerLib {
         for (int i = 0; i < showtimeList.size(); i++) {
             System.out.print(i + " " + showtimeList.get(i).printTime());
         }
+        Time selectedTime = showTimeList.get(sc.nextInt());
         
         for (int i = 0; i < cineplexLib.getCineplex().getCinema().size(); i++) {
             System.out.println(cineplexLib.get(i).getNameOfCineplex());
@@ -183,15 +184,16 @@ class MoviegoerLib {
         int row = sc.nextInt();
         System.out.print("col:");
         int col = sc.nextInt();
-
+        int ticketID = 1234567890;
+        
         Ticket ti = new Ticket(
                             toBook.getMovieName(), 
                             toBook.getTypeOfMovie(), 
-                            cinema.getNameOfCinema, 
-                            cinema.getClassOfCinema, 
-                            cinplex.getLocationOfCineplex, 
+                            cinema.getNameOfCinema(), 
+                            cinema.getClassOfCinema(), 
+                            cinplex.getLocationOfCineplex(), 
                             goer.getTypeOfMoviegoer(), 
-                            toBook.getShowTime(),
+                            selectedTime,
                             row,
                             col,
                             ticketID);

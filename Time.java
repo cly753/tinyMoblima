@@ -40,7 +40,7 @@ class Time {
         return newTime;
     }
 
-    public boolean storeCurrentTime() {
+    public Time storeCurrentTime() {
         this.year = Calendar.get(YEAR);
         this.month = Calendar.get(MONTH);
         this.day = Calendar.get(DATE);
@@ -53,7 +53,7 @@ class Time {
 
         publicHoliday = false;
 
-        return true;
+        return this;
     }
 
     public boolean printTime() {

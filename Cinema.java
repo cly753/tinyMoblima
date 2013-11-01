@@ -14,27 +14,25 @@ class Cinema {
     private String[] description;
     private BufferedReader br;
     
-    public Cinema() {
-        theSeat = new Seat[row][column];
+    /*public Cinema() {
+        seat = new Seat[row][column];
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < column; j++) {
-                theSeat[i][j] = new Seat(i, j);
+                seat[i][j] = new Seat(i, j);
             }
         }
-
         theClass = 0;
-    }
+        }*/
     public Cinema(int row, int column, String nameOfCinema) {
         seat = new Seat[row][column];
         this.setNumOfSeat();
-        seat = new Seat[numOfSeat];
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < column; j++) {
                 seat[i][j] = new Seat(i, j);
             }
         }
         numOfEmptySeat = numOfSeat;
-        br = new BufferedReader(new FileReader(this.name + ".txt"));
+        br = new BufferedReader(new FileReader(nameOfCinema + ".txt"));
         this.setNameOfCinema(nameOfCinema);
         this.setClassOfCinema();
         this.setDescription();
@@ -42,16 +40,16 @@ class Cinema {
 
     public static void presentSeat(Cinema ci) {
         System.out.print("  ");
-        for (int j = 0; j < column; j++)
+        for (int j = 0; j < ci.column; j++)
             System.out.print(" " + j);
         System.out.println();
-        for (int j = 0; j < column; j++)
+        for (int j = 0; j < ci.column; j++)
             System.out.print(" _");
         System.out.println();
-        for (int i = 0; i < row; i++) {
+        for (int i = 0; i < ci.row; i++) {
             System.out.print("\n" + i + "|");
-            for (int j = 0; j < column; j++)
-                if (seat[i][j].getAsisgn())
+            for (int j = 0; j < ci.column; j++)
+                if (seat[i][j].getAssign())
                     System.out.print(" O");
                 else
                     System.out.print(" x");
@@ -80,7 +78,7 @@ class Cinema {
     }
     
     public boolean setClassOfCinema() {
-        String cinemaClass = br.next();
+        String cinemaClass = br.nextLine();
         this.classOfCinema = cinemaClass;
         return true;
     }
@@ -89,7 +87,8 @@ class Cinema {
     }
     
     public boolean setDescription() {
-        try {
+        String[] cinemaDescription
+                try {
             StringBuilder sb = new StringBuilder();
             String line = this.br.readLine();
             
@@ -98,7 +97,7 @@ class Cinema {
                 sb.append("\n");
                 line = this.br.readLine();
             }
-            String[] cinemaDescription = sb.toString().split("\n");
+            cinemaDescription = sb.toString().split("\n");
         } finally {
             this.br.close();
         }
@@ -109,18 +108,18 @@ class Cinema {
         return this.description;
     }
     
-    public void assignSeat(int row, int column) {
+    public boolean assignSeat(int row, int column) {
         if (this.seat[row][column].getAssign()) {
             System.out.println("Seat already assgined to a customer.");
             return;
         }
-        this.seat[row][column].setAssign();
+        this.seat[row][column].assign();
         numOfEmptySeat--;
         System.out.println("Seat Assigned!");
         return true;
     }
     public boolean unAssignSeat(Integer row, Integer column) {
-        theSeat[row][column].unAssign();
+        seat[row][column].unAssign();
         numOfEmptySeat++;
         System.out.println("Seat Unassigned!");
         return true;
