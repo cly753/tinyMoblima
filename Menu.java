@@ -10,7 +10,7 @@ public class Menu {
     public static void welcome() {
         System.out.println("++++++++++++++++++++++++++++++++++");
         System.out.println("|                                | ");
-        System.out.println("|                                | ");
+        System.out.println("|             *^_^*              | ");
         System.out.println("|       Welcome to Moblima       | ");
         System.out.println("|           Da Shen Lu           | ");
         System.out.println("|                                | ");
