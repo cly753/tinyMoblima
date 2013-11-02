@@ -8,14 +8,19 @@ class MoviegoerLib {
 
     public MoviegoerLib() {
         goerLib = new LinkedList<Moviegoer>();
-        String fileAddress = ".\\src\\Moblima\\goerLib.ini";
+        String fileAddress = ".\\src\\Moblima\\goerLib.txt";
         try {
             Properties properties = new Properties();
             properties.load(new FileInputStream(fileAddress));
 
             for (int i = 0; i < 2; i++) {
-                Moviegoer newGoer = new Moviegoer("a", "b", "c", "d", "e", 5);
+                Moviegoer newGoer = new Moviegoer("a", "b", "c", "d", "e", 0);
+                newGoer.setUsername(properties.getProperty("username_" + i));
+                newGoer.setPassword(properties.getProperty("password_" + i));
                 newGoer.setName(properties.getProperty("name_" + i));
+                newGoer.setMobileNumber(properties.getProperty("mobileNumber_" + i));
+                newGoer.setEmailAddress(properties.getProperty("emailAddress_" + i));
+                newGoer.setAge(Integer.parseInt(properties.getProperty("age_" + i)));
                 goerLib.add(newGoer);
             }
         } catch (Exception e) {
@@ -25,15 +30,19 @@ class MoviegoerLib {
     public static Scanner sc = new Scanner(System.in);
     
     public void backup() {
-        String fileAddress = ".\\src\\Moblima\\goerLib.ini";
+        String fileAddress = ".\\src\\Moblima\\goerLib.txt";
         try {
             Properties properties = new Properties();
             properties.load(new FileInputStream(fileAddress));
 
             for (int i = 0; i < goerLib.size(); i++) {
+                properties.setProperty("username_" + i, goerLib.get(i).getUsername());
+                properties.setProperty("password_" + i, goerLib.get(i).getPassword());
                 properties.setProperty("name_" + i, goerLib.get(i).getName());
+                properties.setProperty("mobileNumber_" + i, goerLib.get(i).getMobileNumber());
+                properties.setProperty("emailAddress_" + i, goerLib.get(i).getEmailAddress());
+                properties.setProperty("age_" + i, goerLib.get(i).getAge().toString());
             }
-            
             properties.store(new FileOutputStream(fileAddress), "");
         } catch (Exception e) {
             System.out.println("Unable to process " + fileAddress);

@@ -157,6 +157,7 @@ public class Menu {
                     break;
                 case 8:
                     curUser = goerLib.add();
+                    goerLib.backup();
                     break;
                 default:
                     System.out.println("Wrong input.");
