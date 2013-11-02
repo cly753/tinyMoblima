@@ -8,8 +8,38 @@ class MoviegoerLib {
 
     public MoviegoerLib() {
         goerLib = new LinkedList<Moviegoer>();
+        String fileAddress = ".\\src\\Moblima\\goerLib.ini";
+        try {
+            Properties properties = new Properties();
+            properties.load(new FileInputStream(fileAddress));
+
+            for (int i = 0; i < 2; i++) {
+                Moviegoer newGoer = new Moviegoer("a", "b", "c", "d", "e", 5);
+                newGoer.setName(properties.getProperty("name_" + i));
+                goerLib.add(newGoer);
+            }
+        } catch (Exception e) {
+            System.out.println("Unable to process " + fileAddress);
+        }
     }
     public static Scanner sc = new Scanner(System.in);
+    
+    public void backup() {
+        String fileAddress = ".\\src\\Moblima\\goerLib.ini";
+        try {
+            Properties properties = new Properties();
+            properties.load(new FileInputStream(fileAddress));
+
+            for (int i = 0; i < goerLib.size(); i++) {
+                properties.setProperty("name_" + i, goerLib.get(i).getName());
+            }
+            
+            properties.store(new FileOutputStream(fileAddress), "");
+        } catch (Exception e) {
+            System.out.println("Unable to process " + fileAddress);
+        }
+    }
+    
     public Moviegoer add() {
         //String username, String password, String name, Sting mobileNumber, String emailAddress, Integer age
 
