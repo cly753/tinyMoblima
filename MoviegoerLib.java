@@ -13,7 +13,8 @@ class MoviegoerLib {
             Properties properties = new Properties();
             properties.load(new FileInputStream(fileAddress));
 
-            for (int i = 0; i < 2; i++) {
+            int size = Integer.parseInt(properties.getProperty("libSize"));
+            for (int i = 0; i < size; i++) {
                 Moviegoer newGoer = new Moviegoer("a", "b", "c", "d", "e", 0);
                 newGoer.setUsername(properties.getProperty("username_" + i));
                 newGoer.setPassword(properties.getProperty("password_" + i));
@@ -43,6 +44,7 @@ class MoviegoerLib {
                 properties.setProperty("emailAddress_" + i, goerLib.get(i).getEmailAddress());
                 properties.setProperty("age_" + i, goerLib.get(i).getAge().toString());
             }
+            properties.setProperty("libSize", Integer.toString(goerLib.size()));
             properties.store(new FileOutputStream(fileAddress), "");
         } catch (Exception e) {
             System.out.println("Unable to process " + fileAddress);
