@@ -158,7 +158,7 @@ class MovieLib {
     	Scanner sc = new Scanner(System.in);
         System.out.print("From: ");
         int start = sc.nextInt();
-        System.out.print("To (max - " + movieList.size() + " : ");
+        System.out.print("To (max - " + movieList.size() + " ): ");
         int end = sc.nextInt();
         
         if (0 <= start && start <= end && end < movieList.size()) {
