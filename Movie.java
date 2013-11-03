@@ -12,7 +12,7 @@ class Movie {
     private int runtime;
     private String[] description;
     private Time openingTime;
-    private ArrayList<Time> showtimeList;
+    private ArrayList<Session> sessionList;
     private String rating;
     public static Scanner sc = new Scanner(System.in);
     
@@ -27,7 +27,7 @@ class Movie {
         this.setLanguage(language);
         this.setRuntime(runtime);
         this.setDescription(description);
-        this.setShowtimeList(showtimeArray);
+        this.setSessionList(showtimeArray);
         this.setRating(rating);
     }
 
@@ -62,8 +62,8 @@ class Movie {
     public Time getOpeningTime() {
         return this.openingTime;
     }
-    public ArrayList<Time> getShowtimeList() {
-        return this.showtimeList;
+    public ArrayList<Session> getSessionList() {
+        return this.sessionList;
     }
     public String getRating() {
         return this.rating;
@@ -101,15 +101,40 @@ class Movie {
         this.openingTime = openingTime;
         return true;
     }
-    public boolean deleteShowtime() {
+
+    public boolean addSession(Time newShowtime) {
+        System.out.println("Please select cineplex: ");
+        for (int i = 0; i < Main.cLib.length; i++) {
+            System.out.println((i + 1) + " : " + Main.cLib[i].getName());
+        }
+        int choice = sc.nextInt();
+        Cineplex selectedCineplex = Main.cLib[choice - 1];
+        System.out.println("Please select cinema: ");
+        for (int i = 0; i < selectedCineplex.get().size(); i++) {
+            System.out.println((i + 1) + " : " + selectedCineplex.get(i).getNameOfCinema());
+        }
+        choice = sc.nextInt();
+        Cinema selectedCinema = selectedCineplex.get(choice - 1);
+        Session newMovieSession = new Session(newShowtime, selectedCinema);
+        this.sessionList.add(newMovieSession);
+        return true;
+    }
+
+    public boolean setSessionList(Time[] showtimeArray) {
+        for (int i = 0; i < showtimeArray.length; i++) {
+            this.addSession(showtimeArray[i]);
+        }
+        return true;
+    }
+    public boolean deleteSession() {
         int x;
-        for (int i = 0; i < showtimeList.size(); i++) {
-            System.out.print(i + " " + showtimeList.get(i).getStr());
+        for (int i = 0; i < sessionList.size(); i++) {
+            System.out.print(i + " " + sessionList.get(i).getTime().getStr());
             System.out.println();
         }
         System.out.print("Delete: ");
         x = sc.nextInt();
-        this.showtimeList.remove(x);
+        this.sessionList.remove(x);
         return true;
         //how about this.....
         //instead of return this.showtimeList.remove(x)
@@ -124,17 +149,6 @@ class Movie {
         }
         System.out.println("\nSelect new rating: ");
         this.setRating(ratingList[sc.nextInt()]);
-        return true;
-    }
-
-    public boolean addShowtime(Time newShowtime) {
-        this.showtimeList.add(newShowtime);
-        return true;
-    }
-    public boolean setShowtimeList(Time[] showtimeArray) {
-        for (int i = 0; i < showtimeArray.length; i++) {
-            this.addShowtime(showtimeArray[i]);
-        }
         return true;
     }
 

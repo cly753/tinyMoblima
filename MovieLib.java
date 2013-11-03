@@ -5,7 +5,6 @@ import java.io.*;
 
 class MovieLib {
     private ArrayList<Movie> movieList;
-    //try to debug, currently use sc
     
     public MovieLib() {
         movieList = new ArrayList<Movie>();
@@ -139,10 +138,10 @@ class MovieLib {
             case 9:
                 System.out.print("New showtime : ");
                 Time showTime = Time.manualNewATime();
-                toModify.addShowtime(showTime);
+                toModify.addSession(showTime);
                 break;
             case 10:
-                toModify.deleteShowtime();
+                toModify.deleteSession();
                 break;
             case 11:
                 toModify.setRatingBB();

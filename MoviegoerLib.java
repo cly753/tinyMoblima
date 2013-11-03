@@ -193,16 +193,16 @@ class MoviegoerLib {
     }
 
     public static Ticket book(Moviegoer goer, Movie toBook, Cineplex cLib[]) {
-        String movieName;
-        Cineplex cineplex;
+        //Cineplex selectedCineplex;
         Cinema cinema;
-
+        
         System.out.println("Select a showtime");
-        ArrayList<Time> showtimeList = toBook.getShowtimeList();
-        for (int i = 0; i < showtimeList.size(); i++) {
-            System.out.print(i + " " + showtimeList.get(i).getStr());
+        ArrayList<Session> sessionList = toBook.getSessionList();
+        for (int i = 0; i < sessionList.size(); i++) {
+            System.out.print((i + 1) + " " + sessionList.get(i).getTime().getStr() 
+                             + " " + sessionList.get(i).getCinema().getNameOfCinema());
         }
-        Time selectedTime = showtimeList.get(sc.nextInt());
+        /*Time selectedTime = showtimeList.get(sc.nextInt());
         
         for (int i = 0; i < cLib.length; i++) {
             System.out.println(cLib[i].getName());
@@ -216,9 +216,13 @@ class MoviegoerLib {
         
         System.out.print("Select a cinema: ");
         cinema = cineplex.get(sc.nextInt());
-        
         Cinema.presentSeat(cinema);
-
+        */
+        System.out.println("Please input your choice: ");
+        int choice = sc.nextInt();
+        Session selectedSession = sessionList.get(choice - 1);
+        cinema = selectedSession.getCinema();
+        selectedSession.presentSeat();
         System.out.println("Select a seat");
         System.out.print("row:");
         int row = sc.nextInt();
@@ -226,18 +230,17 @@ class MoviegoerLib {
         int col = sc.nextInt();
         int ticketID = 1234567890;
         
-        Ticket ti = new Ticket(
-                            toBook.getMovieName(), 
-                            toBook.getTypeOfMovie(), 
-                            cinema.getNameOfCinema(), 
-                            cinema.getClassOfCinema(), 
-                            cineplex.getLocation(), 
-                            goer.getTypeOfMoviegoer(), 
-                            selectedTime,
-                            row,
-                            col,
-                            ticketID);
-
+        Ticket ti = new Ticket(toBook.getMovieName(), 
+                               toBook.getTypeOfMovie(), 
+                               cinema.getNameOfCinema(), 
+                               cinema.getClassOfCinema(), 
+                               toBook.getLocation(),//Location!!!
+                               goer.getTypeOfMoviegoer(), 
+                               selectedSession.getTime(),
+                               row,
+                               col,
+                               ticketID);
+        
         goer.setUnpaid(ti);
         return ti;
     }

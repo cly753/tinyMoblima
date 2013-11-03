@@ -14,15 +14,6 @@ class Cinema {
     private String[] description;
     private BufferedReader br;
     
-    /*public Cinema() {
-        seat = new Seat[row][column];
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < column; j++) {
-                seat[i][j] = new Seat(i, j);
-            }
-        }
-        theClass = 0;
-        }*/
     public Cinema(int row, int column, String nameOfCinema) throws IOException {
     	this.row = row;
     	this.column = column;
@@ -38,25 +29,6 @@ class Cinema {
         this.setNameOfCinema(nameOfCinema);
         this.setClassOfCinema();
         this.setDescription();
-    }
-
-    public static void presentSeat(Cinema ci) {
-        System.out.print("  ");
-        for (int j = 0; j < ci.column; j++)
-            System.out.print(" " + j);
-        System.out.println();
-        for (int j = 0; j < ci.column; j++)
-            System.out.print(" _");
-        System.out.println();
-        for (int i = 0; i < ci.row; i++) {
-            System.out.print("\n" + i + "|");
-            for (int j = 0; j < ci.column; j++)
-                if (ci.seat[i][j].getAssign())
-                    System.out.print(" O");
-                else
-                    System.out.print(" x");
-        }
-        System.out.println();
     }
     
     public boolean setNumOfSeat() {
@@ -113,4 +85,10 @@ class Cinema {
     public Seat getSeat(int row, int col) {
         return seat[row][col];
     }
+    public int getRow() {
+        return this.row;
+    }
+    public int getColumn() {
+        return this.column;
+    }   
 }
