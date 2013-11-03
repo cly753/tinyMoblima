@@ -12,39 +12,36 @@ public class Menu {
         System.out.println("|                                | ");
         System.out.println("|             *^_^*              | ");
         System.out.println("|       Welcome to Moblima       | ");
-        System.out.println("|           Da Shen Lu           | ");
+        System.out.println("|           Gong Da Shi          | ");
         System.out.println("|                                | ");
         System.out.println("++++++++++++++++++++++++++++++++++");
+        System.out.println();System.out.println();System.out.println();
     }
 
     public static void toplevel(Moviegoer curUser, MovieLib movieLib, MoviegoerLib goerLib, Cineplex cLib[]) {
         int choice;
         while (true) {
-        	System.out.println();
-            System.out.println("Please Enter Your Choice:");
-            System.out.println("1. List all movies"); // call listAllMovie
-            System.out.println("2. Search movies"); // call search
-            System.out.println("3. Book movie"); // select and call search/listAllMovie
-            System.out.println("4. Check status/history"); // call checkLogin
-            System.out.println("5. Pay"); // call checkLogin
+            System.out.println("++++++++++++++++++++++++++++");
+            System.out.println("|Please Enter Your Choice: |");
+            System.out.println("|>1. List all movies       |"); // call listAllMovie
+            System.out.println("|>2. Search movies         |"); // call search
+            System.out.println("|>3. Book movie            |"); // select and call search/listAllMovie
+            System.out.println("|>4. Check status/history  |"); // call checkLogin
+            System.out.println("|>5. Pay                   |"); // call checkLogin
             if (curUser == null)
-            	System.out.println("6. Login");
+            	System.out.println("|>6. Login                 |");
             else
-            	System.out.println("7. Logout");
-            System.out.println("8. Register");
-            System.out.println("9. Staff");
-            System.out.println("0. Exit");
+            	System.out.println("|>7. Logout               |");
+            System.out.println("|>8. Register              |");
+            System.out.println("|>9. Staff                 |");
+            System.out.println("|>0. Exit                  |");
+            System.out.println("++++++++++++++++++++++++++++");
             choice = sc.nextInt();
             if (choice == 0) {
                 System.out.println("Exit...");
                 return ;
             }
             switch (choice) {
-                case 9:
-                    System.out.print("password: ");
-                    if (sc.next().compareTo(Main.adminPwd) == 0)
-                        staffMenu(movieLib, goerLib, cLib);                      
-                    break;
                 case 1:
                     System.out.println("List all movies:");
                     movieLib.listMovie();
@@ -98,16 +95,16 @@ public class Menu {
                     }
                     break;
                 case 4: case 5: case 6:
-                	if (curUser == null) {
+                    if (curUser == null) {
                         String username;
                         String password;
                         System.out.print("username: ");
                         username = sc.next();
                         System.out.print("password: ");
                         password = sc.next();
-
+                        
                         curUser = goerLib.checkLogin(username, password);
-
+                        
                         if (curUser != null)
                             System.out.println("login succeeded.");
                         else {
@@ -118,45 +115,49 @@ public class Menu {
                     	System.out.println("???");
                         break;
                     }
-                	
+                    
                     if (choice == 6) {
                         break;
                     }
                     
                     if (choice == 4) {
                         MoviegoerLib.showHistory(curUser, false);
-
                         if (curUser.getUnpaid().size() != 0) {
                             System.out.print("pay(index) or go back(other)?");
                             int toPay = sc.nextInt();
-
                             if (0 <= toPay && toPay < curUser.getUnpaid().size())
                                 MoviegoerLib.pay(curUser, toPay);
                             else
                                 break;
                         }
                     }
-
+                    
                     if (choice == 5) {
                         MoviegoerLib.showHistory(curUser, true);
-
+                        
                         if (curUser.getUnpaid().size() == 1)
                             MoviegoerLib.pay(curUser, 0);
                         else {
                             System.out.print("pay(index) or go back(other)?");
                             int toPay = sc.nextInt();
-
+                            
                             if (0 <= toPay && toPay < curUser.getUnpaid().size())
                                 MoviegoerLib.pay(curUser, toPay);
                         }
                     }
                     break;
-               
+                    
                 case 7:
                     curUser = null;
                     break;
                 case 8:
                     curUser = goerLib.add();
+                    goerLib.backup();
+                    break;
+                case 9:
+                    System.out.print("password: ");
+                    if (sc.next().compareTo(Main.adminPwd) == 0)
+                        staffMenu(movieLib, goerLib, cLib);                      
                     break;
                 default:
                     System.out.println("Wrong input.");
@@ -167,11 +168,14 @@ public class Menu {
     public static void staffMenu(MovieLib movieLib, MoviegoerLib goerLib, Cineplex[] cLib) {
         int choice;
         while (true) {
-            System.out.println("Enter your choice, Da Shen!");
-            System.out.println("1. Add/Modify/Remove a movie");
-            System.out.println("2. Set holidays"); // call setHoliday in Time class
-            System.out.println("3. Generate revenue report"); // call generateRevenueReport in Revenue class
-            System.out.println("0. exit"); // previous level: toplevel
+            System.out.println("+++++++++++++++++++++++++++++++");
+            System.out.println("|Enter your choice, Nan Shen! |");
+            System.out.println("|1. Add/Modify/Remove a movie |");
+            System.out.println("|2. Set holidays              |"); // call setHoliday in Time class
+            System.out.println("|3. Generate revenue report   |"); // call generateRevenueReport in Revenue class
+            System.out.println("|0. exit                      |"); // previous level: toplevel
+            System.out.println("+++++++++++++++++++++++++++++++");
+            
             choice = sc.nextInt();
             if (choice == 0) {
                 System.out.println("Bye-Bye Da Shen! ");
@@ -186,7 +190,8 @@ public class Menu {
                     Time.setPublicHoliday(sc.next());
                     break;
                 case 3:
-                	System.out.print("Choose 1.by one Cineplex 2.by all Cineplex?");
+                    System.out.println("1.by one Cineplex");
+                    System.out.println("2.by all Cineplex");
                 	int i = sc.nextInt();
                 	Cineplex cineplex = null;
                 	if (i == 1) {
@@ -238,13 +243,15 @@ public class Menu {
     public static void addModifyRemove(MovieLib movieLib) {
         int choice;
         while (true) {
-            System.out.println("Please Enter your choice:");
-            System.out.println("1. list movies"); // call listMovie in MovieLib class
-            System.out.println("2. Search a movie"); // call search in MovieLib class
-            System.out.println("3. Add a movie"); // call addMovie in MovieLib class
-            System.out.println("4. Update a movie"); // next level: modify >>> call xxx in Movie class
-            System.out.println("5. Remove a movie"); // call remove in MovieLib class
-            System.out.println("0.back"); // previous level: staff menu
+            System.out.println("+++++++++++++++++++++++++++");
+            System.out.println("|Please Enter your choice:|");
+            System.out.println("|1. list movies           |"); // call listMovie in MovieLib class
+            System.out.println("|2. Search a movie        |"); // call search in MovieLib class
+            System.out.println("|3. Add a movie           |"); // call addMovie in MovieLib class
+            System.out.println("|4. Update a movie        |"); // next level: modify >>> call xxx in Movie class
+            System.out.println("|5. Remove a movie        |"); // call remove in MovieLib class
+            System.out.println("|0.back                   |"); // previous level: staff menu
+            System.out.println("+++++++++++++++++++++++++++");
             choice = sc.nextInt();
             if (choice == 0) {
                 System.out.println("Back...");
@@ -287,20 +294,22 @@ public class Menu {
         //System.out.println("list movies"); // call listMovie in MovieLib class
         int choice;
         while (true) {
-            System.out.println("Modify:");
-            System.out.println("Please Enter your choice:");
-            System.out.println("1.name");
-            System.out.println("2.type");
-            System.out.println("3.cast");
-            System.out.println("4.director");
-            System.out.println("5.language");
-            System.out.println("6.runtime");
-            System.out.println("7.description");
-            System.out.println("8.openingTime");
-            System.out.println("9.add showtime");
-            System.out.println("10.delete showtime");
-            System.out.println("11.rating");
-            System.out.println("0.back"); // previous level: staff menu
+            System.out.println("+++++++++++++++++++++++++++");
+            System.out.println("|Modify:                  |");
+            System.out.println("|Please Enter your choice:|");
+            System.out.println("|1.name                   |");
+            System.out.println("|2.type                   |");
+            System.out.println("|3.cast                   |");
+            System.out.println("|4.director               |");
+            System.out.println("|5.language               |");
+            System.out.println("|6.runtime                |");
+            System.out.println("|7.description            |");
+            System.out.println("|8.openingTime            |");
+            System.out.println("|9.add showtime           |");
+            System.out.println("|10.delete showtime       |");
+            System.out.println("|11.rating                |");
+            System.out.println("|0.back                   |"); // previous level: staff menu
+            System.out.println("+++++++++++++++++++++++++++");
             choice = sc.nextInt();
             if (choice == 0) {
                 System.out.println("Back...");
