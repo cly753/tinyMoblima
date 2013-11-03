@@ -109,21 +109,8 @@ class Cinema {
     public String[] getDescription() {
         return this.description;
     }
-    
-    public boolean assignSeat(int row, int column) {
-        if (this.seat[row][column].getAssign()) {
-            System.out.println("Seat already assgined to a customer.");
-            return false;
-        }
-        this.seat[row][column].assign();
-        numOfEmptySeat--;
-        System.out.println("Seat Assigned!");
-        return true;
-    }
-    public boolean unAssignSeat(Integer row, Integer column) {
-        seat[row][column].unAssign();
-        numOfEmptySeat++;
-        System.out.println("Seat Unassigned!");
-        return true;
+
+    public Seat getSeat(int row, int col) {
+        return seat[row][col];
     }
 }
