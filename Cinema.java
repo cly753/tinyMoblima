@@ -15,7 +15,7 @@ class Cinema {
     private String[] description;
     private BufferedReader br;
     
-    public Cinema(int row, int column, String nameOfCinema, String locationOfCinema) throws IOException {
+    public Cinema(Scanner br, int row, int column, String nameOfCinema, String locationOfCinema) throws IOException {
     	this.row = row;
     	this.column = column;
         seat = new Seat[row][column];
@@ -26,7 +26,7 @@ class Cinema {
             }
         }
         numOfEmptySeat = numOfSeat;
-        br = new BufferedReader(new FileReader(nameOfCinema + ".txt"));
+        //br = new BufferedReader(new FileReader("_info_detail_" + nameOfCinema + ".txt"));
         this.setNameOfCinema(nameOfCinema);
         this.setClassOfCinema();
         this.setLocationOfCinema();

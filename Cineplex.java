@@ -4,16 +4,37 @@ import java.util.*;
 import java.io.*;
 
 class Cineplex {
-    private final int numOfCinema = 3;
+    private int numOfCinema;
     private ArrayList<Cinema> cinemaList = new ArrayList<Cinema>();
     private String name;
     private String location;
     //private int id;
 
-    public Cineplex() throws IOException {
+    public Cineplex(Scanner freader, String nameOfCineplex, String locationOfCinplex, int numOfCinema) throws IOException {
+        this.numOfCinema = numOfCinema;
+        this.name = nameOfCineplex;
+        this.location = locationOfCinplex;
+        //Scanner freader = new Scanner(new FileReader("_info_cineplex" + nameOfCineplex + ".txt"));
         for (int i = 0; i < numOfCinema; i++) {
-            cinemaList.add(new Cinema(10, 20, "SCE", this.location));
+            String nameOfCurrentCinema = freader.next();
+            Cinema currentCinema = constructCinema(nameOfCurrentCinema, this.location);
+            cinemaList.add(currentCinema);
         }
+    }
+    private Cinema constructCinema(String nameOfCinema, String locationOfCinema) throws IOException {
+        try {
+            Scanner freader = new Scanner(new FileReader("_info_Cinema" + nameOfCinema + ".txt"));
+            int row = freader.nextInt();
+            int column = freader.nextInt();
+            Cinema currentCinema = new Cinema(freader, row, column, nameOfCinema, locationOfCinema);
+            return currentCinema;
+        } catch (IOException e) {
+            System.out.println("asdf");
+        }
+        return null;
+        //========================
+        //help me fix here!!!!!!
+        //========================
     }
     
     public String getName() {
