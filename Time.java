@@ -32,10 +32,15 @@ class Time {
     public static Time manualNewATime() {
     	Scanner sc = new Scanner(System.in);
         Time newTime = new Time();
+        System.out.println("Please enter year: ");
         newTime.setYear(sc.nextInt());
+        System.out.println("Please enter month: 1~12:");
         newTime.setMonth(sc.nextInt());
+        System.out.println("Please enter day:");
         newTime.setDay(sc.nextInt());
+        System.out.println("Please enter hour: 0~23");
         newTime.setHour(sc.nextInt());
+        System.out.println("Please enter minute: 0~59");
         newTime.setMinute(sc.nextInt());
 
         return newTime;

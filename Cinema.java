@@ -9,12 +9,13 @@ class Cinema {
     private String nameOfCinema;
     private int numOfSeat;
     private String classOfCinema;
+    private String locationOfCinema;
     private Seat[][] seat;
     private int numOfEmptySeat;
     private String[] description;
     private BufferedReader br;
     
-    public Cinema(int row, int column, String nameOfCinema) throws IOException {
+    public Cinema(int row, int column, String nameOfCinema, String locationOfCinema) throws IOException {
     	this.row = row;
     	this.column = column;
         seat = new Seat[row][column];
@@ -28,6 +29,7 @@ class Cinema {
         br = new BufferedReader(new FileReader(nameOfCinema + ".txt"));
         this.setNameOfCinema(nameOfCinema);
         this.setClassOfCinema();
+        this.setLocationOfCinema();
         this.setDescription();
     }
     
@@ -58,6 +60,14 @@ class Cinema {
     }
     public String getClassOfCinema() {
         return this.classOfCinema;
+    }
+
+    public boolean setLocationOfCinema() {
+        this.locationOfCinema = locationOfCinema;
+        return true;
+    }
+    public String getLocationOfCinema() {
+        return this.locationOfCinema;
     }
     
     public boolean setDescription() throws IOException {

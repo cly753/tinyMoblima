@@ -12,7 +12,7 @@ class Cineplex {
 
     public Cineplex() throws IOException {
         for (int i = 0; i < numOfCinema; i++) {
-            cinemaList.add(new Cinema(10, 20, "SCE"));
+            cinemaList.add(new Cinema(10, 20, "SCE", this.location));
         }
     }
     

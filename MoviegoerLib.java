@@ -234,7 +234,7 @@ class MoviegoerLib {
                                toBook.getTypeOfMovie(), 
                                cinema.getNameOfCinema(), 
                                cinema.getClassOfCinema(), 
-                               toBook.getLocation(),//Location!!!
+                               cinema.getLocationOfCinema(),//Location!!!
                                goer.getTypeOfMoviegoer(), 
                                selectedSession.getTime(),
                                row,
