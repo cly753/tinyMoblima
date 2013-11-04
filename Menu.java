@@ -197,11 +197,11 @@ public class Menu {
                 	if (i == 1) {
                 		System.out.println("Choose");
                 		for (int j = 0; j < cLib.length; j++) {
-                			System.out.println(j + " " + cLib[i].getName());
+                			System.out.println(j + " " + cLib[j].getName());
                 		}
                 		int which = sc.nextInt();
                 		if (0 <= which && which < cLib.length) {
-                			cineplex = cLib[i];
+                			cineplex = cLib[which];
                 		}
                 		else {
                 			System.out.println("Out of range.");
