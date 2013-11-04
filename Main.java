@@ -12,16 +12,20 @@ public class Main {
     public static Scanner sc = new Scanner(System.in);
     public static int numOfCineplex;
     
-    public static void main(String[] args) throws Exception {;
-        loading();
-        Menu.welcome();
-        Menu.toplevel(curUser, movieLib, goerLib, cLib);
-        storing();
-        
+    public static void main(String[] args) throws Exception {
+        try {
+        	loading();
+        	Menu.welcome();
+        	Menu.toplevel(curUser, movieLib, goerLib, cLib);
+        	storing();
+        }
+        catch (Exception e) {
+        	System.out.print("I caught a exception!");
+        }
     }
     private static void loading() throws Exception {
-        //TODO add loading info
-        Scanner freader = new Scanner(new FileReader("_info_Cineplex" + ".txt"));
+    	
+        Scanner freader = new Scanner(new FileReader(".\\_info_Cineplex" + ".txt"));
         numOfCineplex = freader.nextInt();
         cLib = new Cineplex[numOfCineplex];
         for (int i = 0; i < numOfCineplex; i++) {
@@ -31,13 +35,13 @@ public class Main {
     }
     
     private static void storing() {
-        //TODO add storing info
+    	
     }
     private static Cineplex constructCineplex(String nameOfCineplex) throws Exception {
-        //TODO you know
+    	
         Cineplex currentCineplex;
         try {
-            Scanner freader = new Scanner(new FileReader("_info_cineplex" + nameOfCineplex + ".txt"));
+            Scanner freader = new Scanner(new FileReader(".\\_info_cineplex" + nameOfCineplex + ".txt"));
             String locationOfCinplex = freader.next();
             int numOfCinema  = freader.nextInt();
             currentCineplex = new Cineplex(freader, nameOfCineplex, locationOfCinplex, numOfCinema);

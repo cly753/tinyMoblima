@@ -13,7 +13,7 @@ public class MovieSession {
         seat = new Seat[cinema.getRow()][cinema.getColumn()];
         for (int i = 0; i < cinema.getRow(); i++) {
             for (int j = 0; j < cinema.getColumn(); j++) {
-                seat[i][j] = new Seat();
+                seat[i][j] = new Seat(i, j);
                 if (cinema.getSeat(i, j) == null)
                     seat[i][j] = null;
             }
