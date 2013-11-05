@@ -26,11 +26,10 @@ class Cinema {
             }
         }
         numOfEmptySeat = numOfSeat;
-        //br = new BufferedReader(new FileReader("_info_detail_" + nameOfCinema + ".txt"));
         this.setNameOfCinema(nameOfCinema);
-        this.setClassOfCinema();
         this.setLocationOfCinema();
-        this.setDescription();
+        this.setClassOfCinema(); //use scanner
+        this.setDescription();   //use scanner
     }
     
     public boolean setNumOfSeat() {
