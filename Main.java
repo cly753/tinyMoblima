@@ -9,18 +9,19 @@ public class Main {
     public static MovieLib movieLib = new MovieLib();
     public static MoviegoerLib goerLib = new MoviegoerLib();
     public static Cineplex cLib[];
+    public static TicketLib tiLib = new TicketLib();
     public static Scanner sc = new Scanner(System.in);
     public static int numOfCineplex;
     
     public static void main(String[] args) throws Exception {
         try {
-        	loading();
-        	Menu.welcome();
-        	Menu.toplevel(curUser, movieLib, goerLib, cLib);
-        	storing();
+            loading();
+            Menu.welcome();
+            Menu.toplevel(curUser, movieLib, goerLib, cLib);
+            storing();
         }
         catch (Exception e) {
-        	System.out.print("I caught a exception!");
+            System.out.print("I caught a exception!");
         }
     }
     private static void loading() throws Exception {
@@ -37,6 +38,21 @@ public class Main {
             cLib[i] = constructCineplex(nameOfCurrentCineplex);
             //directly go to a certain cineplex construction
         }
+
+            
+        /*
+         *2       //number of tickets
+         *
+         *#1      //ticketID
+         *3D      //typeOfMovie
+         *cineA
+         *student //typeOfMoviegoer
+         *
+         *#2      //ticketID
+         *4D      //
+         *cineB   //
+         *others  //
+         */
     }
     
     private static void storing() {

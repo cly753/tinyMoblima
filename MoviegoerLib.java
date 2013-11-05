@@ -9,7 +9,7 @@ class MoviegoerLib {
     public MoviegoerLib() {
         goerLib = new LinkedList<Moviegoer>();
         //String fileAddress = ".\\src\\Moblima\\goerLib.txt";
-        String fileAddress = "./goerLib.txt";
+        String fileAddress = "~/study/java/Moblima/goerLib.txt";
         try {
             Properties properties = new Properties();
             properties.load(new FileInputStream(fileAddress));
