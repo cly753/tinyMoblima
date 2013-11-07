@@ -22,15 +22,7 @@ class Cineplex {
         }
     }
     
-    public void loadFromFile(String fileParentLocation) {
-        String fileLocation = fileParentLocation + "goerLib.txt";
-        //String fileLocation = "~/study/java/Moblima/goerLib.txt";
-        try {
-            
-        } catch (Exception e) {
-            System.out.println("Unable to process " + fileLocation);
-        }
-    }
+    
 
     private Cinema constructCinema(String nameOfCinema, String locationOfCinema) throws IOException {
         /*

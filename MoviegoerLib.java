@@ -13,7 +13,6 @@ class MoviegoerLib {
 
     public void loadFromFile(String fileParentLocation) {
         String fileLocation = fileParentLocation + "goerLib.txt";
-        //String fileLocation = "~/study/java/Moblima/goerLib.txt";
         try {
             Properties properties = new Properties();
             properties.load(new FileInputStream(fileLocation));
@@ -43,7 +42,6 @@ class MoviegoerLib {
 
     public void storeToFile(String fileParentLocation) {
         String fileLocation = fileParentLocation + "goerLib.txt";
-        //String fileLocation = "./goerLib.txt";
         try {
             Properties properties = new Properties();
             properties.load(new FileInputStream(fileLocation));
