@@ -4,6 +4,7 @@ import java.util.*;
 import java.io.*;
 
 class Moviegoer extends User {
+
     private String name;
     private String mobileNumber;
     private String emailAddress;
@@ -25,6 +26,7 @@ class Moviegoer extends User {
         this.name = name;
         return true;
     }
+
     public String getName() {
         return name;
     }
@@ -33,6 +35,7 @@ class Moviegoer extends User {
         this.mobileNumber = mobileNumber;
         return true;
     }
+
     public String getMobileNumber() {
         return mobileNumber;
     }
@@ -41,6 +44,7 @@ class Moviegoer extends User {
         this.emailAddress = emailAddress;
         return true;
     }
+
     public String getEmailAddress() {
         return emailAddress;
     }
@@ -49,6 +53,7 @@ class Moviegoer extends User {
         this.age = age;
         return true;
     }
+
     public Integer getAge() {
         return age;
     }
@@ -57,6 +62,7 @@ class Moviegoer extends User {
         paid.add(newTicket);
         return true;
     }
+
     public ArrayList<Ticket> getPaid() {
         return paid;
     }
@@ -65,6 +71,7 @@ class Moviegoer extends User {
         unpaid.add(newTicket);
         return true;
     }
+
     public ArrayList<Ticket> getUnpaid() {
         return unpaid;
     }

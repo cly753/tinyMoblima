@@ -4,6 +4,7 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
+
     public static final String adminPwd = "moblima";
     public static Moviegoer curUser = null;
     public static MovieLib movieLib = new MovieLib();
@@ -12,20 +13,24 @@ public class Main {
     public static TicketLib tiLib = new TicketLib();
     public static Scanner sc = new Scanner(System.in);
     public static int numOfCineplex;
-    
+    private static final String fileParentLocation = ".\\src\\Moblima\\";
+    //private static final String fileParentLocation = "~/study/java/Moblima/;
+
     public static void main(String[] args) throws Exception {
         try {
             loading();
             Menu.welcome();
             Menu.toplevel(curUser, movieLib, goerLib, cLib);
             storing();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.print("I caught a exception!");
         }
     }
+
     private static void loading() throws Exception {
-    	/*
+        goerLib.loadFromFile(fileParentLocation);
+        
+        /*
          *2   \\number of Cineplex
          *A B \\the name of cineplex one and cineplex two
          *
@@ -39,7 +44,6 @@ public class Main {
             //directly go to a certain cineplex construction
         }
 
-            
         /*
          *2       //number of tickets
          *
@@ -54,20 +58,21 @@ public class Main {
          *others  //
          */
     }
-    
+
     private static void storing() {
-    	
+        goerLib.storeToFile(fileParentLocation);
     }
+
     private static Cineplex constructCineplex(String nameOfCineplex) throws Exception {
 //<<<<<<< HEAD
     	/*
-    	 * hall15 \\location
-    	 * 2      \\number of cinema
-    	 * cineA  \\name of cinema
-    	 * cineB  \\name of cinema
-    	 * 
-    	 * 
-    	 */
+         * hall15 \\location
+         * 2      \\number of cinema
+         * cineA  \\name of cinema
+         * cineB  \\name of cinema
+         * 
+         * 
+         */
 //=======
         /*
          *hall15 //location of cineplex
@@ -81,7 +86,7 @@ public class Main {
         try {
             Scanner freader = new Scanner(new FileReader("./_info_cineplex" + nameOfCineplex + ".txt"));
             String locationOfCinplex = freader.next();
-            int numOfCinema  = freader.nextInt();
+            int numOfCinema = freader.nextInt();
             currentCineplex = new Cineplex(freader, nameOfCineplex, locationOfCinplex, numOfCinema);
             //constructor of cineplex which include cinema constructor
             return currentCineplex;

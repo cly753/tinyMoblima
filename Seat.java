@@ -1,11 +1,12 @@
 package Moblima;
 
 class Seat {
+
     private Integer row;
     private Integer no;
     private boolean assign;
     //private Integer moviegoerId;
-    
+
     public Seat(Integer row, Integer no) {
         this.row = row;
         this.no = no;
@@ -16,6 +17,7 @@ class Seat {
         this.row = row;
         return true;
     }
+
     public Integer getRow() {
         return row;
     }
@@ -24,6 +26,7 @@ class Seat {
         this.no = no;
         return true;
     }
+
     public Integer getNo() {
         return no;
     }
@@ -32,10 +35,12 @@ class Seat {
         this.assign = true;
         return true;
     }
+
     public boolean unAssign() {
         this.assign = false;
         return true;
     }
+
     public boolean getAssign() {
         return assign;
     }

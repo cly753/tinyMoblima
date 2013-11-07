@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Moblima;
 
 /**
@@ -18,14 +17,16 @@ public class NewJFrame extends javax.swing.JFrame {
     public NewJFrame() {
         initComponents();
         /*
-        The first ComboBox is for validating use only... will delete eventually.
-        Now it displays a list of moviegoerlib, because the movie lib is currently empty :(
-        But when movie lib is not empty, this work will work I think...
-        */
-        for (Moviegoer g: Main.goerLib.get())
+         The first ComboBox is for validating use only... will delete eventually.
+         Now it displays a list of moviegoerlib, because the movie lib is currently empty :(
+         But when movie lib is not empty, this work will work I think...
+         */
+        for (Moviegoer g : Main.goerLib.get()) {
             jComboBoxMoviegoer.addItem(g.getName());
-        for (Movie m: Main.movieLib.get())
+        }
+        for (Movie m : Main.movieLib.get()) {
             jComboBoxMovie.addItem(m.getMovieName());
+        }
     }
 
     /**
@@ -94,9 +95,11 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jButtonCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckActionPerformed
         // TODO add your handling code here:
-        for (Movie m: Main.movieLib.searchMovie((String)jComboBoxMovie.getSelectedItem()))
-            for (Session s: m.getSessionList())
+        for (Movie m : Main.movieLib.searchMovie((String) jComboBoxMovie.getSelectedItem())) {
+            for (Session s : m.getSessionList()) {
                 jComboBoxSession.addItem(s.getTime().getStr());
+            }
+        }
     }//GEN-LAST:event_jButtonCheckActionPerformed
 
     /**

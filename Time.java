@@ -4,6 +4,7 @@ import java.util.*;
 import java.io.*;
 
 class Time {
+
     private int year;
     private int month;
     private int day;
@@ -11,9 +12,9 @@ class Time {
     private int minute;
 
     private static final String strMonth[] = {"JAN", "FEB", "MAR",
-                                            "APR", "MAY", "JUN",
-                                            "JUL", "AUG", "SEP",
-                                            "OCT", "NOV", "DEC"};
+        "APR", "MAY", "JUN",
+        "JUL", "AUG", "SEP",
+        "OCT", "NOV", "DEC"};
 
     private static ArrayList<String> pubHoliList = new ArrayList<String>();
     // format: yyyymmdd
@@ -22,15 +23,17 @@ class Time {
 
     private boolean weekday;
     private boolean publicHoliday;
+
     public Time() {
 
     }
+
     //=================
     //Error
     //=================
     //Cannot be used at MovieLib.java line 64, 68 134,..
     public static Time manualNewATime() {
-    	Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         Time newTime = new Time();
         System.out.println("Please enter year: ");
         newTime.setYear(sc.nextInt());
@@ -52,10 +55,11 @@ class Time {
         this.day = Calendar.getInstance().get(Calendar.DATE);
         this.hour = Calendar.getInstance().get(Calendar.HOUR);
         this.minute = Calendar.getInstance().get(Calendar.MINUTE);
-        if (Calendar.DAY_OF_WEEK != 1 && Calendar.DAY_OF_WEEK != 7)
+        if (Calendar.DAY_OF_WEEK != 1 && Calendar.DAY_OF_WEEK != 7) {
             weekday = true;
-        else
+        } else {
             weekday = false;
+        }
 
         publicHoliday = false;
 
@@ -78,6 +82,7 @@ class Time {
         updatePubHoliAndWkend();
         return true;
     }
+
     public Integer getYear() {
         return year;
     }
@@ -87,6 +92,7 @@ class Time {
         updatePubHoliAndWkend();
         return true;
     }
+
     public Integer getMonth() {
         return month;
     }
@@ -96,6 +102,7 @@ class Time {
         updatePubHoliAndWkend();
         return true;
     }
+
     public Integer getDay() {
         return day;
     }
@@ -104,6 +111,7 @@ class Time {
         this.hour = hour;
         return true;
     }
+
     public Integer getHour() {
         return hour;
     }
@@ -112,6 +120,7 @@ class Time {
         this.minute = minute;
         return true;
     }
+
     public Integer getMinute() {
         return minute;
     }
@@ -120,6 +129,7 @@ class Time {
         this.weekday = weekday;
         return true;
     }
+
     public boolean getWeekday() {
         return weekday;
     }
@@ -128,21 +138,21 @@ class Time {
         pubHoliList.add(publicHoliday);
         return true;
     }
+
     public static ArrayList<String> getPublicHoliday() {
         return pubHoliList;
     }
-
 
     public void updatePubHoliAndWkend() {
         String timeStr = Integer.toString(this.year) + Integer.toString(this.month) + Integer.toString(this.day);
 
         for (int i = 0; i < pubHoliList.size(); i++) {
-            if (pubHoliList.get(i).compareTo(timeStr) == 0){
+            if (pubHoliList.get(i).compareTo(timeStr) == 0) {
                 publicHoliday = true;
             }
         }
         for (int i = 0; i < weekendList.size(); i++) {
-            if (weekendList.get(i).compareTo(timeStr) == 0){
+            if (weekendList.get(i).compareTo(timeStr) == 0) {
                 this.setWeekday(false);
             }
         }

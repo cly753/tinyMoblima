@@ -4,6 +4,7 @@ import java.util.*;
 import java.io.*;
 
 class Cineplex {
+
     private int numOfCinema;
     private ArrayList<Cinema> cinemaList = new ArrayList<Cinema>();
     private String name;
@@ -20,6 +21,17 @@ class Cineplex {
             cinemaList.add(currentCinema);
         }
     }
+    
+    public void loadFromFile(String fileParentLocation) {
+        String fileLocation = fileParentLocation + "goerLib.txt";
+        //String fileLocation = "~/study/java/Moblima/goerLib.txt";
+        try {
+            
+        } catch (Exception e) {
+            System.out.println("Unable to process " + fileLocation);
+        }
+    }
+
     private Cinema constructCinema(String nameOfCinema, String locationOfCinema) throws IOException {
         /*
          *
@@ -43,28 +55,30 @@ class Cineplex {
         //help me fix here!!!!!!
         //========================
     }
-    
+
     public String getName() {
-    	return name;
+        return name;
     }
+
     public boolean setName(String name) {
-    	this.name = name;
-    	return true;
+        this.name = name;
+        return true;
     }
-    
+
     public String getLocation() {
-    	return location;
+        return location;
     }
+
     public boolean setLocation(String location) {
-    	this.location = location;
-    	return true;
+        this.location = location;
+        return true;
     }
-    
+
     public Cinema get(int i) {
-    	return cinemaList.get(i);
+        return cinemaList.get(i);
     }
 
     public ArrayList<Cinema> get() {
-    	return cinemaList;
+        return cinemaList;
     }
 }

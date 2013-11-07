@@ -4,8 +4,9 @@ import java.util.*;
 import java.io.*;
 
 class MovieLib {
+
     private ArrayList<Movie> movieList;
-    
+
     public MovieLib() {
         movieList = new ArrayList<Movie>();
     }
@@ -29,17 +30,17 @@ class MovieLib {
         }
         return result;
     }
-    
+
     public boolean add() {
-    	Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         //here is the format of adding a movie.
         //hopefully will be our data format inside a txt file.
-        
+
         System.out.println("Name: ");
         String nameOfNewMovie = sc.nextLine();
 
         System.out.println("Type: ");
-        String typeOfNewMove  = sc.next();
+        String typeOfNewMove = sc.next();
 
         System.out.println("Cast: ");
         String[] castOfNewMovie = sc.nextLine().split(" ");
@@ -51,7 +52,7 @@ class MovieLib {
         String languageOfNewMovie = sc.next();
 
         System.out.println("Runtime: ");
-        int runtimeOfNewMovie =sc.nextInt();
+        int runtimeOfNewMovie = sc.nextInt();
 
         System.out.println("Description:");
         String[] description = sc.nextLine().split(" ");
@@ -65,21 +66,21 @@ class MovieLib {
 
         System.out.print("Opening time: ");
         Time openingTime = Time.manualNewATime();
-        
+
         System.out.print("Rating: ");
         String ratingOfNewMovie = sc.next();
-        
+
         Movie newMovie = new Movie(nameOfNewMovie,
-                                   typeOfNewMove, 
-                                   castOfNewMovie, 
-                                   directorOfNewMovie, 
-                                   languageOfNewMovie,
-                                   runtimeOfNewMovie,
-                                   description,
-                                   openingTime,
-                                   showtimeOfMovie,
-                                   ratingOfNewMovie);
-        
+                typeOfNewMove,
+                castOfNewMovie,
+                directorOfNewMovie,
+                languageOfNewMovie,
+                runtimeOfNewMovie,
+                description,
+                openingTime,
+                showtimeOfMovie,
+                ratingOfNewMovie);
+
         movieList.add(0, newMovie);
         return true;
     }
@@ -93,14 +94,15 @@ class MovieLib {
                 flag = true;
             }
         }
-        if (!flag)
+        if (!flag) {
             return false;
+        }
         return true;
     }
 
     public static boolean modify(Movie toModify, int choice) {
-    	Scanner sc = new Scanner(System.in);
-    	
+        Scanner sc = new Scanner(System.in);
+
         switch (choice) {
             case 1:
                 System.out.print("New name: ");
@@ -152,32 +154,32 @@ class MovieLib {
         }
         return true;
     }
-    
+
     public void listMovie() {
-    	Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         System.out.print("From: ");
         int start = sc.nextInt();
         System.out.print("To (max - " + movieList.size() + " ): ");
         int end = sc.nextInt();
-        
+
         if (0 <= start && start <= end && end < movieList.size()) {
-        	ListIterator<Movie> iterA = movieList.listIterator(start);
-        	ListIterator<Movie> iterB = movieList.listIterator(end);
-        	
-        	while (iterA != iterB && iterA.hasNext()) {
+            ListIterator<Movie> iterA = movieList.listIterator(start);
+            ListIterator<Movie> iterB = movieList.listIterator(end);
+
+            while (iterA != iterB && iterA.hasNext()) {
                 System.out.println(start + "." + iterA.next().getMovieName());
                 start++;
             }
+        } else {
+            System.out.println("invalid range...");
         }
-        else
-        	System.out.println("invalid range...");
     }
 
     public ArrayList<Movie> get() {
-    	return movieList;
+        return movieList;
     }
-    
+
     public Movie get(int i) {
-    	return movieList.get(i);
+        return movieList.get(i);
     }
 }

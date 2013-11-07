@@ -4,6 +4,7 @@ import java.util.*;
 import java.io.*;
 
 class Ticket {
+
     //private int movieId;
     private String movieName;
     private String typeOfMovie;
@@ -18,9 +19,9 @@ class Ticket {
     private int seatRow;
     private int seatColumn;
     private int ticketID;
-    
+
     public Ticket(String movieName, String typeOfMovie, String nameOfCinema, String classOfCinema, String locationOfCineplex,
-                  String typeOfMoviegoer, Time showTime, int row, int col, int ticketID) {
+            String typeOfMoviegoer, Time showTime, int row, int col, int ticketID) {
         this.setMovieName(movieName);
         this.setTypeOfMovie(typeOfMovie);
         this.setNameOfCinema(nameOfCinema);
@@ -33,85 +34,105 @@ class Ticket {
         this.setTicketID(ticketID);
         this.setPrice();
     }
-    
-    
+
     public String getMovieName() {
         return this.movieName;
     }
+
     public String getTypeOfMovie() {
         return this.typeOfMovie;
     }
+
     public String getNameOfCinema() {
         return this.nameOfCinema;
     }
+
     public String getClassOfCinema() {
         return this.classOfCinema;
     }
+
     public String getLocationOfCinema() {
         return this.locationOfCineplex;
     }
+
     public String getTypeOfMoviegoer() {
         return this.typeOfMoviegoer;
     }
+
     public Time getShowTime() {
         return this.showTime;
     }
+
     public double getPrice() {
         return this.price;
     }
+
     public int getSeatRow() {
         return this.seatRow;
     }
+
     public int getSeatColumn() {
         return this.seatColumn;
     }
+
     public int getTicketID() {
         return this.ticketID;
     }
+
     public Time getBuyTime() {
         return buyTime;
     }
-    
+
     public boolean setMovieName(String movieName) {
         this.movieName = movieName;
         return true;
     }
+
     public boolean setTypeOfMovie(String typeOfMovie) {
         this.typeOfMovie = typeOfMovie;
         return true;
     }
+
     public boolean setNameOfCinema(String nameOfCinema) {
         this.nameOfCinema = nameOfCinema;
         return true;
     }
+
     public boolean setClassOfCinema(String classOfCinema) {
         this.classOfCinema = classOfCinema;
         return true;
     }
+
     public boolean setLocationOfCinema(String locationOfCineplex) {
         this.locationOfCineplex = locationOfCineplex;
         return true;
     }
+
     public boolean setTypeOfMoviegoer(String typeOfMoviegoer) {
         this.typeOfMoviegoer = typeOfMoviegoer;
         return true;
     }
+
     public boolean setShowTime(Time showTime) {
         this.showTime = showTime;
         return true;
     }
+
     public boolean setSeatCol(int col) {
         this.seatColumn = col;
         return true;
     }
+
     public boolean setSeatRow(int row) {
         this.seatRow = row;
         return true;
     }
+
     public boolean setTicketID(int ticketID) {
         this.ticketID = ticketID;
         return true;
     }
+
     public boolean setBuyTime(Time buyTime) {
         this.buyTime = buyTime;
         return true;
@@ -120,7 +141,7 @@ class Ticket {
     public boolean setPrice() {
         if (this.typeOfMoviegoer == "Senior Citizen") {
             if (this.typeOfMovie == "Digital Movie") {
-                if(this.showTime.getWeekday()) {
+                if (this.showTime.getWeekday()) {
                     this.price = 4;
                     return true;
                 }
@@ -154,11 +175,10 @@ class Ticket {
         }
     }
 
-
     public static void display(Ticket ti) {
         System.out.println(ti.getMovieName() + " " + ti.getTypeOfMovie());
         System.out.println(ti.getShowTime());
-        System.out.println(ti.getSeatRow() + " " + ti.getSeatColumn() + " "  + ti.getTicketID() + " " + ti.getTypeOfMoviegoer());
+        System.out.println(ti.getSeatRow() + " " + ti.getSeatColumn() + " " + ti.getTicketID() + " " + ti.getTypeOfMoviegoer());
         System.out.println(ti.getClassOfCinema() + " " + ti.getLocationOfCinema());
     }
 }
