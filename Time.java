@@ -64,14 +64,14 @@ class Time {
 
     public void printTime() {
         System.out.format("%2d %s %4d\n   %2d:%2d", day,
-                        strMonth[month], year, hour, minute);
+                strMonth[month], year, hour, minute);
     }
-    
-	public String getStr() {
-		String str = String.format("%2d %s %4d\n   %2d:%2d", day,
-                        strMonth[month], year, hour, minute);
-		return str;
-	}
+
+    public String getStr() {
+        String str = String.format("%2d %s %4d\n   %2d:%2d", day,
+                strMonth[month], year, hour, minute);
+        return str;
+    }
 
     public boolean setYear(Integer year) {
         this.year = year;

@@ -30,7 +30,7 @@ public class Main {
          *A B \\the name of cineplex one and cineplex two
          *
          */
-        Scanner freader = new Scanner(new FileReader("./_info_Cineplex" + ".txt"));
+        Scanner freader = new Scanner(new FileReader(".\\src\\Moblima\\_info_Cineplex" + ".txt"));
         numOfCineplex = freader.nextInt();
         cLib = new Cineplex[numOfCineplex];
         for (int i = 0; i < numOfCineplex; i++) {
@@ -59,7 +59,7 @@ public class Main {
     	
     }
     private static Cineplex constructCineplex(String nameOfCineplex) throws Exception {
-<<<<<<< HEAD
+//<<<<<<< HEAD
     	/*
     	 * hall15 \\location
     	 * 2      \\number of cinema
@@ -68,7 +68,7 @@ public class Main {
     	 * 
     	 * 
     	 */
-=======
+//=======
         /*
          *hall15 //location of cineplex
          *2      //number of cinema under this cineplex
@@ -76,7 +76,7 @@ public class Main {
          *cineB  //name of cinema two
          *
          */
->>>>>>> 89027b1f096081ac27429ba8f29401ed6f289b1a
+//>>>>>>> 89027b1f096081ac27429ba8f29401ed6f289b1a
         Cineplex currentCineplex;
         try {
             Scanner freader = new Scanner(new FileReader("./_info_cineplex" + nameOfCineplex + ".txt"));

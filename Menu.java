@@ -2,6 +2,7 @@ package Moblima;
 
 import java.util.*;
 import java.io.*;
+import javax.swing.*;
 
 public class Menu {
     
@@ -34,6 +35,7 @@ public class Menu {
             	System.out.println("|>7. Logout               |");
             System.out.println("|>8. Register              |");
             System.out.println("|>9. Staff                 |");
+            System.out.println("|>10. GUI Trial            |");
             System.out.println("|>0. Exit                  |");
             System.out.println("++++++++++++++++++++++++++++");
             choice = sc.nextInt();
@@ -158,6 +160,10 @@ public class Menu {
                     System.out.print("password: ");
                     if (sc.next().compareTo(Main.adminPwd) == 0)
                         staffMenu(movieLib, goerLib, cLib);                      
+                    break;
+                case 10:
+                    new NewJFrame().setVisible(true);
+                    System.out.println("HAHA");
                     break;
                 default:
                     System.out.println("Wrong input.");
