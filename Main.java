@@ -38,7 +38,14 @@ public class Main {
     	
     }
     private static Cineplex constructCineplex(String nameOfCineplex) throws Exception {
-    	
+    	/*
+    	 * hall15 \\location
+    	 * 2      \\number of cinema
+    	 * cineA  \\name of cinema
+    	 * cineB  \\name of cinema
+    	 * 
+    	 * 
+    	 */
         Cineplex currentCineplex;
         try {
             Scanner freader = new Scanner(new FileReader(".\\_info_cineplex" + nameOfCineplex + ".txt"));
