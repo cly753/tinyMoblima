@@ -31,7 +31,6 @@ class Ticket {
         this.setSeatRow(row);
         this.setSeatCol(col);
         this.setTicketID(ticketID);
-
         this.setPrice();
     }
     
