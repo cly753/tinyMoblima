@@ -1,0 +1,8 @@
+_size=2
+0_size=2
+0_cinema_0=1 10 20 VIP 2lou verygoodCinema
+0_cinema_1=2 1 2 NO_VIP 5lou badCinema
+1_size=3
+1_cinema_0=4 4 4 square 3lou 3louCinema
+1_cinema_1=3 6 7 sanjiaoxing 1lou baseCinema
+1_cinema_2=5 12 32 asdf asdf asdfCinema

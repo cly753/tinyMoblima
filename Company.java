@@ -28,7 +28,7 @@ public class Company {
     	 * 
     	 *__size=number of cineplex
     	 *i_size=number of cinema in ith cineplex
-    	 *i_cinema_j=jth cinema of ith cineplex (format: "nameOfCinema row column classOfCinema locationOfCinema description")
+    	 *i_cinema_j=jth cinema of ith cineplex (format: "CinemaID row column classOfCinema locationOfCinema description")
     	 * 
     	 */
 
