@@ -21,7 +21,7 @@ public class Menu {
         System.out.println();
     }
 
-    public static void toplevel(Moviegoer curUser, MovieLib movieLib, MoviegoerLib goerLib, TicketLib tiLib, Cineplex cLib[]) {
+    public static void toplevel(Moviegoer curUser, MovieLib movieLib, MoviegoerLib goerLib, TicketLib tiLib, Company company) {
         int choice;
         while (true) {
             System.out.println("++++++++++++++++++++++++++++");
@@ -73,7 +73,7 @@ public class Menu {
                         System.out.println("1 for yes, others for no");
                         int bookOrNot = sc.nextInt();
                         if (bookOrNot == 1) {
-                            Ticket currentTicket = MoviegoerLib.book(curUser, searchResult.get(0), tiLib, cLib);
+                            Ticket currentTicket = MoviegoerLib.book(curUser, searchResult.get(0), tiLib, company);
                             tiLib.addTicket(currentTicket);
                         } else {
                             System.out.println("Back...");
@@ -98,7 +98,7 @@ public class Menu {
                         System.out.println("1 for yes, others for no");
                         int bookOrNot = sc.nextInt();
                         if (bookOrNot == 1) {
-                        	Ticket currentTicket = MoviegoerLib.book(curUser, searchResult.get(0), tiLib, cLib);
+                        	Ticket currentTicket = MoviegoerLib.book(curUser, searchResult.get(0), tiLib, company);
                             tiLib.addTicket(currentTicket);
                         }
                     }
@@ -169,7 +169,7 @@ public class Menu {
                 case 9:
                     System.out.print("password: ");
                     if (sc.next().compareTo(Main.adminPwd) == 0) {
-                        staffMenu(movieLib, goerLib, cLib);
+                        staffMenu(movieLib, goerLib, company);
                     }
                     break;
                 case 10:
@@ -183,7 +183,7 @@ public class Menu {
         }
     }
 
-    public static void staffMenu(MovieLib movieLib, MoviegoerLib goerLib, Cineplex[] cLib) {
+    public static void staffMenu(MovieLib movieLib, MoviegoerLib goerLib, Company company) {
         int choice;
         while (true) {
             System.out.println("+++++++++++++++++++++++++++++++");
@@ -214,12 +214,12 @@ public class Menu {
                     Cineplex cineplex = null;
                     if (i == 1) {
                         System.out.println("Choose");
-                        for (int j = 0; j < cLib.length; j++) {
-                            System.out.println(j + " " + cLib[j].getName());
+                        for (int j = 0; j < company.get().size(); j++) {
+                            System.out.println(j + " " + company.get(i).getName());
                         }
                         int which = sc.nextInt();
-                        if (0 <= which && which < cLib.length) {
-                            cineplex = cLib[which];
+                        if (0 <= which && which < company.get().size()) {
+                            cineplex = company.get(which);
                         } else {
                             System.out.println("Out of range.");
                             break;

@@ -1,20 +1,20 @@
 package Moblima;
 
 import java.util.*;
-import java.io.*;
 
 class Movie {
 
     private String movieName;
     private String typeOfMovie;
-    private String[] cast;
-    private String[] director;
+    private String cast;
+    private String director;
     private String language;
     private int runtime;
-    private String[] description;
+    private String description;
     private Time openingTime;
     private ArrayList<Session> sessionList;
     private String rating;
+    
     public static Scanner sc = new Scanner(System.in);
 
     private static final String ratingList[] = {"G", "PG", "R18"};
@@ -120,11 +120,11 @@ class Movie {
 
     public boolean addSession(Time newShowtime) {
         System.out.println("Please select cineplex: ");
-        for (int i = 0; i < Main.cLib.length; i++) {
-            System.out.println((i + 1) + " : " + Main.cLib[i].getName());
+        for (int i = 0; i < Main.company.get().size(); i++) {
+            System.out.println((i + 1) + " : " + Main.company.get(i).getName());
         }
         int choice = sc.nextInt();
-        Cineplex selectedCineplex = Main.cLib[choice - 1];
+        Cineplex selectedCineplex = Main.company.get(choice-1);
         System.out.println("Please select cinema: ");
         for (int i = 0; i < selectedCineplex.get().size(); i++) {
             System.out.println((i + 1) + " : " + selectedCineplex.get(i).getNameOfCinema());

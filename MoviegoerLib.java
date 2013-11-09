@@ -18,7 +18,7 @@ class MoviegoerLib {
             Properties properties = new Properties();
             properties.load(new FileInputStream(fileLocation));
 
-            int size = Integer.parseInt(properties.getProperty("libSize"));
+            int size = Integer.parseInt(properties.getProperty("__size"));
             
             for (int i = 0; i < size; i++) {
                 Moviegoer newGoer = new Moviegoer(null, null, null, null, null, 0);
@@ -47,7 +47,7 @@ class MoviegoerLib {
             Properties properties = new Properties();
             properties.load(new FileInputStream(fileLocation));
             
-            properties.setProperty("libSize", Integer.toString(goerLib.size()));
+            properties.setProperty("__size", Integer.toString(goerLib.size()));
             
             for (int i = 0; i < goerLib.size(); i++) {
                 properties.setProperty(i + "_username", goerLib.get(i).getUsername());
@@ -124,7 +124,7 @@ class MoviegoerLib {
         return false;
     }
 
-    public static boolean modify(Moviegoer goer, int choice, Cineplex cLib[]) {
+    public static boolean modify(Moviegoer goer, int choice) {
 
         switch (choice) {
             case 1:
@@ -215,7 +215,7 @@ class MoviegoerLib {
         }
     }
 
-    public static Ticket book(Moviegoer goer, Movie toBook, TicketLib tiLib, Cineplex cLib[]) {
+    public static Ticket book(Moviegoer goer, Movie toBook, TicketLib tiLib, Company company) {
         //Cineplex selectedCineplex;
         Cinema cinema;
 

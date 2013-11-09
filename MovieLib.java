@@ -182,4 +182,67 @@ class MovieLib {
     public Movie get(int i) {
         return movieList.get(i);
     }
+
+
+
+    public boolean store(String parentPath) {
+    	
+    	Properties p = new Properties();
+    	
+    	try {
+    		FileInputStream fin = new FileInputStream(parentPath + "_MovieLib.txt");
+			p.load(fin);
+			fin.close();
+		} catch (FileNotFoundException e) {
+			File f = new File(parentPath, "_MovieLib.txt"); // create if file is not there
+			f.createNewFile();
+			FileInputStream fin = new FileInputStream(parentPath + "_MovieLib.txt");
+			p.load(new FileInputStream(parentPath + "_MovieLib.txt"));
+			fin.close();
+		}
+    	
+    	p.setProperty("__size", ((Integer)movieList.size()).toString());
+    	
+    	for (int i = 0; i < movieList.size(); i++) {
+    		p.setProperty(String.format("%d_movieName", i), movieList.get(i).getMovieName());
+    		p.setProperty(String.format("%d_typeOfMovie", i), movieList.get(i).getTypeOfMovie());
+    		
+    		p.setProperty(String.format("%d_cast", i), movieList.get(i).getCast());
+    		
+    		p.setProperty(String.format("%d_director", i), movieList.get(i).getDirector());
+    		
+    		p.setProperty(String.format("%d_language", i), movieList.get(i).getLanguage());
+    		
+    		p.setProperty(String.format("%d_runtime", i), ((Integer)movieList.get(i).getRuntime()).toString());
+    		
+    		p.setProperty(String.format("%d_description", i), movieList.get(i).getDescription());
+    		
+    		p.setProperty(String.format("%d_openingTime", i), movieList.get(i).getOpeningTime().toString());
+    		p.setProperty(String.format("%d_rating", i), movieList.get(i).getRating());
+    		
+    		for (int j = 0; j < movieList.get(i).getSessionList().size(); j++)
+    			p.setProperty(String.format("%d_session_%d", i, j), movieList.get(i).getDirector()[j]);
+    		
+    		
+    	}
+    	
+																				        private String movieName;
+																				        private String typeOfMovie;
+																				        private String[] cast;
+																				        private String[] director;
+																				        private String language;
+																				        private int runtime;
+																				        private String[] description;
+																				        private Time openingTime;
+																				        private ArrayList<Session> sessionList;
+																				        private String rating;
+    	
+    	
+    	
+    	FileOutputStream fout = new FileOutputStream(parentPath + "_TicketLib.txt");
+    	p.store(fout, "_TicketLib");
+    	fout.close();
+    	
+    	return true;	
+    }
 }
