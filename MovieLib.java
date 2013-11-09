@@ -183,7 +183,6 @@ class MovieLib {
     }
 
     public boolean store(String parentPath) throws IOException {
-    	
     	Properties p = new Properties();
     	
     	try {
@@ -238,7 +237,9 @@ class MovieLib {
 			p.load(fin);
 			fin.close();
 		} catch (FileNotFoundException e) {
-			System.out.println("没有啊");
+			File f = new File(parentPath, "_MovieLib.txt"); // create if file is not there
+			f.createNewFile();
+			System.out.println("没有啊。我创了一个给你。");
 		}
     	
     	int size = Integer.parseInt(p.getProperty("__size"));

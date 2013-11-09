@@ -17,7 +17,9 @@ public class Main {
 //    public static Cineplex cLib[];
     
     public static Scanner sc = new Scanner(System.in);
-    private static final String fileParentLocation = ".\\src\\Moblima\\";
+    private static final String fileParentLocation = ".\\src\\Moblima\\_info";
+    //private static final String fileParentLocation = System.getProperty("user.dir");
+    
     //private static final String fileParentLocation = "~/study/java/Moblima/;
 
     public static void main(String[] args) throws Exception {
@@ -33,8 +35,9 @@ public class Main {
 
     private static void loading() throws Exception {
     	company.load(fileParentLocation);
+    	movieLib.load(fileParentLocation);
     	tiLib.load(fileParentLocation);
-        goerLib.loadFromFile(fileParentLocation);
+        goerLib.load(fileParentLocation);
         
         /*
          *2   \\number of Cineplex
@@ -66,8 +69,9 @@ public class Main {
     }
 
     private static void storing() throws IOException {
+    	movieLib.store(fileParentLocation);
     	tiLib.store(fileParentLocation);
-        goerLib.storeToFile(fileParentLocation);
+        goerLib.store(fileParentLocation);
     }
 
 //    private static Cineplex constructCineplex(String nameOfCineplex) throws Exception {
