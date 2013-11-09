@@ -4,8 +4,7 @@ import java.util.*;
 import java.io.*;
 
 class Cinema {
-	
-	private Integer cinemaID;
+    private Integer cinemaID;
     private final Integer row;
     private final Integer column;
 //    private int numOfSeat; // ???

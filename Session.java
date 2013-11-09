@@ -22,7 +22,16 @@ public class Session {
     public Session(String s) {
     	String[] temp = s.split("##");
     	this.time = new Time(temp[0]);
-    	this.cinema = new Cinema(temp[1]);
+    	int size = company.getSize();
+        for (int i = 0; i < size; i++) {
+            for (Cinema cine : company.get(i)) {
+                if (Integer.parseInt(Tmemp[0]) == cine.getCinemaID()) {
+                    this.cinema = cine;
+                    break;
+                }
+            }
+        }
+        
     	this.numOfEmptySeat = Integer.parseInt(temp[3]);
     	
     	String seatB = Integer.toBinaryString(Integer.parseInt(temp[2]));
@@ -30,8 +39,7 @@ public class Session {
     	for (int i = 0; i < cinema.getRow(); i++) {
     		for (int j = 0; j < cinema.getColumn(); j++) {
     			seat[i][j] = new Seat(i, j);
-    			
-    			seat[i][j].assign();
+                        seat[i][j].assign();
     			if ((seatB.charAt(cinema.getRow() * i + j)+"").compareTo("1") == 0)
     				seat[i][j].unAssign();
     		}
@@ -45,7 +53,7 @@ public class Session {
     			seatStr += seat[i][j].getAssign() ? "1" : "0";
     		}
     	}
-    	return time.toString() + "##" + cinema.toString() + "##" + Integer.parseInt(seatStr, 2) + "##" + numOfEmptySeat;
+    	return time.toString() + "##" + cinema.getCinemaID() + "##" + Integer.parseInt(seatStr, 2);
     }
 
     public Time getTime() {

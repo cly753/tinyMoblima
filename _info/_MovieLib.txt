@@ -1,0 +1,13 @@
+_size=5
+0_moiveName=Man in Black
+0_typeOfMovie=3D
+0_cast=Chen Li Yang
+0_director=Gong
+0_language=English
+0_runtime=21
+0_description=good
+0_openingTime=2013 12 12 6 23 23 true false
+0_rating=VG
+0_session_size=3
+0_session_0=2013 12 12 6 23 23 true false##1##23##
+
