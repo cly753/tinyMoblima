@@ -12,8 +12,8 @@ class MoviegoerLib {
         goerLib = new LinkedList<Moviegoer>();
     }
 
-    public void load(String fileParentLocation) {
-        String fileLocation = fileParentLocation + "goerLib.txt";
+    public void load(String parentPath) throws IOException {
+        String fileLocation = parentPath + "goerLib.txt";
         try {
             Properties properties = new Properties();
             properties.load(new FileInputStream(fileLocation));
@@ -37,6 +37,8 @@ class MoviegoerLib {
                 goerLib.add(newGoer);
             }
         } catch (Exception e) {
+        	File f = new File(parentPath, "_MovieLib.txt"); // create if file is not there
+			f.createNewFile();
             System.out.println("Unable to process " + fileLocation);
         }
     }
