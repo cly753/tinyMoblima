@@ -1,18 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Moblima;
 
 import java.io.*;
 import java.util.*;
 
-/**
- *
- * @author Yue
- */
 public class Company {
 
     private ArrayList<Cineplex> cineplexList = new ArrayList<Cineplex>();
@@ -22,7 +12,7 @@ public class Company {
     	cineplexList = new ArrayList();
     }
     
-    public void load(String fileParentLocation) {
+    public void load(String fileParentLocation) throws IOException {
     	
     	/*structure of _Company.txt
     	 * 
@@ -54,8 +44,8 @@ public class Company {
             	cineplex.setNumOfCinema(Integer.parseInt(p.getProperty(i + "_size")));
             	
             	cineplexList.add(cineplex);
-            }  
-        } catch (Exception e) {
+            }
+        } catch (FileNotFoundException e) {
             System.out.println("Unable to process " + fileLocation);
         }
     }

@@ -23,14 +23,10 @@ public class Main {
     //private static final String fileParentLocation = "~/study/java/Moblima/;
 
     public static void main(String[] args) throws Exception {
-        try {
-            loading();
-            Menu.welcome();
-            Menu.toplevel(curUser, movieLib, goerLib, tiLib, company);
-            storing();
-        } catch (Exception e) {
-            System.out.print("I caught a exception!");
-        }
+        loading();
+        Menu.welcome();
+        Menu.toplevel(curUser, movieLib, goerLib, tiLib, company);
+        storing();
     }
 
     private static void loading() throws Exception {
