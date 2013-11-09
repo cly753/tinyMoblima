@@ -114,7 +114,7 @@ public class TicketLib {
             temp.setSeatCol(Integer.parseInt(p.getProperty(i + "_seatRow")));
             temp.setTicketID(Integer.parseInt(p.getProperty(i + "_ticketID")));
     		
-            tiLib.add(temp);
+            tiLib.add(temp, ticketID);
     	}
     	return true;
     }
