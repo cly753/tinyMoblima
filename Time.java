@@ -5,12 +5,14 @@ import java.io.*;
 
 class Time {
 
-    private int year;
-    private int month;
-    private int day;
-    private int hour;
-    private int minute;
-
+    private Integer year;
+    private Integer month;
+    private Integer day;
+    private Integer hour;
+    private Integer minute;
+    private boolean weekday;
+    private boolean publicHoliday;
+    
     private static final String strMonth[] = {"JAN", "FEB", "MAR",
         "APR", "MAY", "JUN",
         "JUL", "AUG", "SEP",
@@ -21,11 +23,29 @@ class Time {
     private static ArrayList<String> weekendList = new ArrayList<String>();
     // format: yyyymmdd
 
-    private boolean weekday;
-    private boolean publicHoliday;
+
 
     public Time() {
 
+    }
+    
+    public Time(String time) {
+    	String[] value = time.split(" ");
+    	
+    	year = Integer.parseInt(value[0]);
+    	month = Integer.parseInt(value[1]);
+    	day = Integer.parseInt(value[2]);
+    	hour = Integer.parseInt(value[3]);
+    	minute = Integer.parseInt(value[4]);
+    	
+    	weekday = false;
+    	if (value[5].compareTo("true") == 0)
+    		weekday = true;
+    	
+    	publicHoliday = false;
+    	if (value[6].compareTo("true") == 0)
+    		publicHoliday = true;
+    	
     }
 
     //=================
@@ -75,6 +95,10 @@ class Time {
         String str = String.format("%2d %s %4d\n   %2d:%2d", day,
                 strMonth[month], year, hour, minute);
         return str;
+    }
+    
+    public String toString() {
+    	return String.format("%s %s %s %s %s %s %s", year.toString(), month.toString(), day.toString(), hour.toString(), minute.toString(), String.valueOf(weekday), String.valueOf(publicHoliday));
     }
 
     public boolean setYear(Integer year) {

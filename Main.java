@@ -20,7 +20,7 @@ public class Main {
         try {
             loading();
             Menu.welcome();
-            Menu.toplevel(curUser, movieLib, goerLib, cLib);
+            Menu.toplevel(curUser, movieLib, goerLib, tiLib, cLib);
             storing();
         } catch (Exception e) {
             System.out.print("I caught a exception!");

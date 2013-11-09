@@ -5,7 +5,7 @@ import java.io.*;
 
 class Ticket {
 
-    //private int movieId;
+    //private Integer movieId;
     private String movieName;
     private String typeOfMovie;
     private String nameOfCinema;
@@ -16,17 +16,23 @@ class Ticket {
     private Time bookTime;
     private Time showTime;
     private double price;
-    private int seatRow;
-    private int seatColumn;
-    private int ticketID;
+    private Integer seatRow;
+    private Integer seatColumn;
+    private Integer ticketID;
+    
+    //
+    //
+    // ticket constructor does not have Time, is it fine?
+    //
+    //
 
     public Ticket(String movieName, String typeOfMovie, String nameOfCinema, String classOfCinema, String locationOfCineplex,
-            String typeOfMoviegoer, Time showTime, int row, int col, int ticketID) {
+            String typeOfMoviegoer, Time showTime, Integer row, Integer col, Integer ticketID) {
         this.setMovieName(movieName);
         this.setTypeOfMovie(typeOfMovie);
         this.setNameOfCinema(nameOfCinema);
         this.setClassOfCinema(classOfCinema);
-        this.setLocationOfCinema(locationOfCineplex);
+        this.setLocationOfCineplex(locationOfCineplex);
         this.setTypeOfMoviegoer(typeOfMoviegoer);
         this.setShowTime(showTime);
         this.setSeatRow(row);
@@ -51,7 +57,7 @@ class Ticket {
         return this.classOfCinema;
     }
 
-    public String getLocationOfCinema() {
+    public String getLocationOfCineplex() {
         return this.locationOfCineplex;
     }
 
@@ -67,18 +73,22 @@ class Ticket {
         return this.price;
     }
 
-    public int getSeatRow() {
+    public Integer getSeatRow() {
         return this.seatRow;
     }
 
-    public int getSeatColumn() {
+    public Integer getSeatColumn() {
         return this.seatColumn;
     }
 
-    public int getTicketID() {
+    public Integer getTicketID() {
         return this.ticketID;
     }
 
+    public Time getBookTime() {
+    	return bookTime;
+    }
+    
     public Time getBuyTime() {
         return buyTime;
     }
@@ -103,7 +113,7 @@ class Ticket {
         return true;
     }
 
-    public boolean setLocationOfCinema(String locationOfCineplex) {
+    public boolean setLocationOfCineplex(String locationOfCineplex) {
         this.locationOfCineplex = locationOfCineplex;
         return true;
     }
@@ -118,21 +128,26 @@ class Ticket {
         return true;
     }
 
-    public boolean setSeatCol(int col) {
+    public boolean setSeatCol(Integer col) {
         this.seatColumn = col;
         return true;
     }
 
-    public boolean setSeatRow(int row) {
+    public boolean setSeatRow(Integer row) {
         this.seatRow = row;
         return true;
     }
 
-    public boolean setTicketID(int ticketID) {
+    public boolean setTicketID(Integer ticketID) {
         this.ticketID = ticketID;
         return true;
     }
 
+    public boolean setBookTime(Time bookTime) {
+    	this.bookTime = bookTime;
+    	return true;
+    }
+    
     public boolean setBuyTime(Time buyTime) {
         this.buyTime = buyTime;
         return true;
@@ -179,6 +194,6 @@ class Ticket {
         System.out.println(ti.getMovieName() + " " + ti.getTypeOfMovie());
         System.out.println(ti.getShowTime());
         System.out.println(ti.getSeatRow() + " " + ti.getSeatColumn() + " " + ti.getTicketID() + " " + ti.getTypeOfMoviegoer());
-        System.out.println(ti.getClassOfCinema() + " " + ti.getLocationOfCinema());
+        System.out.println(ti.getClassOfCinema() + " " + ti.getLocationOfCineplex());
     }
 }

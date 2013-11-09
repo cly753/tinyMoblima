@@ -9,13 +9,13 @@ class Moviegoer extends User {
     private String mobileNumber;
     private String emailAddress;
     private Integer age;
-    private ArrayList<Ticket> paid;
-    private ArrayList<Ticket> unpaid;
+    private ArrayList<Integer> paid; // goer only store ticketID
+    private ArrayList<Integer> unpaid;
 
     public Moviegoer(String username, String password, String name, String mobileNumber, String emailAddress, Integer age) {
         super(username, password);
-        paid = new ArrayList<Ticket>();
-        unpaid = new ArrayList<Ticket>();
+        paid = new ArrayList<Integer>();
+        unpaid = new ArrayList<Integer>();
         this.name = name;
         this.mobileNumber = mobileNumber;
         this.emailAddress = emailAddress;
@@ -58,21 +58,21 @@ class Moviegoer extends User {
         return age;
     }
 
-    public boolean setPaid(Ticket newTicket) {
-        paid.add(newTicket);
+    public boolean setPaid(Integer newTicketID) {
+        paid.add(newTicketID);
         return true;
     }
 
-    public ArrayList<Ticket> getPaid() {
+    public ArrayList<Integer> getPaid() {
         return paid;
     }
 
-    public boolean setUnpaid(Ticket newTicket) {
-        unpaid.add(newTicket);
+    public boolean setUnpaid(Integer newTicketID) {
+        unpaid.add(newTicketID);
         return true;
     }
 
-    public ArrayList<Ticket> getUnpaid() {
+    public ArrayList<Integer> getUnpaid() {
         return unpaid;
     }
 

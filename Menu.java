@@ -21,7 +21,7 @@ public class Menu {
         System.out.println();
     }
 
-    public static void toplevel(Moviegoer curUser, MovieLib movieLib, MoviegoerLib goerLib, Cineplex cLib[]) {
+    public static void toplevel(Moviegoer curUser, MovieLib movieLib, MoviegoerLib goerLib, TicketLib tiLib, Cineplex cLib[]) {
         int choice;
         while (true) {
             System.out.println("++++++++++++++++++++++++++++");
@@ -73,7 +73,8 @@ public class Menu {
                         System.out.println("1 for yes, others for no");
                         int bookOrNot = sc.nextInt();
                         if (bookOrNot == 1) {
-                            MoviegoerLib.book(curUser, searchResult.get(0), cLib);
+                            Ticket currentTicket = MoviegoerLib.book(curUser, searchResult.get(0), tiLib, cLib);
+                            tiLib.addTicket(currentTicket);
                         } else {
                             System.out.println("Back...");
                         }
@@ -97,7 +98,8 @@ public class Menu {
                         System.out.println("1 for yes, others for no");
                         int bookOrNot = sc.nextInt();
                         if (bookOrNot == 1) {
-                            MoviegoerLib.book(curUser, searchResult.get(0), cLib);
+                        	Ticket currentTicket = MoviegoerLib.book(curUser, searchResult.get(0), tiLib, cLib);
+                            tiLib.addTicket(currentTicket);
                         }
                     }
                     break;
@@ -130,12 +132,12 @@ public class Menu {
                     }
 
                     if (choice == 4) {
-                        MoviegoerLib.showHistory(curUser, false);
+                        MoviegoerLib.showHistory(curUser, tiLib, false);
                         if (curUser.getUnpaid().size() != 0) {
                             System.out.print("pay(index) or go back(other)?");
                             int toPay = sc.nextInt();
                             if (0 <= toPay && toPay < curUser.getUnpaid().size()) {
-                                MoviegoerLib.pay(curUser, toPay);
+                                MoviegoerLib.pay(curUser, tiLib, toPay);
                             } else {
                                 break;
                             }
@@ -143,16 +145,16 @@ public class Menu {
                     }
 
                     if (choice == 5) {
-                        MoviegoerLib.showHistory(curUser, true);
+                        MoviegoerLib.showHistory(curUser, tiLib, true);
 
                         if (curUser.getUnpaid().size() == 1) {
-                            MoviegoerLib.pay(curUser, 0);
+                            MoviegoerLib.pay(curUser, tiLib, 0);
                         } else {
                             System.out.print("pay(index) or go back(other)?");
                             int toPay = sc.nextInt();
 
                             if (0 <= toPay && toPay < curUser.getUnpaid().size()) {
-                                MoviegoerLib.pay(curUser, toPay);
+                                MoviegoerLib.pay(curUser, tiLib, toPay);
                             }
                         }
                     }
@@ -185,7 +187,7 @@ public class Menu {
         int choice;
         while (true) {
             System.out.println("+++++++++++++++++++++++++++++++");
-            System.out.println("|Enter your choice, Nan Shen! |");
+            System.out.println("|Enter your choice, Da Shen!  |");
             System.out.println("|1. Add/Modify/Remove a movie |");
             System.out.println("|2. Set holidays              |"); // call setHoliday in Time class
             System.out.println("|3. Generate revenue report   |"); // call generateRevenueReport in Revenue class

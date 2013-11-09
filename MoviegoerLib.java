@@ -6,6 +6,7 @@ import java.io.*;
 class MoviegoerLib {
 
     private LinkedList<Moviegoer> goerLib;
+    public static Scanner sc = new Scanner(System.in);
 
     public MoviegoerLib() {
         goerLib = new LinkedList<Moviegoer>();
@@ -18,8 +19,9 @@ class MoviegoerLib {
             properties.load(new FileInputStream(fileLocation));
 
             int size = Integer.parseInt(properties.getProperty("libSize"));
+            
             for (int i = 0; i < size; i++) {
-                Moviegoer newGoer = new Moviegoer("a", "b", "c", "d", "e", 0);
+                Moviegoer newGoer = new Moviegoer(null, null, null, null, null, 0);
                 newGoer.setUsername(properties.getProperty(i + "_username"));
                 newGoer.setPassword(properties.getProperty(i + "_password"));
                 newGoer.setName(properties.getProperty(i + "_name"));
@@ -28,24 +30,25 @@ class MoviegoerLib {
                 newGoer.setAge(Integer.parseInt(properties.getProperty(i + "_age")));
                 int ticketSize = Integer.parseInt(properties.getProperty(i + "_numOfPaid"));
                 for (int j = 0; j < ticketSize; j++)
-                    newGoer.getPaid().add(Main.tiLib.searchTicketByID(Integer.parseInt(properties.getProperty(i + "_paid_" + j))));
+                    newGoer.getPaid().add(Integer.parseInt(properties.getProperty(i + "_paid_" + j)));
                 ticketSize = Integer.parseInt(properties.getProperty(i + "_numOfUnpaid"));
                 for (int j = 0; j < ticketSize; j++)
-                    newGoer.getUnpaid().add(Main.tiLib.searchTicketByID(Integer.parseInt(properties.getProperty(i + "_unpaid_" + j))));
+                    newGoer.getUnpaid().add(Integer.parseInt(properties.getProperty(i + "_unpaid_" + j)));
                 goerLib.add(newGoer);
             }
         } catch (Exception e) {
             System.out.println("Unable to process " + fileLocation);
         }
     }
-    public static Scanner sc = new Scanner(System.in);
 
     public void storeToFile(String fileParentLocation) {
         String fileLocation = fileParentLocation + "goerLib.txt";
         try {
             Properties properties = new Properties();
             properties.load(new FileInputStream(fileLocation));
-
+            
+            properties.setProperty("libSize", Integer.toString(goerLib.size()));
+            
             for (int i = 0; i < goerLib.size(); i++) {
                 properties.setProperty(i + "_username", goerLib.get(i).getUsername());
                 properties.setProperty(i + "_password", goerLib.get(i).getPassword());
@@ -56,11 +59,11 @@ class MoviegoerLib {
                 properties.setProperty(i + "_numOfPaid", ((Integer)goerLib.get(i).getPaid().size()).toString());
                 properties.setProperty(i + "_numOfUnpaid", ((Integer)goerLib.get(i).getUnpaid().size()).toString());
                 for (int j = 0; j < goerLib.get(i).getPaid().size(); j++)
-                    properties.setProperty(i + "_paid_" + j, ((Integer)goerLib.get(i).getPaid().get(j).getTicketID()).toString());
+                    properties.setProperty(i + "_paid_" + j, (goerLib.get(i).getPaid().get(j)).toString());
                 for (int j = 0; j < goerLib.get(i).getUnpaid().size(); j++)
-                    properties.setProperty(i + "_unpaid_" + j, ((Integer)goerLib.get(i).getUnpaid().get(j).getTicketID()).toString());
+                    properties.setProperty(i + "_unpaid_" + j, (goerLib.get(i).getUnpaid().get(j)).toString());
             }
-            properties.setProperty("libSize", Integer.toString(goerLib.size()));
+            
             properties.store(new FileOutputStream(fileLocation), "");
         } catch (Exception e) {
             System.out.println("Unable to process " + fileLocation);
@@ -163,33 +166,33 @@ class MoviegoerLib {
         return null;
     }
 
-    public static boolean pay(Moviegoer goer, int index) {
+    public static boolean pay(Moviegoer goer, TicketLib tiLib, int index) {
         Time tempTime = new Time();
-        Ticket ti;
+        Integer ticketID;
 
         System.out.println("1.Visa 2.Master? ");
         int card = sc.nextInt();
 
-        ti = goer.getUnpaid().remove(index);
-        ti.setBuyTime(tempTime.storeCurrentTime());
-        goer.getPaid().add(ti);
+        ticketID = goer.getUnpaid().remove(index);
+        tiLib.searchTicketByID(ticketID).setBuyTime(tempTime.storeCurrentTime());
+        goer.getPaid().add(ticketID);
 
         System.out.println("paid!");
         return true;
     }
 
-    public static void showHistory(Moviegoer goer, boolean onlyUnpaid) {
+    public static void showHistory(Moviegoer goer, TicketLib tiLib, boolean onlyUnpaid) {
         int unpaidSize = goer.getUnpaid().size();
         int paidSize = goer.getPaid().size();
-        Ticket ti;
+        Integer ticketID;
         int pageSize = 5;
 
         int track = 0;
 
         for (int i = 0; i < unpaidSize; i++) {
-            ti = goer.getUnpaid().get(i);
+            ticketID = goer.getUnpaid().get(i);
 
-            Ticket.display(ti);
+            Ticket.display(tiLib.searchTicketByID(ticketID));
             System.out.print(i + "Not paid");
         }
 
@@ -198,8 +201,8 @@ class MoviegoerLib {
         }
 
         for (int i = 0; i < paidSize; i++) {
-            ti = goer.getPaid().get(i);
-            Ticket.display(ti);
+            ticketID = goer.getPaid().get(i);
+            Ticket.display(tiLib.searchTicketByID(ticketID));
             System.out.print("paid");
 
             if (--pageSize == 0 && i < paidSize - 1) {
@@ -212,7 +215,7 @@ class MoviegoerLib {
         }
     }
 
-    public static Ticket book(Moviegoer goer, Movie toBook, Cineplex cLib[]) {
+    public static Ticket book(Moviegoer goer, Movie toBook, TicketLib tiLib, Cineplex cLib[]) {
         //Cineplex selectedCineplex;
         Cinema cinema;
 
@@ -248,7 +251,7 @@ class MoviegoerLib {
         int row = sc.nextInt();
         System.out.print("col:");
         int col = sc.nextInt();
-        int ticketID = 1234567890;
+        int ticketID = tiLib.size();
 
         Ticket ti = new Ticket(toBook.getMovieName(),
                 toBook.getTypeOfMovie(),
@@ -261,7 +264,7 @@ class MoviegoerLib {
                 col,
                 ticketID);
 
-        goer.setUnpaid(ti);
+        goer.setUnpaid(ti.getTicketID());
         return ti;
     }
 
