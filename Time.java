@@ -98,7 +98,7 @@ class Time {
     }
     
     public String toString() {
-    	return String.format("%s %s %s %s %s %s %s", year.toString(), month.toString(), day.toString(), hour.toString(), minute.toString(), String.valueOf(weekday), String.valueOf(publicHoliday));
+    	return String.format("%d %d %d %d %d %s %s", year, month, day, hour, minute, String.valueOf(weekday), String.valueOf(publicHoliday));
     }
 
     public boolean setYear(Integer year) {

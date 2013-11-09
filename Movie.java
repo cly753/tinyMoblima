@@ -19,8 +19,8 @@ class Movie {
 
     private static final String ratingList[] = {"G", "PG", "R18"};
 
-    public Movie(String movieName, String typeOfMovie, String[] cast, String[] director, String language,
-            int runtime, String[] description, Time openingTime, Time[] showtimeArray, String rating) {
+    public Movie(String movieName, String typeOfMovie, String cast, String director, String language,
+            int runtime, String description, Time openingTime, Time[] showtimeArray, String rating) {
         this.setMovieName(movieName);
         this.setTypeOfMovie(typeOfMovie);
         this.setCast(cast);
@@ -29,6 +29,19 @@ class Movie {
         this.setRuntime(runtime);
         this.setDescription(description);
         this.setSessionList(showtimeArray);
+        this.setRating(rating);
+    }
+    
+    public Movie(String movieName, String typeOfMovie, String cast, String director, String language,
+            int runtime, String description, Time openingTime, ArrayList<Session> sessionList, String rating) {
+        this.setMovieName(movieName);
+        this.setTypeOfMovie(typeOfMovie);
+        this.setCast(cast);
+        this.setDirector(director);
+        this.setLanguage(language);
+        this.setRuntime(runtime);
+        this.setDescription(description);
+        this.sessionList = sessionList;
         this.setRating(rating);
     }
 
@@ -46,11 +59,11 @@ class Movie {
         return this.typeOfMovie;
     }
 
-    public String[] getCast() {
+    public String getCast() {
         return this.cast;
     }
 
-    public String[] getDirector() {
+    public String getDirector() {
         return this.director;
     }
 
@@ -62,7 +75,7 @@ class Movie {
         return this.runtime;
     }
 
-    public String[] getDescription() {
+    public String getDescription() {
         return this.description;
     }
 
@@ -88,12 +101,12 @@ class Movie {
         return true;
     }
 
-    public boolean setCast(String[] cast) {
+    public boolean setCast(String cast) {
         this.cast = cast;
         return true;
     }
 
-    public boolean setDirector(String[] director) {
+    public boolean setDirector(String director) {
         this.director = director;
         return true;
     }
@@ -108,7 +121,7 @@ class Movie {
         return true;
     }
 
-    public boolean setDescription(String[] description) {
+    public boolean setDescription(String description) {
         this.description = description;
         return true;
     }
@@ -127,7 +140,7 @@ class Movie {
         Cineplex selectedCineplex = Main.company.get(choice-1);
         System.out.println("Please select cinema: ");
         for (int i = 0; i < selectedCineplex.get().size(); i++) {
-            System.out.println((i + 1) + " : " + selectedCineplex.get(i).getNameOfCinema());
+            System.out.println((i + 1) + " : " + selectedCineplex.get(i).getCinemaID());
         }
         choice = sc.nextInt();
         Cinema selectedCinema = selectedCineplex.get(choice - 1);
@@ -177,16 +190,10 @@ class Movie {
         System.out.println("Movie Name: " + this.movieName);
         System.out.println("Movie Type: " + this.typeOfMovie);
         System.out.print("Cast: ");
-        for (int i = 0; i < this.cast.length - 1; i++) {
-            System.out.print(this.cast[i] + " ");
-        }
-        System.out.println(this.cast[cast.length - 1]);
+        System.out.print(this.cast);
 
         System.out.print("Director: ");
-        for (int i = 0; i < this.director.length - 1; i++) {
-            System.out.print(this.director[i] + " ");
-        }
-        System.out.println(this.director[this.director.length - 1]);
+        System.out.print(this.director);
 
         System.out.println("---More--- input 1");
         choice = sc.nextInt();
@@ -204,9 +211,7 @@ class Movie {
             return;
         }
         System.out.println("===============description===============");
-        for (int i = 0; i < this.description.length - 1; i++) {
-            System.out.print(this.description[i] + " ");
-        }
-        System.out.println(this.description[this.description.length - 1]);
+
+        System.out.println(this.description);
     }
 }

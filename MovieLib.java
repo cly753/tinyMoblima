@@ -43,10 +43,10 @@ class MovieLib {
         String typeOfNewMove = sc.next();
 
         System.out.println("Cast: ");
-        String[] castOfNewMovie = sc.nextLine().split(" ");
+        String castOfNewMovie = sc.nextLine();
 
         System.out.println("Director: ");
-        String[] directorOfNewMovie = sc.nextLine().split(" ");
+        String directorOfNewMovie = sc.nextLine();
 
         System.out.println("Language: ");
         String languageOfNewMovie = sc.next();
@@ -55,7 +55,7 @@ class MovieLib {
         int runtimeOfNewMovie = sc.nextInt();
 
         System.out.println("Description:");
-        String[] description = sc.nextLine().split(" ");
+        String description = sc.nextLine();
 
         System.out.println("number of Showtime: ");
         int numOfShowtime = sc.nextInt();
@@ -70,8 +70,7 @@ class MovieLib {
         System.out.print("Rating: ");
         String ratingOfNewMovie = sc.next();
 
-        Movie newMovie = new Movie(nameOfNewMovie,
-                typeOfNewMove,
+        Movie newMovie = new Movie(nameOfNewMovie, typeOfNewMove,
                 castOfNewMovie,
                 directorOfNewMovie,
                 languageOfNewMovie,
@@ -114,11 +113,11 @@ class MovieLib {
                 break;
             case 3:
                 System.out.print("New cast: ");
-                toModify.setCast(sc.nextLine().split(" "));
+                toModify.setCast(sc.nextLine());
                 break;
             case 4:
                 System.out.print("New director: ");
-                toModify.setDirector(sc.nextLine().split(" "));
+                toModify.setDirector(sc.nextLine());
                 break;
             case 5:
                 System.out.print("New language: ");
@@ -130,7 +129,7 @@ class MovieLib {
                 break;
             case 7:
                 System.out.print("New description: ");
-                toModify.setDescription(sc.nextLine().split(" "));
+                toModify.setDescription(sc.nextLine());
                 break;
             case 8:
                 System.out.print("New openingTime: ");
@@ -183,9 +182,7 @@ class MovieLib {
         return movieList.get(i);
     }
 
-
-
-    public boolean store(String parentPath) {
+    public boolean store(String parentPath) throws IOException {
     	
     	Properties p = new Properties();
     	
@@ -220,29 +217,64 @@ class MovieLib {
     		p.setProperty(String.format("%d_openingTime", i), movieList.get(i).getOpeningTime().toString());
     		p.setProperty(String.format("%d_rating", i), movieList.get(i).getRating());
     		
+    		p.setProperty(String.format("%d_session__size", i), movieList.get(i).getSessionList().size()+"");
     		for (int j = 0; j < movieList.get(i).getSessionList().size(); j++)
-    			p.setProperty(String.format("%d_session_%d", i, j), movieList.get(i).getDirector()[j]);
-    		
+    			p.setProperty(String.format("%d_session_%d", i, j), movieList.get(i).getSessionList().get(j).toString());
     		
     	}
     	
-																				        private String movieName;
-																				        private String typeOfMovie;
-																				        private String[] cast;
-																				        private String[] director;
-																				        private String language;
-																				        private int runtime;
-																				        private String[] description;
-																				        private Time openingTime;
-																				        private ArrayList<Session> sessionList;
-																				        private String rating;
-    	
-    	
-    	
-    	FileOutputStream fout = new FileOutputStream(parentPath + "_TicketLib.txt");
-    	p.store(fout, "_TicketLib");
+    	FileOutputStream fout = new FileOutputStream(parentPath + "_MovieLib.txt");
+    	p.store(fout, "_MovieLib");
     	fout.close();
+    	return true;	
+    }
+    
+    public boolean load(String parentPath) throws IOException {
     	
+    	Properties p = new Properties();
+    	
+    	try {
+    		FileInputStream fin = new FileInputStream(parentPath + "_MovieLib.txt");
+			p.load(fin);
+			fin.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("Ã»ÓÐ°¡");
+		}
+    	
+    	int size = Integer.parseInt(p.getProperty("__size"));
+    	
+    	for (int i = 0; i < size; i++) {
+    		String movieName = p.getProperty(String.format("%d_movieName", i));
+    		String typeOfMovie = p.getProperty(String.format("%d_typeOfMovie", i));
+    		
+    		String cast = p.getProperty(String.format("%d_cast", i));
+    		
+    		String director = p.getProperty(String.format("%d_director", i));
+    		
+    		String language = p.getProperty(String.format("%d_language", i));
+    		
+    		Integer runtime = Integer.parseInt(p.getProperty(String.format("%d_runtime", i)));
+    		
+    		String description = p.getProperty(String.format("%d_description", i));
+    		
+    		Time openingTime = new Time(p.getProperty(String.format("%d_openingTime", i)));
+    	
+    		String rating = p.getProperty(String.format("%d_rating", i));
+    		
+    		int sessionSize = Integer.parseInt(p.getProperty(String.format("%d_session__size", i)));
+    		ArrayList<Session> sessionList = new ArrayList();
+    		for (int j = 0; j < sessionSize; j++) {
+    			Session temp = new Session(p.getProperty(String.format("%d_session_%d", i, j)));
+    		}
+    		
+    		Movie movie = new Movie(movieName, typeOfMovie, cast, director, language, runtime, description, openingTime, sessionList, rating);
+    		
+    		movieList.add(movie);
+    	}
+    	
+    	FileOutputStream fout = new FileOutputStream(parentPath + "_MovieLib.txt");
+    	p.store(fout, "_MovieLib");
+    	fout.close();
     	return true;	
     }
 }

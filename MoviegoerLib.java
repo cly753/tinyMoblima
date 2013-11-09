@@ -223,7 +223,7 @@ class MoviegoerLib {
         ArrayList<Session> sessionList = toBook.getSessionList();
         for (int i = 0; i < sessionList.size(); i++) {
             System.out.print((i + 1) + " " + sessionList.get(i).getTime().getStr()
-                    + " " + sessionList.get(i).getCinema().getNameOfCinema());
+                    + " " + sessionList.get(i).getCinema().getCinemaID());
         }
         /*Time selectedTime = showtimeList.get(sc.nextInt());
         
@@ -255,7 +255,7 @@ class MoviegoerLib {
 
         Ticket ti = new Ticket(toBook.getMovieName(),
                 toBook.getTypeOfMovie(),
-                cinema.getNameOfCinema(),
+                cinema.getCinemaID(),
                 cinema.getClassOfCinema(),
                 cinema.getLocationOfCinema(),//Location!!!
                 goer.getTypeOfMoviegoer(),

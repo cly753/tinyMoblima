@@ -3,9 +3,9 @@ package Moblima;
 public class Session {
 
     private Time time;
+    private Cinema cinema;
     private Seat[][] seat;
     private int numOfEmptySeat;
-    private Cinema cinema;
 
     public Session(Time time, Cinema cinema) {
         this.cinema = cinema; // reference
@@ -14,12 +14,38 @@ public class Session {
         for (int i = 0; i < cinema.getRow(); i++) {
             for (int j = 0; j < cinema.getColumn(); j++) {
                 seat[i][j] = new Seat(i, j);
-                if (cinema.getSeat(i, j) == null) {
-                    seat[i][j] = null;
-                }
             }
         }
         numOfEmptySeat = cinema.getRow() * cinema.getColumn();
+    }
+    
+    public Session(String s) {
+    	String[] temp = s.split("##");
+    	this.time = new Time(temp[0]);
+    	this.cinema = new Cinema(temp[1]);
+    	this.numOfEmptySeat = Integer.parseInt(temp[3]);
+    	
+    	String seatB = Integer.toBinaryString(Integer.parseInt(temp[2]));
+    	Seat[][] seat = new Seat[cinema.getRow()][cinema.getColumn()];
+    	for (int i = 0; i < cinema.getRow(); i++) {
+    		for (int j = 0; j < cinema.getColumn(); j++) {
+    			seat[i][j] = new Seat(i, j);
+    			
+    			seat[i][j].assign();
+    			if ((seatB.charAt(cinema.getRow() * i + j)+"").compareTo("1") == 0)
+    				seat[i][j].unAssign();
+    		}
+    	}
+    }
+
+    public String toString() {
+    	String seatStr = "";
+    	for (int i = 0; i < cinema.getRow(); i++) {
+    		for (int j = 0; j < cinema.getColumn(); j++) {
+    			seatStr += seat[i][j].getAssign() ? "1" : "0";
+    		}
+    	}
+    	return time.toString() + "##" + cinema.toString() + "##" + Integer.parseInt(seatStr, 2) + "##" + numOfEmptySeat;
     }
 
     public Time getTime() {

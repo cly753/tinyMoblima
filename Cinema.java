@@ -5,17 +5,17 @@ import java.io.*;
 
 class Cinema {
 	
-	private String nameOfCinema;
+	private Integer cinemaID;
     private final Integer row;
     private final Integer column;
 //    private int numOfSeat; // ???
     private String classOfCinema;
     private String locationOfCinema;
-    private Seat[][] seat;
+//    private Seat[][] seat;
 //    private int numOfEmptySeat;
     private String description;
     
-    private BufferedReader br; // what is it
+//    private BufferedReader br; // what is it
 
 //    public Cinema(Scanner br, int row, int column, String nameOfCinema, String locationOfCinema) throws IOException {
 //        this.row = row;
@@ -36,18 +36,19 @@ class Cinema {
     
     public Cinema(String p) {
     	String[] temp = p.split(" ");
-    	this.nameOfCinema = temp[0];
+    	this.cinemaID = Integer.parseInt(temp[0]);
     	this.row = Integer.parseInt(temp[1]);
     	this.column = Integer.parseInt(temp[2]);
     	this.classOfCinema = temp[3];
     	this.locationOfCinema = temp[4];
     	this.description = temp[5];
-    	seat = new Seat[row][column];
-    	for (int i = 0; i < row; i++) {
-    		for (int j = 0; j < column; j++)
-    			seat[i][j] = new Seat(i, j);
-    	}
+//    	seat = new Seat[row][column];
+//    	for (int i = 0; i < row; i++) {
+//    		for (int j = 0; j < column; j++)
+//    			seat[i][j] = new Seat(i, j);
+//    	}
     }
+    
     
 //    public Cinema(Properties p) {
 //    	this.nameOfCinema = p.getProperty("__nameOfCinema");
@@ -71,20 +72,20 @@ class Cinema {
 //        return this.numOfEmptySeat;
 //    }
 
-    public boolean setNameOfCinema(String nameOfCinema) {
-        this.nameOfCinema = nameOfCinema;
+    public boolean setCinemaID(Integer cinemaID) {
+        this.cinemaID = cinemaID;
         return true;
     }
 
-    public String getNameOfCinema() {
-        return this.nameOfCinema;
+    public Integer getCinemaID() {
+        return this.cinemaID;
     }
 
-    public boolean setClassOfCinema() throws IOException {
-        String cinemaClass = br.readLine();
-        this.classOfCinema = cinemaClass;
-        return true;
-    }
+//    public boolean setClassOfCinema() throws IOException {
+//        String cinemaClass = br.readLine();
+//        this.classOfCinema = cinemaClass;
+//        return true;
+//    }
 
     public String getClassOfCinema() {
         return this.classOfCinema;
@@ -99,24 +100,24 @@ class Cinema {
         return this.locationOfCinema;
     }
 
-    public boolean setDescription() throws IOException {
-        String cinemaDescription;
-        try {
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-
-            while (line != null) {
-                sb.append(line);
-                sb.append("\n");
-                line = br.readLine();
-            }
-            cinemaDescription = sb.toString();
-        } finally {
-            this.br.close();
-        }
-        this.description = cinemaDescription;
-        return true;
-    }
+//    public boolean setDescription() throws IOException {
+//        String cinemaDescription;
+//        try {
+//            StringBuilder sb = new StringBuilder();
+//            String line = br.readLine();
+//
+//            while (line != null) {
+//                sb.append(line);
+//                sb.append("\n");
+//                line = br.readLine();
+//            }
+//            cinemaDescription = sb.toString();
+//        } finally {
+//            this.br.close();
+//        }
+//        this.description = cinemaDescription;
+//        return true;
+//    }
     
     public boolean setDescription(String description) {
     	this.description = description;
@@ -127,9 +128,9 @@ class Cinema {
         return this.description;
     }
 
-    public Seat getSeat(int row, int col) {
-        return seat[row][col];
-    }
+//    public Seat getSeat(int row, int col) {
+//        return seat[row][col];
+//    }
 
     public int getRow() {
         return this.row;
@@ -140,18 +141,7 @@ class Cinema {
     }
 
     public String toString() {
-    	
-    	
-    	
-//																								        private final Integer row;
-//																								        private final Integer column;
-//																								        private String nameOfCinema;
-//																								        private int numOfSeat;
-//																								        private String classOfCinema;
-//																								        private String locationOfCinema;
-//																								        private Seat[][] seat;
-//																								        private int numOfEmptySeat;
-    	return null;
+    	return cinemaID.toString() + " " + row.toString() + " " + column.toString() + " " + classOfCinema + " " + locationOfCinema + " " + description;
     }
 
 }

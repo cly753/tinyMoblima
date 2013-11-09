@@ -8,7 +8,7 @@ class Ticket {
     //private Integer movieId;
     private String movieName;
     private String typeOfMovie;
-    private String nameOfCinema;
+    private Integer cinemaID;
     private String classOfCinema;
     private String locationOfCineplex;
     private String typeOfMoviegoer;
@@ -26,11 +26,11 @@ class Ticket {
     //
     //
 
-    public Ticket(String movieName, String typeOfMovie, String nameOfCinema, String classOfCinema, String locationOfCineplex,
+    public Ticket(String movieName, String typeOfMovie, Integer cinemaID, String classOfCinema, String locationOfCineplex,
             String typeOfMoviegoer, Time showTime, Integer row, Integer col, Integer ticketID) {
         this.setMovieName(movieName);
         this.setTypeOfMovie(typeOfMovie);
-        this.setNameOfCinema(nameOfCinema);
+        this.setCinemaID(cinemaID);
         this.setClassOfCinema(classOfCinema);
         this.setLocationOfCineplex(locationOfCineplex);
         this.setTypeOfMoviegoer(typeOfMoviegoer);
@@ -49,8 +49,8 @@ class Ticket {
         return this.typeOfMovie;
     }
 
-    public String getNameOfCinema() {
-        return this.nameOfCinema;
+    public Integer getCinemaID() {
+        return this.cinemaID;
     }
 
     public String getClassOfCinema() {
@@ -103,8 +103,8 @@ class Ticket {
         return true;
     }
 
-    public boolean setNameOfCinema(String nameOfCinema) {
-        this.nameOfCinema = nameOfCinema;
+    public boolean setCinemaID(Integer cinemaID) {
+        this.cinemaID = cinemaID;
         return true;
     }
 

@@ -57,7 +57,7 @@ public class TicketLib {
     	for (int i = 0; i < tiLib.size(); i++) {
     		p.setProperty(String.format("%d_movieName", i), tiLib.get(i).getMovieName());
     		p.setProperty(String.format("%d_typeOfMovie", i), tiLib.get(i).getTypeOfMovie());
-    		p.setProperty(String.format("%d_nameOfCinema", i), tiLib.get(i).getNameOfCinema());
+    		p.setProperty(String.format("%d_cinemaID", i), tiLib.get(i).getCinemaID()+"");
     		p.setProperty(String.format("%d_classOfCinema", i), tiLib.get(i).getClassOfCinema());
     		p.setProperty(String.format("%d_locationOfCineplex", i), tiLib.get(i).getLocationOfCineplex());
     		p.setProperty(String.format("%d_typeOfMoviegoer", i), tiLib.get(i).getTypeOfMoviegoer());
@@ -96,7 +96,7 @@ public class TicketLib {
     		
     		temp.setMovieName(p.getProperty(i + "_movieName"));
     		temp.setTypeOfMovie(p.getProperty(i + "typeOfMovie"));
-    		temp.setNameOfCinema(p.getProperty(i + "nameOfCinema"));
+    		temp.setCinemaID(Integer.parseInt(p.getProperty(i + "cinemaID")));
     		temp.setClassOfCinema(p.getProperty(i + "classOfCinema"));
     		temp.setLocationOfCineplex(p.getProperty(i + "_locationOfCineplex"));
             temp.setTypeOfMoviegoer(p.getProperty(i + "_typeOfMoviegoer"));
