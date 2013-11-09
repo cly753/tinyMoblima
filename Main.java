@@ -17,7 +17,7 @@ public class Main {
 //    public static Cineplex cLib[];
     
     public static Scanner sc = new Scanner(System.in);
-    private static final String fileParentLocation = ".\\src\\Moblima\\_info";
+    private static final String fileParentLocation = ".\\src\\Moblima\\_info\\";
     //private static final String fileParentLocation = System.getProperty("user.dir");
     
     //private static final String fileParentLocation = "~/study/java/Moblima/;

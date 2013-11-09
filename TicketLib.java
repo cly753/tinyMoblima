@@ -45,6 +45,7 @@ public class TicketLib {
 			p.load(fin);
 			fin.close();
 		} catch (FileNotFoundException e) {
+			System.out.println("file miss.");
 			File f = new File(parentPath, "_TicketLib.txt"); // create if file is not there
 			f.createNewFile();
 			FileInputStream fin = new FileInputStream(parentPath + "_TicketLib.txt");
@@ -84,6 +85,7 @@ public class TicketLib {
     		p.load(fin);
     		fin.close();
     	} catch (FileNotFoundException e) {
+    		System.out.println("file miss.");
     		File f = new File(parentPath, "_TicketLib.txt"); // create if file is not there
 			f.createNewFile();
 			return false;
