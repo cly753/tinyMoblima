@@ -33,8 +33,9 @@ public class Main {
 
     private static void loading() throws Exception {
     	company.load(fileParentLocation);
+    	movieLib.load(fileParentLocation);
     	tiLib.load(fileParentLocation);
-        goerLib.loadFromFile(fileParentLocation);
+        goerLib.load(fileParentLocation);
         
         /*
          *2   \\number of Cineplex
@@ -66,8 +67,9 @@ public class Main {
     }
 
     private static void storing() throws IOException {
+    	movieLib.store(fileParentLocation);
     	tiLib.store(fileParentLocation);
-        goerLib.storeToFile(fileParentLocation);
+        goerLib.store(fileParentLocation);
     }
 
 //    private static Cineplex constructCineplex(String nameOfCineplex) throws Exception {

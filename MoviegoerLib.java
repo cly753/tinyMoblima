@@ -12,7 +12,7 @@ class MoviegoerLib {
         goerLib = new LinkedList<Moviegoer>();
     }
 
-    public void loadFromFile(String fileParentLocation) {
+    public void load(String fileParentLocation) {
         String fileLocation = fileParentLocation + "goerLib.txt";
         try {
             Properties properties = new Properties();
@@ -41,7 +41,7 @@ class MoviegoerLib {
         }
     }
 
-    public void storeToFile(String fileParentLocation) {
+    public void store(String fileParentLocation) {
         String fileLocation = fileParentLocation + "goerLib.txt";
         try {
             Properties properties = new Properties();
