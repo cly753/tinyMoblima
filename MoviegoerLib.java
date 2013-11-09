@@ -13,7 +13,7 @@ class MoviegoerLib {
     }
 
     public void load(String parentPath) throws IOException {
-        String fileLocation = parentPath + "goerLib.txt";
+        String fileLocation = parentPath + "_MoviegoerLib.txt";
         try {
             Properties properties = new Properties();
             properties.load(new FileInputStream(fileLocation));
@@ -37,14 +37,14 @@ class MoviegoerLib {
                 goerLib.add(newGoer);
             }
         } catch (Exception e) {
-        	File f = new File(parentPath, "_MovieLib.txt"); // create if file is not there
+        	File f = new File(parentPath, "_MoviegoerLib.txt"); // create if file is not there
 			f.createNewFile();
             System.out.println("Unable to process " + fileLocation);
         }
     }
 
-    public void store(String fileParentLocation) {
-        String fileLocation = fileParentLocation + "goerLib.txt";
+    public void store(String parentPath) throws IOException {
+        String fileLocation = parentPath + "_MoviegoerLib.txt";
         try {
             Properties properties = new Properties();
             properties.load(new FileInputStream(fileLocation));
@@ -68,6 +68,8 @@ class MoviegoerLib {
             
             properties.store(new FileOutputStream(fileLocation), "");
         } catch (Exception e) {
+        	File f = new File(parentPath, "_MoviegoerLib.txt"); // create if file is not there
+			f.createNewFile();
             System.out.println("Unable to process " + fileLocation);
         }
     }

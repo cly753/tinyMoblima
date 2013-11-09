@@ -40,7 +40,7 @@ public class Company {
             this.name = p.getProperty("__name");
             for (int i = 0; i < Integer.parseInt(p.getProperty("__size")); i++) {
             	int numOfCinema = Integer.parseInt(p.getProperty(i + "_size"));
-            	ArrayList<Cinema> cinemaList = new ArrayList();
+            	ArrayList<Cinema> cinemaList = new ArrayList<Cinema>();
             	for (int j = 0; j < numOfCinema; j++) {
             		Cinema cinema = new Cinema(p.getProperty(i + "_cinema_" + j));
             		cinemaList.add(cinema);
