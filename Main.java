@@ -28,6 +28,7 @@ public class Main {
     }
 
     private static void loading() throws Exception {
+    	tiLib.load(fileParentLocation);
         goerLib.loadFromFile(fileParentLocation);
         
         /*
@@ -59,7 +60,8 @@ public class Main {
          */
     }
 
-    private static void storing() {
+    private static void storing() throws IOException {
+    	tiLib.store(fileParentLocation);
         goerLib.storeToFile(fileParentLocation);
     }
 
