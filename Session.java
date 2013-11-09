@@ -32,20 +32,22 @@ public class Session {
             }
         }
         
-    	this.numOfEmptySeat = Integer.parseInt(temp[3]);
-    	
+    	this.numOfEmptySeat = this.cinema.getColumn() * this.cinema.getRow();
+            	
     	String seatB = Integer.toBinaryString(Integer.parseInt(temp[2]));
     	Seat[][] seat = new Seat[cinema.getRow()][cinema.getColumn()];
     	for (int i = 0; i < cinema.getRow(); i++) {
     		for (int j = 0; j < cinema.getColumn(); j++) {
     			seat[i][j] = new Seat(i, j);
                         seat[i][j].assign();
-    			if ((seatB.charAt(cinema.getRow() * i + j)+"").compareTo("1") == 0)
-    				seat[i][j].unAssign();
-    		}
+    			if ((seatB.charAt(cinema.getRow() * i + j)+"").compareTo("1") == 0) {
+                            seat[i][j].unAssign();
+                            this.numOfEmptySeat--;
+                        }
+                }
     	}
     }
-
+    
     public String toString() {
     	String seatStr = "";
     	for (int i = 0; i < cinema.getRow(); i++) {
