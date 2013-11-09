@@ -1,8 +1,5 @@
 package Moblima;
 
-import java.util.*;
-import java.io.*;
-
 class Ticket {
 
     //private Integer movieId;

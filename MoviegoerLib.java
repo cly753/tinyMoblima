@@ -14,7 +14,7 @@ class MoviegoerLib {
 
     public void load(String parentPath) throws IOException {
         String fileLocation = parentPath + "_MoviegoerLib.txt";
-        try {
+//        try {
             Properties properties = new Properties();
             properties.load(new FileInputStream(fileLocation));
 
@@ -36,11 +36,11 @@ class MoviegoerLib {
                     newGoer.getUnpaid().add(Integer.parseInt(properties.getProperty(i + "_unpaid_" + j)));
                 goerLib.add(newGoer);
             }
-        } catch (Exception e) {
-        	File f = new File(parentPath, "_MoviegoerLib.txt"); // create if file is not there
-			f.createNewFile();
-            System.out.println("Unable to process " + fileLocation);
-        }
+//        } catch (Exception e) {
+//        	File f = new File(parentPath, "_MoviegoerLib.txt"); // create if file is not there
+//			f.createNewFile();
+//            System.out.println("Unable to process " + fileLocation);
+//        }
     }
 
     public void store(String parentPath) throws IOException {
@@ -175,7 +175,7 @@ class MoviegoerLib {
         Integer ticketID;
 
         System.out.println("1.Visa 2.Master? ");
-        int card = sc.nextInt();
+        sc.nextInt();
 
         ticketID = goer.getUnpaid().remove(index);
         tiLib.searchTicketByID(ticketID).setBuyTime(tempTime.storeCurrentTime());
@@ -190,8 +190,6 @@ class MoviegoerLib {
         int paidSize = goer.getPaid().size();
         Integer ticketID;
         int pageSize = 5;
-
-        int track = 0;
 
         for (int i = 0; i < unpaidSize; i++) {
             ticketID = goer.getUnpaid().get(i);

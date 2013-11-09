@@ -16,25 +16,35 @@ public class Session {
                 seat[i][j] = new Seat(i, j);
             }
         }
-        numOfEmptySeat = cinema.getRow() * cinema.getColumn();
+        setNumOfEmptySeat(cinema.getRow() * cinema.getColumn());
     }
     
-    public Session(String s) {
+    public Session(Company company, String s) {
     	String[] temp = s.split("##");
     	this.time = new Time(temp[0]);
-    	int size = company.getSize();
+    	int size = company.size();
         for (int i = 0; i < size; i++) {
-            for (Cinema cine : company.get(i)) {
-                if (Integer.parseInt(Tmemp[0]) == cine.getCinemaID()) {
+            for (Cinema cine : company.get(i).get()) {
+                if (Integer.parseInt(temp[1]) == cine.getCinemaID()) {
                     this.cinema = cine;
                     break;
                 }
             }
         }
         
-    	this.numOfEmptySeat = this.cinema.getColumn() * this.cinema.getRow();
+    	this.setNumOfEmptySeat(this.cinema.getColumn() * this.cinema.getRow());
             	
     	String seatB = Integer.toBinaryString(Integer.parseInt(temp[2]));
+    	
+    	//System.out.format("row: %d, column: %d, length: %d\n", cinema.getRow(), cinema.getColumn(), seatB.length());
+    	//System.out.println(seatB);
+    	
+    	int need = cinema.getRow()*cinema.getColumn() - seatB.length();
+    	for (int i = 0; i < need; i++)
+    		seatB = "0" + seatB;
+    	//System.out.println(seatB);
+    	//System.out.println("length: " + seatB.length());
+    	
     	Seat[][] seat = new Seat[cinema.getRow()][cinema.getColumn()];
     	for (int i = 0; i < cinema.getRow(); i++) {
     		for (int j = 0; j < cinema.getColumn(); j++) {
@@ -42,7 +52,7 @@ public class Session {
                         seat[i][j].assign();
     			if ((seatB.charAt(cinema.getRow() * i + j)+"").compareTo("1") == 0) {
                             seat[i][j].unAssign();
-                            this.numOfEmptySeat--;
+                            this.setNumOfEmptySeat(this.getNumOfEmptySeat() - 1);
                         }
                 }
     	}
@@ -98,7 +108,7 @@ public class Session {
             return false;
         }
         this.seat[row][column].assign();
-        numOfEmptySeat--;
+        setNumOfEmptySeat(getNumOfEmptySeat() - 1);
         System.out.println("Seat Assigned!");
         return true;
     }
@@ -108,8 +118,22 @@ public class Session {
             return false;
         }
         seat[row][column].unAssign();
-        numOfEmptySeat++;
+        setNumOfEmptySeat(getNumOfEmptySeat() + 1);
         System.out.println("Seat Unassigned!");
         return true;
     }
+
+	/**
+	 * @return the numOfEmptySeat
+	 */
+	public int getNumOfEmptySeat() {
+		return numOfEmptySeat;
+	}
+
+	/**
+	 * @param numOfEmptySeat the numOfEmptySeat to set
+	 */
+	public void setNumOfEmptySeat(int numOfEmptySeat) {
+		this.numOfEmptySeat = numOfEmptySeat;
+	}
 }

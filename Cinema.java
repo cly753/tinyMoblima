@@ -1,8 +1,5 @@
 package Moblima;
 
-import java.util.*;
-import java.io.*;
-
 class Cinema {
     private Integer cinemaID;
     private final Integer row;
@@ -90,7 +87,7 @@ class Cinema {
         return this.classOfCinema;
     }
 
-    public boolean setLocationOfCinema() {
+    public boolean setLocationOfCinema(String locationOfCinema) {
         this.locationOfCinema = locationOfCinema;
         return true;
     }

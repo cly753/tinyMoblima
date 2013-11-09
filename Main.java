@@ -12,10 +12,7 @@ public class Main {
     public static MoviegoerLib goerLib = new MoviegoerLib();
     public static TicketLib tiLib = new TicketLib();
     public static Company company = new Company();
-    
-//    public static int numOfCineplex;
-//    public static Cineplex cLib[];
-    
+
     public static Scanner sc = new Scanner(System.in);
     private static final String fileParentLocation = ".\\src\\Moblima\\_info\\";
     //private static final String fileParentLocation = System.getProperty("user.dir");
@@ -31,7 +28,7 @@ public class Main {
 
     private static void loading() throws Exception {
     	company.load(fileParentLocation);
-    	movieLib.load(fileParentLocation);
+    	movieLib.load(company, fileParentLocation);
     	tiLib.load(fileParentLocation);
         goerLib.load(fileParentLocation);
         

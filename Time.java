@@ -66,6 +66,7 @@ class Time {
         System.out.println("Please enter minute: 0~59");
         newTime.setMinute(sc.nextInt());
 
+        sc.close();
         return newTime;
     }
 
@@ -75,10 +76,11 @@ class Time {
         this.day = Calendar.getInstance().get(Calendar.DATE);
         this.hour = Calendar.getInstance().get(Calendar.HOUR);
         this.minute = Calendar.getInstance().get(Calendar.MINUTE);
-        if (Calendar.DAY_OF_WEEK != 1 && Calendar.DAY_OF_WEEK != 7) {
-            weekday = true;
+        
+        if ((Calendar.DAY_OF_WEEK != Calendar.SUNDAY) && (Calendar.DAY_OF_WEEK != Calendar.SATURDAY)) {
+            this.weekday = true;
         } else {
-            weekday = false;
+            this.weekday = false;
         }
 
         publicHoliday = false;

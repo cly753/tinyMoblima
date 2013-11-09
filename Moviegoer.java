@@ -1,7 +1,6 @@
 package Moblima;
 
 import java.util.*;
-import java.io.*;
 
 class Moviegoer extends User {
 

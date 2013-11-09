@@ -6,10 +6,9 @@ import java.util.*;
 public class Company {
 
     private ArrayList<Cineplex> cineplexList = new ArrayList<Cineplex>();
-    private String name;
     
     public Company() {
-    	cineplexList = new ArrayList();
+    	cineplexList = new ArrayList<Cineplex>();
     }
     
     public void load(String fileParentLocation) throws IOException {
@@ -27,7 +26,6 @@ public class Company {
             Properties p = new Properties();
             p.load(new FileInputStream(fileLocation));
 
-            this.name = p.getProperty("__name");
             for (int i = 0; i < Integer.parseInt(p.getProperty("__size")); i++) {
             	int numOfCinema = Integer.parseInt(p.getProperty(i + "_size"));
             	ArrayList<Cinema> cinemaList = new ArrayList<Cinema>();
@@ -52,6 +50,10 @@ public class Company {
     
     public ArrayList<Cineplex> get() {
         return cineplexList;
+    }
+    
+    public int size() {
+    	return cineplexList.size();
     }
     
     public Cineplex get(int i) {

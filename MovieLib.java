@@ -81,6 +81,8 @@ class MovieLib {
                 ratingOfNewMovie);
 
         movieList.add(0, newMovie);
+        
+        sc.close();
         return true;
     }
 
@@ -149,8 +151,10 @@ class MovieLib {
                 break;
             default:
                 System.out.println("invalid. again: ");
+                sc.close();
                 return false;
         }
+        sc.close();
         return true;
     }
 
@@ -172,6 +176,8 @@ class MovieLib {
         } else {
             System.out.println("invalid range...");
         }
+        
+        sc.close();
     }
 
     public ArrayList<Movie> get() {
@@ -228,7 +234,7 @@ class MovieLib {
     	return true;	
     }
     
-    public boolean load(String parentPath) throws IOException {
+    public boolean load(Company company, String parentPath) throws IOException {
     	
     	Properties p = new Properties();
     	
@@ -263,9 +269,10 @@ class MovieLib {
     		String rating = p.getProperty(String.format("%d_rating", i));
     		
     		int sessionSize = Integer.parseInt(p.getProperty(String.format("%d_session__size", i)));
-    		ArrayList<Session> sessionList = new ArrayList();
+    		ArrayList<Session> sessionList = new ArrayList<Session>();
     		for (int j = 0; j < sessionSize; j++) {
-    			Session temp = new Session(p.getProperty(String.format("%d_session_%d", i, j)));
+    			Session temp = new Session(company, p.getProperty(String.format("%d_session_%d", i, j)));
+    			sessionList.add(temp);
     		}
     		
     		Movie movie = new Movie(movieName, typeOfMovie, cast, director, language, runtime, description, openingTime, sessionList, rating);
