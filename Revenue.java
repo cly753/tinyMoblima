@@ -99,10 +99,10 @@ class Revenue {
 //            }
 //            System.out.println(currentCinema.get(i).getCinemaID() + " ticket sale : " + sumCinemaTicketPrice);
 //        }
-    }
+//    }
 
-    public static void getMonthlyCineplexRevenue(Cineplex currentCineplex, Time day) {
-        int numOfTicket = tiLib.getNumOfTicket();
+    public static void getMonthlyCineplexRevenue(TicketLib tiLib, Cineplex currentCineplex, Time day) {
+        int numOfTicket = tiLib.size();
         ArrayList<Cinema> currentCinema = currentCineplex.get();
         int numOfCinema = currentCinema.size();
         ArrayList<ArrayList<Ticket>> revenueOfCinema = new ArrayList<ArrayList<Ticket>>();
@@ -129,32 +129,32 @@ class Revenue {
         }
     }
     
-    public static void getDailyTotalRevenue(MoviegoerLib goerLib, Time day) {
-        LinkedList<Moviegoer> goerList = goerLib.get();
-        int numOfCinema = 0;
-        ArrayList<Ticket> revenueOfCinema = new ArrayList<Ticket>();
-        for (int i = 0; i < numOfCinema; i++) {
-            for (Moviegoer goer : goerList) {
-                ArrayList<Ticket> ticketList = goer.getPaid();
-                for (Ticket paidTicket : ticketList) {
-                    if (paidTicket.getBuyTime().getMonth() == day.getMonth()
-                            && paidTicket.getBuyTime().getDay() == day.getDay()) {
-                        revenueOfCinema.add(paidTicket);
-                    }
-                }
-            }
-        }
+//    public static void getDailyTotalRevenue(MoviegoerLib goerLib, Time day) {
+//        LinkedList<Moviegoer> goerList = goerLib.get();
+//        int numOfCinema = 0;
+//        ArrayList<Ticket> revenueOfCinema = new ArrayList<Ticket>();
+//        for (int i = 0; i < numOfCinema; i++) {
+//            for (Moviegoer goer : goerList) {
+//                ArrayList<Ticket> ticketList = goer.getPaid();
+//                for (Ticket paidTicket : ticketList) {
+//                    if (paidTicket.getBuyTime().getMonth() == day.getMonth()
+//                            && paidTicket.getBuyTime().getDay() == day.getDay()) {
+//                        revenueOfCinema.add(paidTicket);
+//                    }
+//                }
+//            }
+//        }
+//
+//        int sumTotalTicketPrice = 0;
+//        for (Ticket paidTicket : revenueOfCinema) {
+//            sumTotalTicketPrice += paidTicket.getPrice();
+//        }
+//        System.out.println("Total ticket sale : " + sumTotalTicketPrice);
+//    }
 
-        int sumTotalTicketPrice = 0;
-        for (Ticket paidTicket : revenueOfCinema) {
-            sumTotalTicketPrice += paidTicket.getPrice();
-        }
-        System.out.println("Total ticket sale : " + sumTotalTicketPrice);
-    }
-
-    public static void getDailyTotalRevenue(Time day) {
+    public static void getDailyTotalRevenue(TicketLib tiLib, Time day) {
         ArrayList<Ticket> revenueOfCinema = new ArrayList<Ticket>();
-        int numOfTicket = tiLib.getNumOfTicket();
+        int numOfTicket = tiLib.size();
     
         for (int index = 0; index < numOfTicket; index++) {
             Ticket paidTicket = tiLib.get(index);
@@ -171,28 +171,28 @@ class Revenue {
         System.out.println("Total ticket sale : " + sumTotalTicketPrice);
     }
     
-    public static void getMonthlyTotalRevenue(MoviegoerLib goerLib, Time day) {
-        LinkedList<Moviegoer> goerList = goerLib.get();
-        int numOfCinema = 0;
-        ArrayList<Ticket> revenueOfCinema = new ArrayList<Ticket>();
-        for (int i = 0; i < numOfCinema; i++) {
-            for (Moviegoer goer : goerList) {
-                ArrayList<Ticket> ticketList = goer.getPaid();
-                for (Ticket paidTicket : ticketList) {
-                    if (paidTicket.getBuyTime().getMonth() == day.getMonth()) {
-                        revenueOfCinema.add(paidTicket);
-                    }
-                }
-            }
-        }
-        int sumTotalTicketPrice = 0;
-        for (Ticket paidTicket : revenueOfCinema) {
-            sumTotalTicketPrice += paidTicket.getPrice();
-        }
-        System.out.println("Total ticket sale : " + sumTotalTicketPrice);
-    }
+//    public static void getMonthlyTotalRevenue(MoviegoerLib goerLib, Time day) {
+//        LinkedList<Moviegoer> goerList = goerLib.get();
+//        int numOfCinema = 0;
+//        ArrayList<Ticket> revenueOfCinema = new ArrayList<Ticket>();
+//        for (int i = 0; i < numOfCinema; i++) {
+//            for (Moviegoer goer : goerList) {
+//                ArrayList<Ticket> ticketList = goer.getPaid();
+//                for (Ticket paidTicket : ticketList) {
+//                    if (paidTicket.getBuyTime().getMonth() == day.getMonth()) {
+//                        revenueOfCinema.add(paidTicket);
+//                    }
+//                }
+//            }
+//        }
+//        int sumTotalTicketPrice = 0;
+//        for (Ticket paidTicket : revenueOfCinema) {
+//            sumTotalTicketPrice += paidTicket.getPrice();
+//        }
+//        System.out.println("Total ticket sale : " + sumTotalTicketPrice);
+//    }
 
-    public static void getDailyTotalRevenue(Time day) {
+    public static void getMonthlyTotalRevenue(TicketLib tiLib, Time day) {
         ArrayList<Ticket> revenueOfCinema = new ArrayList<Ticket>();
         int numOfTicket = tiLib.getNumOfTicket();
     
@@ -210,23 +210,23 @@ class Revenue {
         System.out.println("Total ticket sale : " + sumTotalTicketPrice);
     }
     
-    public static void getTotalRevenue(MoviegoerLib goerLib) {
-        LinkedList<Moviegoer> goerList = goerLib.get();
-        ArrayList<Ticket> revenueOfCinema = new ArrayList<Ticket>();
-        for (Moviegoer goer : goerList) {
-            ArrayList<Ticket> ticketList = goer.getPaid();
-            for (Ticket paidTicket : ticketList) {
-                revenueOfCinema.add(paidTicket);
-            }
-        }
-        int sumTotalTicketPrice = 0;
-        for (Ticket paidTicket : revenueOfCinema) {
-            sumTotalTicketPrice += paidTicket.getPrice();
-        }
-        System.out.println("Total ticket sale : " + sumTotalTicketPrice);
-    }
+//    public static void getTotalRevenue(MoviegoerLib goerLib) {
+//        LinkedList<Moviegoer> goerList = goerLib.get();
+//        ArrayList<Ticket> revenueOfCinema = new ArrayList<Ticket>();
+//        for (Moviegoer goer : goerList) {
+//            ArrayList<Ticket> ticketList = goer.getPaid();
+//            for (Ticket paidTicket : ticketList) {
+//                revenueOfCinema.add(paidTicket);
+//            }
+//        }
+//        int sumTotalTicketPrice = 0;
+//        for (Ticket paidTicket : revenueOfCinema) {
+//            sumTotalTicketPrice += paidTicket.getPrice();
+//        }
+//        System.out.println("Total ticket sale : " + sumTotalTicketPrice);
+//    }
     
-    public static void getTotalRevenue() {
+    public static void getTotalRevenue(TicketLib tiLib) {
         int numOfTicket = tiLib.getNumOfTicket();
         int sumTotalTicketPrice = 0;
         for (int index = 0; index < numOfTicket; index++) {

@@ -32,6 +32,9 @@ public class TicketLib {
     public ArrayList<Ticket> get() {
         return tiLib;
     }
+    public Ticket get(int i) {
+    	return tiLib.get(i);
+    }
     
     public Integer size() {
     	return tiLib.size();
@@ -114,7 +117,7 @@ public class TicketLib {
             temp.setSeatCol(Integer.parseInt(p.getProperty(i + "_seatRow")));
             temp.setTicketID(Integer.parseInt(p.getProperty(i + "_ticketID")));
     		
-            tiLib.add(temp, ticketID);
+            tiLib.add(Integer.parseInt(p.getProperty(i + "_ticketID")), temp);
     	}
     	return true;
     }

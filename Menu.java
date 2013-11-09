@@ -169,7 +169,7 @@ public class Menu {
                 case 9:
                     System.out.print("password: ");
                     if (sc.next().compareTo(Main.adminPwd) == 0) {
-                        staffMenu(movieLib, goerLib, company);
+                        staffMenu(movieLib, goerLib, tiLib, company);
                     }
                     break;
                 case 10:
@@ -183,7 +183,7 @@ public class Menu {
         }
     }
 
-    public static void staffMenu(MovieLib movieLib, MoviegoerLib goerLib, Company company) {
+    public static void staffMenu(MovieLib movieLib, MoviegoerLib goerLib, TicketLib tiLib, Company company) {
         int choice;
         while (true) {
             System.out.println("+++++++++++++++++++++++++++++++");
@@ -236,19 +236,19 @@ public class Menu {
                         case 22:
                             Time day = Time.manualNewATime();
                             if (i == 11) {
-                                Revenue.getDailyCineplexRevenue(goerLib, cineplex, day);
+                                Revenue.getDailyCineplexRevenue(tiLib, cineplex, day);
                             } else if (i == 12) {
-                                Revenue.getMonthlyCineplexRevenue(goerLib, cineplex, day);
+                                Revenue.getMonthlyCineplexRevenue(tiLib, cineplex, day);
                             } else if (i == 13) {
                                 System.out.println("no such funtion...");
                             } else if (i == 21) {
-                                Revenue.getDailyTotalRevenue(goerLib, day);
+                                Revenue.getDailyTotalRevenue(tiLib, day);
                             } else if (i == 22) {
-                                Revenue.getMonthlyTotalRevenue(goerLib, day);
+                                Revenue.getMonthlyTotalRevenue(tiLib, day);
                             }
                             break;
                         case 33:
-                            Revenue.getTotalRevenue(goerLib);
+                            Revenue.getTotalRevenue(tiLib);
                             break;
                         default:
                             System.out.println("invalid...");
