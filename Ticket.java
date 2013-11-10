@@ -1,8 +1,6 @@
 package Moblima;
 
 class Ticket {
-
-    //private Integer movieId;
     private String movieName;
     private String typeOfMovie;
     private Integer cinemaID;
@@ -189,7 +187,7 @@ class Ticket {
         System.out.println(">============================<");
         System.out.println(">||" + ti.getMovieName() + " " + ti.getTypeOfMovie());
         System.out.println(">||" + ti.getShowtime());
-        System.out.println(">||" + ti.getSeatRow() + " " + ti.getSeatColumn() + " " + ti.getTicketID() + " " + ti.getTypeOfMoviegoer());
+        System.out.println(">||" + (ti.getSeatRow() + 1) + " " + (ti.getSeatColumn() + 1) + " " + ti.getTicketID() + " " + ti.getTypeOfMoviegoer());
         System.out.println(">||" + ti.getClassOfCinema() + " " + ti.getLocationOfCineplex());
         System.out.println(">============================<");
     }

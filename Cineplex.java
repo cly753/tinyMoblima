@@ -11,17 +11,6 @@ class Cineplex {
     private int numOfCinema;
     private Integer cineplexID;
 
-//    public Cineplex(Scanner freader, String nameOfCineplex, String locationOfCinplex, int numOfCinema) throws IOException {
-//        this.numOfCinema = numOfCinema;
-//        this.name = nameOfCineplex;
-//        this.location = locationOfCinplex;
-//        for (int i = 0; i < numOfCinema; i++) {
-//            String nameOfCurrentCinema = freader.next();
-//            Cinema currentCinema = constructCinema(nameOfCurrentCinema, this.location);
-//            cinemaList.add(currentCinema);
-//        }
-//    }
-    
     public Cineplex(String name, String location, int numOfCinema, Integer cineplexID, ArrayList<Cinema> cinemaList) {
     	this.name = name;
     	this.location = location;
@@ -29,32 +18,6 @@ class Cineplex {
     	this.cineplexID = cineplexID;
     	this.cinemaList = cinemaList;
     }
-    
-
-//    private Cinema constructCinema(String nameOfCinema, String locationOfCinema) throws IOException {
-//        /*
-//         *
-//         *10 20  //row and column
-//         *diyideng //class of cinema this.setClassOfCinema();
-//         *1234asdf asdf2 //set description
-//         *
-//         */
-//        try {
-//            Scanner freader = new Scanner(new FileReader("./_info_Cinema" + nameOfCinema + ".txt"));
-//            int row = freader.nextInt();
-//            int column = freader.nextInt();
-//            Cinema currentCinema = new Cinema(freader, row, column, nameOfCinema, locationOfCinema);
-//            //directly go to cinema constructor
-//            return currentCinema;
-//        } catch (IOException e) {
-//            System.out.println("asdf");
-//        }
-//        return null;
-//        //========================
-//        // help me fix here!!!!!!
-//        // no...
-//        //========================
-//    }
 
     public String getName() {
         return name;

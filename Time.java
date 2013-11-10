@@ -23,16 +23,8 @@ class Time {
     // format: yyyymmdd
 
 
-
-    public Time() {
-
-    }
-    
     public Time(String time) {
     	String[] value = time.split(" ");
-//    	for (int i = 0; i < value.length; i++) {
-//    	    System.out.println(value[i]);
-//    	}
     	year = Integer.parseInt(value[0]);
     	month = Integer.parseInt(value[1]);
     	day = Integer.parseInt(value[2]);
@@ -48,11 +40,16 @@ class Time {
     		publicHoliday = true;
     	
     }
+    public Time() {
+        
+    }
 
-    //=================
-    //Error
-    //=================
-    //Cannot be used at MovieLib.java line 64, 68 134,..
+    public Time(Integer year, Integer month, Integer day) {
+        this.setDay(day);
+        this.setMonth(month);
+        this.setYear(year);
+    }
+    
     public static Time manualNewATime() {
         Scanner sc = new Scanner(System.in);
         Time newTime = new Time();
@@ -98,7 +95,6 @@ class Time {
 
     public boolean setYear(Integer year) {
         this.year = year;
-        //updatePubHoliAndWkend();
         return true;
     }
 
@@ -108,7 +104,6 @@ class Time {
 
     public boolean setMonth(Integer month) {
         this.month = month;
-        //updatePubHoliAndWkend();
         return true;
     }
 

@@ -17,8 +17,6 @@ class Movie {
     
     public static Scanner sc = new Scanner(System.in);
 
-    private static final String ratingList[] = {"G", "PG", "R18"};
-
     public Movie(String movieName, String typeOfMovie, String cast, String director, String language,
             int runtime, String description, Time openingTime, String rating) {
         this.setMovieName(movieName);
@@ -59,12 +57,6 @@ class Movie {
         this.setRating(rating);
     }
 
-    /*    public static Movie manualNewAMovie() {
-     Movie newMovie = new Movie();
-     newMovie.setRatingBB(sc);
-     }*/
-    //deleted by Shengliang
-    //modified this function to movieLib.add() at MovieLib
     public String getMovieName() {
         return this.movieName;
     }
@@ -184,23 +176,12 @@ class Movie {
         x = sc.nextInt();
         this.sessionList.remove(x);
         return true;
-        //how about this.....
-        //instead of return this.showtimeList.remove(x)
     }
 
     public boolean setRating(String rating) {
         this.rating = rating;
         return true;
     }
-
-//    public boolean setRatingBB() {
-//        for (int i = 0; i < ratingList.length; i++) {
-//            System.out.print((i + 1) + "." + ratingList[i]);
-//        }
-//        System.out.println("\n>Select new rating: ");
-//        this.setRating(ratingList[sc.nextInt()]);
-//        return true;
-//    }
 
     public void showInfo() {
         int choice;
@@ -228,7 +209,6 @@ class Movie {
         if (choice != 1) {
             return;
         }
-        //System.out.println("===============description===============");
         System.out.println(this.description);
     }
 }

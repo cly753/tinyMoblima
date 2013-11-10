@@ -3,8 +3,6 @@ package Moblima;
 import java.util.*;
 import java.io.*;
 
-// do we need this?
-// yes. definitely
 public class TicketLib {
 
     private ArrayList<Ticket> tiLib;

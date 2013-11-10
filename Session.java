@@ -66,8 +66,6 @@ public class Session {
     	}
     	BigInteger seatInfo = new BigInteger(seatStr, 2);
     	
-    	System.out.println(seatInfo.toString());
-    	
     	return time.toString() + "##" + cinema.getCinemaID() + "##" + seatInfo.toString();
     }
 
@@ -133,16 +131,11 @@ public class Session {
             return false;
         }
     }
-	/**
-	 * @return the numOfEmptySeat
-	 */
+
 	public int getNumOfEmptySeat() {
 		return numOfEmptySeat;
 	}
 
-	/**
-	 * @param numOfEmptySeat the numOfEmptySeat to set
-	 */
 	public void setNumOfEmptySeat(int numOfEmptySeat) {
 		this.numOfEmptySeat = numOfEmptySeat;
 	}
