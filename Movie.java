@@ -20,7 +20,7 @@ class Movie {
     private static final String ratingList[] = {"G", "PG", "R18"};
 
     public Movie(String movieName, String typeOfMovie, String cast, String director, String language,
-            int runtime, String description, Time openingTime, Time[] showtimeArray, String rating) {
+            int runtime, String description, Time openingTime, String rating) {
         this.setMovieName(movieName);
         this.setTypeOfMovie(typeOfMovie);
         this.setCast(cast);
@@ -28,10 +28,23 @@ class Movie {
         this.setLanguage(language);
         this.setRuntime(runtime);
         this.setDescription(description);
-        this.setSessionList(showtimeArray);
+        this.setOpeningTime(openingTime);
+        this.sessionList = new ArrayList<Session>();
         this.setRating(rating);
     }
-    
+    public Movie(String movieName, String typeOfMovie, String cast, String director, String language,
+            int runtime, String description, Time openingTime, Time[] showtimeList, String rating) {
+        this.setMovieName(movieName);
+        this.setTypeOfMovie(typeOfMovie);
+        this.setCast(cast);
+        this.setDirector(director);
+        this.setLanguage(language);
+        this.setRuntime(runtime);
+        this.setDescription(description);
+        this.setOpeningTime(openingTime);
+        this.setSessionList(showtimeList);
+        this.setRating(rating);
+    }
     public Movie(String movieName, String typeOfMovie, String cast, String director, String language,
             int runtime, String description, Time openingTime, ArrayList<Session> sessionList, String rating) {
         this.setMovieName(movieName);
@@ -41,6 +54,7 @@ class Movie {
         this.setLanguage(language);
         this.setRuntime(runtime);
         this.setDescription(description);
+        this.setOpeningTime(openingTime);
         this.sessionList = sessionList;
         this.setRating(rating);
     }
@@ -131,6 +145,10 @@ class Movie {
         return true;
     }
 
+    public boolean addSession(Session newSession) {
+        this.sessionList.add(newSession);
+        return true;
+    }
     public boolean addSession(Time newShowtime) {
         System.out.println("Please select cineplex: ");
         for (int i = 0; i < Main.company.get().size(); i++) {
@@ -190,10 +208,10 @@ class Movie {
         System.out.println("Movie Name: " + this.movieName);
         System.out.println("Movie Type: " + this.typeOfMovie);
         System.out.print("Cast: ");
-        System.out.print(this.cast);
+        System.out.println(this.cast);
 
         System.out.print("Director: ");
-        System.out.print(this.director);
+        System.out.println(this.director);
 
         System.out.println("---More--- input 1");
         choice = sc.nextInt();

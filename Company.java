@@ -16,6 +16,8 @@ public class Company {
     	/*structure of _Company.txt
     	 * 
     	 *__size=number of cineplex
+    	 *i_name=name of cineplex
+    	 *i_location=location of cineplex
     	 *i_size=number of cinema in ith cineplex
     	 *i_cinema_j=jth cinema of ith cineplex (format: "CinemaID row column classOfCinema locationOfCinema description")
     	 * 
@@ -39,9 +41,10 @@ public class Company {
             	cineplex.setCineplexID(i);
             	cineplex.setName(p.getProperty(i + "_name"));
             	cineplex.setLocation(p.getProperty(i + "_location"));
-            	cineplex.setNumOfCinema(Integer.parseInt(p.getProperty(i + "_size")));
-            	
+            	cineplex.setNumOfCinema(numOfCinema);
+            	//System.out.println(cineplex.getName());
             	cineplexList.add(cineplex);
+            	
             }
         } catch (FileNotFoundException e) {
             System.out.println("Unable to process " + fileLocation);

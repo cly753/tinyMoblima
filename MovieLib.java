@@ -82,7 +82,6 @@ class MovieLib {
 
         movieList.add(0, newMovie);
         
-        sc.close();
         return true;
     }
 
@@ -151,33 +150,31 @@ class MovieLib {
                 break;
             default:
                 System.out.println("invalid. again: ");
-                sc.close();
                 return false;
         }
-        sc.close();
         return true;
     }
 
     public void listMovie() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("From: ");
-        int start = sc.nextInt();
+        System.out.print("From: 1 - " + movieList.size());
+        int start = sc.nextInt() - 1;
         System.out.print("To (max - " + movieList.size() + " ): ");
-        int end = sc.nextInt();
-
+        int end = sc.nextInt() - 1;
+        if (start < 0 || end >= movieList.size()) {
+            System.out.println("invalid range...");
+        }
         if (0 <= start && start <= end && end < movieList.size()) {
             ListIterator<Movie> iterA = movieList.listIterator(start);
             ListIterator<Movie> iterB = movieList.listIterator(end);
 
-            while (iterA != iterB && iterA.hasNext()) {
-                System.out.println(start + "." + iterA.next().getMovieName());
-                start++;
+            while (start <= end && iterA != iterB && iterA.hasNext()) {
+                System.out.println(++start + "." + iterA.next().getMovieName());
             }
         } else {
             System.out.println("invalid range...");
         }
-        
-        sc.close();
+        return;
     }
 
     public ArrayList<Movie> get() {
@@ -245,13 +242,13 @@ class MovieLib {
 		} catch (FileNotFoundException e) {
 			File f = new File(parentPath, "_MovieLib.txt"); // create if file is not there
 			f.createNewFile();
-			System.out.println("没有啊。我创了一个给你。");
+			System.out.println("dont have");
 		}
-    	
     	int size = Integer.parseInt(p.getProperty("__size"));
-    	
+        
     	for (int i = 0; i < size; i++) {
     		String movieName = p.getProperty(String.format("%d_movieName", i));
+    		//System.out.println(movieName);
     		String typeOfMovie = p.getProperty(String.format("%d_typeOfMovie", i));
     		
     		String cast = p.getProperty(String.format("%d_cast", i));
@@ -267,16 +264,17 @@ class MovieLib {
     		Time openingTime = new Time(p.getProperty(String.format("%d_openingTime", i)));
     	
     		String rating = p.getProperty(String.format("%d_rating", i));
-    		
+    		Movie movie = new Movie(movieName, typeOfMovie, cast, director, language, runtime, description, openingTime, rating);
+            
     		int sessionSize = Integer.parseInt(p.getProperty(String.format("%d_session__size", i)));
     		ArrayList<Session> sessionList = new ArrayList<Session>();
     		for (int j = 0; j < sessionSize; j++) {
     			Session temp = new Session(company, p.getProperty(String.format("%d_session_%d", i, j)));
     			sessionList.add(temp);
+    			movie.addSession(temp);
     		}
     		
-    		Movie movie = new Movie(movieName, typeOfMovie, cast, director, language, runtime, description, openingTime, sessionList, rating);
-    		
+    		//movie.showInfo();
     		movieList.add(movie);
     	}
     	

@@ -1,7 +1,6 @@
 package Moblima;
 
 import java.util.*;
-import java.io.*;
 
 class Time {
 
@@ -31,7 +30,9 @@ class Time {
     
     public Time(String time) {
     	String[] value = time.split(" ");
-    	
+//    	for (int i = 0; i < value.length; i++) {
+//    	    System.out.println(value[i]);
+//    	}
     	year = Integer.parseInt(value[0]);
     	month = Integer.parseInt(value[1]);
     	day = Integer.parseInt(value[2]);
@@ -66,7 +67,6 @@ class Time {
         System.out.println("Please enter minute: 0~59");
         newTime.setMinute(sc.nextInt());
 
-        sc.close();
         return newTime;
     }
 
@@ -90,7 +90,7 @@ class Time {
 
     public void printTime() {
         System.out.format("%2d %s %4d\n   %2d:%2d", day,
-                strMonth[month], year, hour, minute);
+                strMonth[month - 1], year, hour, minute);
     }
 
     public String getStr() {
@@ -105,7 +105,7 @@ class Time {
 
     public boolean setYear(Integer year) {
         this.year = year;
-        updatePubHoliAndWkend();
+        //updatePubHoliAndWkend();
         return true;
     }
 
@@ -115,7 +115,7 @@ class Time {
 
     public boolean setMonth(Integer month) {
         this.month = month;
-        updatePubHoliAndWkend();
+        //updatePubHoliAndWkend();
         return true;
     }
 
