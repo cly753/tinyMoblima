@@ -52,11 +52,10 @@ public class Session {
     	for (int i = 0; i < cinema.getRow(); i++) {
     		for (int j = 0; j < cinema.getColumn(); j++) {
     		    seat[i][j] = new Seat(i, j);
-    		    seat[i][j].assign();
+    		    seat[i][j].unAssign();
     		    if ((seatB.charAt(cinema.getRow() * i + j)+"").compareTo("1") == 0) {
-    		        seat[i][j].unAssign();
+    		        seat[i][j].assign();
     		        this.numOfEmptySeat--;
-    		        //this.setNumOfEmptySeat(this.getNumOfEmptySeat() - 1);
     		    }
     		}
     	}
@@ -66,7 +65,7 @@ public class Session {
     	String seatStr = "";
     	for (int i = 0; i < cinema.getRow(); i++) {
     		for (int j = 0; j < cinema.getColumn(); j++) {
-    			seatStr += seat[i][j].getAssign() ? "0" : "1";
+    			seatStr += seat[i][j].getAssign() ? "1" : "0";
     		}
     	}
     	return time.toString() + "##" + cinema.getCinemaID() + "##" + Integer.parseInt(seatStr, 2);
@@ -81,22 +80,22 @@ public class Session {
     }
 
     public void presentSeat() {
+        System.out.println("@Cinema : " + this.cinema.getCinemaID());
         System.out.print("  ");
-        for (int j = 0; j < cinema.getColumn(); j++) {
+        for (int j = 1; j < cinema.getColumn(); j++) {
             System.out.print(" " + j);
         }
-        System.out.println();
+        System.out.println(" " + cinema.getColumn());
         for (int j = 0; j < cinema.getColumn(); j++) {
             System.out.print(" _");
         }
-        System.out.println("@Cinema : " + this.cinema.getCinemaID());
         for (int i = 0; i < cinema.getRow(); i++) {
-            System.out.print("\n" + i + "|");
+            System.out.print("\n" + (i + 1) + "|");
             for (int j = 0; j < cinema.getColumn(); j++) {
                 if (seat[i][j].getAssign()) {
-                    System.out.print(" O");
-                } else {
                     System.out.print(" x");
+                } else {
+                    System.out.print(" 0");
                 }
             }
         }
@@ -126,7 +125,14 @@ public class Session {
         System.out.println("Seat Unassigned!");
         return true;
     }
-
+    
+    public boolean seatAvailable(Integer x, Integer y) {
+        if ((x >= 0 && x < cinema.getRow()) && (y >=0 && y < cinema.getColumn())) {
+            return seat[x][y].getAssign();
+        } else {
+            return false;
+        }
+    }
 	/**
 	 * @return the numOfEmptySeat
 	 */

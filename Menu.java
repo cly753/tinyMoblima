@@ -113,10 +113,8 @@ public class Menu {
                         }
                     }
                     break;
-                case 4:
-                case 5:
                 case 6:
-                    if (choice == 6 && curUser != null) {
+                    if (curUser != null) {
                         curUser = null;
                         break;
                     } else {
@@ -126,7 +124,6 @@ public class Menu {
                         username = sc.next();
                         System.out.print(">password: ");
                         password = sc.next();
-                        
                         curUser = goerLib.checkLogin(username, password);
                         
                         if (curUser != null) {
@@ -136,34 +133,66 @@ public class Menu {
                             break;
                         }
                     }
-                    if (choice == 6) {
-                        break;
+                    break;
+                case 4:
+                case 5:
+                    if (curUser == null) {
+                        String username;
+                        String password;
+                        System.out.print(">username: ");
+                        username = sc.next();
+                        System.out.print(">password: ");
+                        password = sc.next();
+                        curUser = goerLib.checkLogin(username, password);
+                        
+                        if (curUser != null) {
+                            System.out.println(">login succeeded!");
+                        } else {
+                            System.out.println(">login failed.");
+                            break;
+                        }
                     }
-
                     if (choice == 4) {
                         MoviegoerLib.showHistory(curUser, tiLib, false);
                         if (curUser.getUnpaid().size() != 0) {
-                            System.out.print(">pay(index) or go back(other)?");
-                            int toPay = sc.nextInt();
+                            System.out.println(">pay (enter index)");
+                            System.out.println(">go back (enter other)");
+                            int toPay = sc.nextInt() - 1;
                             if (0 <= toPay && toPay < curUser.getUnpaid().size()) {
                                 MoviegoerLib.pay(curUser, tiLib, toPay);
                             } else {
                                 break;
                             }
+                        } else {
+                            System.out.println(">No unpaid tickets");
+                            System.out.println(">Please select 3 to book movies");
                         }
                     }
 
                     if (choice == 5) {
                         MoviegoerLib.showHistory(curUser, tiLib, true);
-
+                        
+                        if (curUser.getUnpaid().size() == 0) {
+                            System.out.println(">No unpaid tickets");
+                            System.out.println(">Please select 3 to book movies");
+                            break;
+                        }
+                        
                         if (curUser.getUnpaid().size() == 1) {
                             MoviegoerLib.pay(curUser, tiLib, 0);
                         } else {
-                            System.out.print("pay(index) or go back(other)?");
-                            int toPay = sc.nextInt();
-
-                            if (0 <= toPay && toPay < curUser.getUnpaid().size()) {
-                                MoviegoerLib.pay(curUser, tiLib, toPay);
+                            while (true) {
+                                System.out.println(">pay (enter index)");
+                                System.out.println(">go back (enter other)");
+                                int toPay = sc.nextInt() - 1;
+                                if (0 <= toPay && toPay < curUser.getUnpaid().size()) {
+                                    MoviegoerLib.pay(curUser, tiLib, toPay);
+                                }
+                                if (curUser.getUnpaid().size() == 0) {
+                                    System.out.println(">No unpaid items");
+                                    break;
+                                }
+                                MoviegoerLib.showHistory(curUser, tiLib, true);
                             }
                         }
                     }
@@ -172,7 +201,7 @@ public class Menu {
                     curUser = goerLib.add();
                     break;
                 case 8:
-                    System.out.print("password: ");
+                    System.out.print(">password: ");
                     if (sc.next().compareTo(Main.adminPwd) == 0) {
                         staffMenu(movieLib, goerLib, tiLib, company);
                     }
@@ -182,7 +211,7 @@ public class Menu {
                     System.out.println("HAHA");
                     break;
                 default:
-                    System.out.println("Wrong input.");
+                    System.out.println(">Wrong input.");
                     break;
             }
         }
@@ -201,7 +230,7 @@ public class Menu {
 
             choice = sc.nextInt();
             if (choice == 0) {
-                System.out.println("Bye-Bye Da Shen! ");
+                System.out.println(">Bye-Bye Da Shen! ");
                 break;
             }
             switch (choice) {
@@ -209,7 +238,7 @@ public class Menu {
                     addModifyRemove(movieLib);
                     break;
                 case 2:
-                    System.out.print("New public holiday(yyyymmdd): ");
+                    System.out.print(">New public holiday(yyyymmdd): ");
                     Time.setPublicHoliday(sc.next());
                     break;
                 case 3:

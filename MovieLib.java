@@ -24,9 +24,9 @@ class MovieLib {
             }
         }
         if (result.size() != 0) {
-            System.out.println("Movie Found!");
+            System.out.println(">Movie Found!");
             for (int i = 0; i < result.size(); i++) {
-                System.out.println((i + 1) + " " + result.get(i).getMovieName());
+                System.out.println(">" + (i + 1) + " " + result.get(i).getMovieName());
             }
         }
         return result;
@@ -37,38 +37,38 @@ class MovieLib {
         //here is the format of adding a movie.
         //hopefully will be our data format inside a txt file.
 
-        System.out.println("Name: ");
+        System.out.println(">Name: ");
         String nameOfNewMovie = sc.nextLine();
 
-        System.out.println("Type: ");
+        System.out.println(">Type: ");
         String typeOfNewMove = sc.next();
 
-        System.out.println("Cast: ");
+        System.out.println(">Cast: ");
         String castOfNewMovie = sc.nextLine();
 
-        System.out.println("Director: ");
+        System.out.println(">Director: ");
         String directorOfNewMovie = sc.nextLine();
 
-        System.out.println("Language: ");
+        System.out.println(">Language: ");
         String languageOfNewMovie = sc.next();
 
-        System.out.println("Runtime: ");
+        System.out.println(">Runtime: ");
         int runtimeOfNewMovie = sc.nextInt();
 
-        System.out.println("Description:");
+        System.out.println(">Description:");
         String description = sc.nextLine();
 
-        System.out.println("number of Showtime: ");
+        System.out.println(">number of Showtime: ");
         int numOfShowtime = sc.nextInt();
         Time[] showtimeOfMovie = new Time[numOfShowtime];
         for (int i = 0; i < numOfShowtime; i++) {
             showtimeOfMovie[i] = Time.manualNewATime();
         }
 
-        System.out.print("Opening time: ");
+        System.out.print(">Opening time: ");
         Time openingTime = Time.manualNewATime();
 
-        System.out.print("Rating: ");
+        System.out.print(">Rating: ");
         String ratingOfNewMovie = sc.next();
 
         Movie newMovie = new Movie(nameOfNewMovie, typeOfNewMove,
@@ -106,51 +106,51 @@ class MovieLib {
 
         switch (choice) {
             case 1:
-                System.out.print("New name: ");
+                System.out.print(">New name: ");
                 toModify.setMovieName(sc.nextLine());
                 break;
             case 2:
-                System.out.print("New type: ");
+                System.out.print(">New type: ");
                 toModify.setTypeOfMovie(sc.next());
                 break;
             case 3:
-                System.out.print("New cast: ");
+                System.out.print(">New cast: ");
                 toModify.setCast(sc.nextLine());
                 break;
             case 4:
-                System.out.print("New director: ");
+                System.out.print(">New director: ");
                 toModify.setDirector(sc.nextLine());
                 break;
             case 5:
-                System.out.print("New language: ");
+                System.out.print(">New language: ");
                 toModify.setLanguage(sc.next());
                 break;
             case 6:
-                System.out.print("New runtime: ");
+                System.out.print(">New runtime: ");
                 toModify.setRuntime(sc.nextInt());
                 break;
             case 7:
-                System.out.print("New description: ");
+                System.out.print(">New description: ");
                 toModify.setDescription(sc.nextLine());
                 break;
             case 8:
-                System.out.print("New openingTime: ");
+                System.out.print(">New openingTime: ");
                 Time openingTime = Time.manualNewATime();
                 toModify.setOpeningTime(openingTime);
                 break;
             case 9:
-                System.out.print("New showtime : ");
+                System.out.print(">New showtime : ");
                 Time showTime = Time.manualNewATime();
                 toModify.addSession(showTime);
                 break;
             case 10:
                 toModify.deleteSession();
                 break;
-            case 11:
-                toModify.setRatingBB();
-                break;
+//            case 11:
+//                toModify.setRatingBB();
+//                break;
             default:
-                System.out.println("invalid. again: ");
+                System.out.println(">invalid. again: ");
                 return false;
         }
         return true;
@@ -158,22 +158,22 @@ class MovieLib {
 
     public void listMovie() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("From: 1 - " + movieList.size());
+        System.out.print(">From: 1 - " + movieList.size());
         int start = sc.nextInt() - 1;
-        System.out.print("To (max - " + movieList.size() + " ): ");
+        System.out.print(">To (max - " + movieList.size() + " ): ");
         int end = sc.nextInt() - 1;
         if (start < 0 || end >= movieList.size()) {
-            System.out.println("invalid range...");
+            System.out.println(">invalid range...");
         }
         if (0 <= start && start <= end && end < movieList.size()) {
             ListIterator<Movie> iterA = movieList.listIterator(start);
             ListIterator<Movie> iterB = movieList.listIterator(end);
 
             while (start <= end && iterA != iterB && iterA.hasNext()) {
-                System.out.println(++start + "." + iterA.next().getMovieName());
+                System.out.println(">" + (++start) + "." + iterA.next().getMovieName());
             }
         } else {
-            System.out.println("invalid range...");
+            System.out.println(">invalid range...");
         }
         return;
     }

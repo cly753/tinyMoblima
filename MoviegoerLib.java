@@ -195,9 +195,8 @@ class MoviegoerLib {
             ticketID = goer.getUnpaid().get(i);
 
             Ticket.display(tiLib.searchTicketByID(ticketID));
-            System.out.print(i + "Not paid");
+            System.out.println(">" + (i + 1) + " Not paid");
         }
-
         if (onlyUnpaid) {
             return;
         }
@@ -205,14 +204,13 @@ class MoviegoerLib {
         for (int i = 0; i < paidSize; i++) {
             ticketID = goer.getPaid().get(i);
             Ticket.display(tiLib.searchTicketByID(ticketID));
-            System.out.print("paid");
+            System.out.print(">paid");
 
             if (--pageSize == 0 && i < paidSize - 1) {
-                System.out.print("Continue? 1/0");
+                System.out.print(">Continue? 1/0");
                 if (sc.nextInt() == 0) {
                     break;
                 }
-                paidSize = 5;
             }
         }
     }
@@ -245,14 +243,36 @@ class MoviegoerLib {
          */
         System.out.println("Please input your choice: ");
         int choice = sc.nextInt() - 1;
+        if (choice < 0 || choice >= sessionList.size()) {
+            System.out.println("Wrong Input");
+            return null;
+        }
+        while (sessionList.get(choice).getNumOfEmptySeat() <= 0) {
+            System.out.println("Sorry! No more ticket available!");
+            System.out.println("Please select another one: ");
+            choice = sc.nextInt() - 1;
+            if (choice < 0 || choice >= sessionList.size()) {
+                System.out.println("Wrong Input");
+                return null;
+            }
+        }
         Session selectedSession = sessionList.get(choice);
         cinema = selectedSession.getCinema();
         selectedSession.presentSeat();
         System.out.println("Select a seat");
         System.out.print("row:");
-        int row = sc.nextInt();
+        int row = sc.nextInt() - 1;
         System.out.print("col:");
-        int col = sc.nextInt();
+        int col = sc.nextInt() - 1;
+        while (!selectedSession.seatAvailable(row, col)) {
+            System.out.println("The input selection is not available!");
+            System.out.println("Select another seat");
+            System.out.print("row:");
+            row = sc.nextInt() - 1;
+            System.out.print("col:");
+            col = sc.nextInt() - 1;
+        }
+        selectedSession.assignSeat(row, col);
         int ticketID = tiLib.size();
 
         Ticket ti = new Ticket(toBook.getMovieName(),
@@ -267,6 +287,8 @@ class MoviegoerLib {
                 ticketID);
 
         goer.setUnpaid(ti.getTicketID());
+        System.out.println("Successed!");
+        System.out.println("Please choose 4 to check, 5 to pay");
         return ti;
     }
 

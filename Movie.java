@@ -150,13 +150,13 @@ class Movie {
         return true;
     }
     public boolean addSession(Time newShowtime) {
-        System.out.println("Please select cineplex: ");
+        System.out.println(">Please select cineplex: ");
         for (int i = 0; i < Main.company.get().size(); i++) {
             System.out.println((i + 1) + " : " + Main.company.get(i).getName());
         }
         int choice = sc.nextInt();
         Cineplex selectedCineplex = Main.company.get(choice-1);
-        System.out.println("Please select cinema: ");
+        System.out.println(">Please select cinema: ");
         for (int i = 0; i < selectedCineplex.get().size(); i++) {
             System.out.println((i + 1) + " : " + selectedCineplex.get(i).getCinemaID());
         }
@@ -177,7 +177,7 @@ class Movie {
     public boolean deleteSession() {
         int x;
         for (int i = 0; i < sessionList.size(); i++) {
-            System.out.print(i + " " + sessionList.get(i).getTime().getStr());
+            System.out.print(">" + (i + 1) + " " + sessionList.get(i).getTime().getStr());
             System.out.println();
         }
         System.out.print("Delete: ");
@@ -193,43 +193,42 @@ class Movie {
         return true;
     }
 
-    public boolean setRatingBB() {
-        for (int i = 0; i < ratingList.length; i++) {
-            System.out.print((i + 1) + "." + ratingList[i]);
-        }
-        System.out.println("\nSelect new rating: ");
-        this.setRating(ratingList[sc.nextInt()]);
-        return true;
-    }
+//    public boolean setRatingBB() {
+//        for (int i = 0; i < ratingList.length; i++) {
+//            System.out.print((i + 1) + "." + ratingList[i]);
+//        }
+//        System.out.println("\n>Select new rating: ");
+//        this.setRating(ratingList[sc.nextInt()]);
+//        return true;
+//    }
 
     public void showInfo() {
         int choice;
 
-        System.out.println("Movie Name: " + this.movieName);
-        System.out.println("Movie Type: " + this.typeOfMovie);
-        System.out.print("Cast: ");
+        System.out.println(">Movie Name: " + this.movieName);
+        System.out.println(">Movie Type: " + this.typeOfMovie);
+        System.out.print(">Cast: ");
         System.out.println(this.cast);
 
-        System.out.print("Director: ");
+        System.out.print(">Director: ");
         System.out.println(this.director);
 
-        System.out.println("---More--- input 1");
+        System.out.println("------More------ input 1");
         choice = sc.nextInt();
         if (choice != 1) {
             return;
         }
-        System.out.println("Language: " + this.language);
-        System.out.println("Opening Time: ");
+        System.out.println(">Language: " + this.language);
+        System.out.println(">Opening Time: ");
         openingTime.printTime();
-        System.out.println("Runtime: " + this.runtime);
-        System.out.println("Rating: " + this.rating);
-        System.out.println("---More--- input 1");
+        System.out.println(">Runtime: " + this.runtime);
+        System.out.println(">Rating: " + this.rating);
+        System.out.println("------More------ input 1");
         choice = sc.nextInt();
         if (choice != 1) {
             return;
         }
-        System.out.println("===============description===============");
-
+        //System.out.println("===============description===============");
         System.out.println(this.description);
     }
 }

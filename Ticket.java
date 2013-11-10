@@ -188,9 +188,11 @@ class Ticket {
     }
 
     public static void display(Ticket ti) {
-        System.out.println(ti.getMovieName() + " " + ti.getTypeOfMovie());
-        System.out.println(ti.getShowTime());
-        System.out.println(ti.getSeatRow() + " " + ti.getSeatColumn() + " " + ti.getTicketID() + " " + ti.getTypeOfMoviegoer());
-        System.out.println(ti.getClassOfCinema() + " " + ti.getLocationOfCineplex());
+        System.out.println(">============================<");
+        System.out.println(">||" + ti.getMovieName() + " " + ti.getTypeOfMovie());
+        System.out.println(">||" + ti.getShowTime());
+        System.out.println(">||" + ti.getSeatRow() + " " + ti.getSeatColumn() + " " + ti.getTicketID() + " " + ti.getTypeOfMoviegoer());
+        System.out.println(">||" + ti.getClassOfCinema() + " " + ti.getLocationOfCineplex());
+        System.out.println(">============================<");
     }
 }
