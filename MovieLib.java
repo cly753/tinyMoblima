@@ -17,7 +17,8 @@ class MovieLib {
             if (movieList.get(i).getMovieName().compareTo(query) == 0) {
                 result.add(0, movieList.get(i));
             } else {
-                if (movieList.get(i).getMovieName().matches(query + "+")) {
+                if (movieList.get(i).getMovieName().compareTo(query + "~") < 0
+                  && movieList.get(i).getMovieName().compareTo(query) > 0) {
                     result.add(result.size(), movieList.get(i));
                 }
             }
@@ -25,7 +26,7 @@ class MovieLib {
         if (result.size() != 0) {
             System.out.println("Movie Found!");
             for (int i = 0; i < result.size(); i++) {
-                System.out.println(i + " " + result.get(i).getMovieName());
+                System.out.println((i + 1) + " " + result.get(i).getMovieName());
             }
         }
         return result;
@@ -265,17 +266,17 @@ class MovieLib {
     	
     		String rating = p.getProperty(String.format("%d_rating", i));
     		Movie movie = new Movie(movieName, typeOfMovie, cast, director, language, runtime, description, openingTime, rating);
+            movieList.add(movie);
             
     		int sessionSize = Integer.parseInt(p.getProperty(String.format("%d_session__size", i)));
     		ArrayList<Session> sessionList = new ArrayList<Session>();
     		for (int j = 0; j < sessionSize; j++) {
+    		    //System.out.println(i + " " + j + " " + p.getProperty(String.format("%d_session_%d", i, j)));
     			Session temp = new Session(company, p.getProperty(String.format("%d_session_%d", i, j)));
     			sessionList.add(temp);
     			movie.addSession(temp);
     		}
-    		
-    		//movie.showInfo();
-    		movieList.add(movie);
+    		//System.out.println("add size: " + movie.getSessionList().size());
     	}
     	
     	FileOutputStream fout = new FileOutputStream(parentPath + "_MovieLib.txt");

@@ -23,6 +23,9 @@ public class Menu {
         int choice;
         while (true) {
             System.out.println("++++++++++++++++++++++++++++");
+            if (curUser != null) {
+                System.out.println("|Welcome: " + curUser.getUsernameWelcome() + "          |");
+            }
             System.out.println("|Please Enter Your Choice: |");
             System.out.println("|>1. List all movies       |"); // call listAllMovie
             System.out.println("|>2. Search movies         |"); // call search
@@ -32,11 +35,11 @@ public class Menu {
             if (curUser == null) {
                 System.out.println("|>6. Login                 |");
             } else {
-                System.out.println("|>7. Logout               |");
+                System.out.println("|>6. Logout                |");
             }
-            System.out.println("|>8. Register              |");
-            System.out.println("|>9. Staff                 |");
-            System.out.println("|>10. GUI Trial            |");
+            System.out.println("|>7. Register              |");
+            System.out.println("|>8. Staff                 |");
+            System.out.println("|>9. GUI Trial             |");
             System.out.println("|>0. Exit                  |");
             System.out.println("++++++++++++++++++++++++++++");
             choice = sc.nextInt();
@@ -46,44 +49,48 @@ public class Menu {
             }
             switch (choice) {
                 case 1:
-                    System.out.println("List all movies:");
+                    System.out.println(">List all movies:");
                     movieLib.listMovie();
                     break;
                 case 2:
                 case 3:
-                    System.out.println("Please Enter the movie name:");
+                    System.out.println(">Please Enter the movie name:");
                     String nameOfMovie = sc.next();
                     ArrayList<Movie> searchResult = movieLib.searchMovie(nameOfMovie);
                     if (searchResult.size() == 0) {
-                        System.out.println("Sorry, cannot find any movie!");
+                        System.out.println(">Sorry, cannot find any movie!");
                         break;
                     }
 
                     if (searchResult.size() == 1 && choice == 3) {
                         //if find the only one movie, then it's available for booking
-                        System.out.println("Do want to see details about this movie?");
-                        System.out.println("1 for yes, others for no");
+                        System.out.println(">Do want to see details about this movie?");
+                        System.out.println(">1 for yes, others for no");
                         int showOrNot = sc.nextInt();
                         if (showOrNot == 1) {
                             searchResult.get(0).showInfo();
                         }
-                        System.out.println("Do want to book this movie?");
-                        System.out.println("1 for yes, others for no");
+                        System.out.println(">Do want to book this movie?");
+                        System.out.println(">1 for yes, others for no");
                         int bookOrNot = sc.nextInt();
                         if (bookOrNot == 1) {
+                            if (curUser == null) {
+                                System.out.println(">Please login first.");
+                                System.out.println(">Please select 6 to login, Or select 8 to register");
+                                break;
+                            }
                             Ticket currentTicket = MoviegoerLib.book(curUser, searchResult.get(0), tiLib, company);
                             tiLib.addTicket(currentTicket);
                         } else {
-                            System.out.println("Back...");
+                            System.out.println(">Back...");
                         }
                         break;
                     }
 
                     while (true) {
-                        System.out.println("Which movie do you want to see details?");
-                        System.out.println("Please input the index in front of it: ");
-                        System.out.println("input other to return");
-                        int selectMovie = sc.nextInt();
+                        System.out.println(">Please input the index in front of the movie for detials: ");
+                        System.out.println(">input 0 to return");
+                        int selectMovie = sc.nextInt() - 1;
 
                         if (selectMovie < 0 || selectMovie >= searchResult.size()) {
                             System.out.println("back...");
@@ -92,10 +99,15 @@ public class Menu {
 
                         searchResult.get(selectMovie).showInfo();
 
-                        System.out.println("Do want to book this movie?");
-                        System.out.println("1 for yes, others for no");
+                        System.out.println(">Do want to book this movie?");
+                        System.out.println(">1 for yes, others for no");
                         int bookOrNot = sc.nextInt();
                         if (bookOrNot == 1) {
+                            if (curUser == null) {
+                                System.out.println(">Please login first.");
+                                System.out.println(">Please select 6 to login, Or select 8 to register");
+                                break;
+                            }
                         	Ticket currentTicket = MoviegoerLib.book(curUser, searchResult.get(0), tiLib, company);
                             tiLib.addTicket(currentTicket);
                         }
@@ -104,27 +116,26 @@ public class Menu {
                 case 4:
                 case 5:
                 case 6:
-                    if (curUser == null) {
+                    if (choice == 6 && curUser != null) {
+                        curUser = null;
+                        break;
+                    } else {
                         String username;
                         String password;
-                        System.out.print("username: ");
+                        System.out.print(">username: ");
                         username = sc.next();
-                        System.out.print("password: ");
+                        System.out.print(">password: ");
                         password = sc.next();
-
+                        
                         curUser = goerLib.checkLogin(username, password);
-
+                        
                         if (curUser != null) {
-                            System.out.println("login succeeded.");
+                            System.out.println(">login succeeded!");
                         } else {
-                            System.out.println("login failed.");
+                            System.out.println(">login failed.");
                             break;
                         }
-                    } else {
-                        System.out.println("???");
-                        break;
                     }
-
                     if (choice == 6) {
                         break;
                     }
@@ -132,7 +143,7 @@ public class Menu {
                     if (choice == 4) {
                         MoviegoerLib.showHistory(curUser, tiLib, false);
                         if (curUser.getUnpaid().size() != 0) {
-                            System.out.print("pay(index) or go back(other)?");
+                            System.out.print(">pay(index) or go back(other)?");
                             int toPay = sc.nextInt();
                             if (0 <= toPay && toPay < curUser.getUnpaid().size()) {
                                 MoviegoerLib.pay(curUser, tiLib, toPay);
@@ -157,20 +168,16 @@ public class Menu {
                         }
                     }
                     break;
-
                 case 7:
-                    curUser = null;
-                    break;
-                case 8:
                     curUser = goerLib.add();
                     break;
-                case 9:
+                case 8:
                     System.out.print("password: ");
                     if (sc.next().compareTo(Main.adminPwd) == 0) {
                         staffMenu(movieLib, goerLib, tiLib, company);
                     }
                     break;
-                case 10:
+                case 9:
                     new NewJFrame().setVisible(true);
                     System.out.println("HAHA");
                     break;

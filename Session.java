@@ -21,12 +21,15 @@ public class Session {
     
     public Session(Company company, String s) {
     	String[] temp = s.split("##");
+//    	for (int i = 0; i < temp.length; i++) {
+//    	    System.out.println(temp[i]);
+//    	}
     	this.time = new Time(temp[0]);
-    	int size = company.size();
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < company.size(); i++) {
             for (Cinema cine : company.get(i).get()) {
                 if (Integer.parseInt(temp[1]) == cine.getCinemaID()) {
                     this.cinema = cine;
+                    //System.out.println("I found a cine");
                     break;
                 }
             }
@@ -45,16 +48,17 @@ public class Session {
     	//System.out.println(seatB);
     	//System.out.println("length: " + seatB.length());
     	
-    	Seat[][] seat = new Seat[cinema.getRow()][cinema.getColumn()];
+    	seat = new Seat[this.cinema.getRow()][this.cinema.getColumn()];
     	for (int i = 0; i < cinema.getRow(); i++) {
     		for (int j = 0; j < cinema.getColumn(); j++) {
-    			seat[i][j] = new Seat(i, j);
-                        seat[i][j].assign();
-    			if ((seatB.charAt(cinema.getRow() * i + j)+"").compareTo("1") == 0) {
-                            seat[i][j].unAssign();
-                            this.setNumOfEmptySeat(this.getNumOfEmptySeat() - 1);
-                        }
-                }
+    		    seat[i][j] = new Seat(i, j);
+    		    seat[i][j].assign();
+    		    if ((seatB.charAt(cinema.getRow() * i + j)+"").compareTo("1") == 0) {
+    		        seat[i][j].unAssign();
+    		        this.numOfEmptySeat--;
+    		        //this.setNumOfEmptySeat(this.getNumOfEmptySeat() - 1);
+    		    }
+    		}
     	}
     }
     
@@ -62,7 +66,7 @@ public class Session {
     	String seatStr = "";
     	for (int i = 0; i < cinema.getRow(); i++) {
     		for (int j = 0; j < cinema.getColumn(); j++) {
-    			seatStr += seat[i][j].getAssign() ? "1" : "0";
+    			seatStr += seat[i][j].getAssign() ? "0" : "1";
     		}
     	}
     	return time.toString() + "##" + cinema.getCinemaID() + "##" + Integer.parseInt(seatStr, 2);
@@ -78,14 +82,14 @@ public class Session {
 
     public void presentSeat() {
         System.out.print("  ");
-        for (int j = 0; j < cinema.getRow(); j++) {
+        for (int j = 0; j < cinema.getColumn(); j++) {
             System.out.print(" " + j);
         }
         System.out.println();
         for (int j = 0; j < cinema.getColumn(); j++) {
             System.out.print(" _");
         }
-        System.out.println();
+        System.out.println("@Cinema : " + this.cinema.getCinemaID());
         for (int i = 0; i < cinema.getRow(); i++) {
             System.out.print("\n" + i + "|");
             for (int j = 0; j < cinema.getColumn(); j++) {

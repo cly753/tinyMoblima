@@ -95,7 +95,7 @@ class Time {
 
     public String getStr() {
         String str = String.format("%2d %s %4d\n   %2d:%2d", day,
-                strMonth[month], year, hour, minute);
+                strMonth[month - 1], year, hour, minute);
         return str;
     }
     

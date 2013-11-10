@@ -224,8 +224,8 @@ class MoviegoerLib {
         System.out.println("Select a showtime");
         ArrayList<Session> sessionList = toBook.getSessionList();
         for (int i = 0; i < sessionList.size(); i++) {
-            System.out.print((i + 1) + " " + sessionList.get(i).getTime().getStr()
-                    + " " + sessionList.get(i).getCinema().getCinemaID());
+            System.out.print("Session> " + (i + 1) + ": " + sessionList.get(i).getTime().getStr()
+                    + " @Cinema" + sessionList.get(i).getCinema().getCinemaID() + "    \n");
         }
         /*Time selectedTime = showtimeList.get(sc.nextInt());
         
@@ -244,8 +244,8 @@ class MoviegoerLib {
          Cinema.presentSeat(cinema);
          */
         System.out.println("Please input your choice: ");
-        int choice = sc.nextInt();
-        Session selectedSession = sessionList.get(choice - 1);
+        int choice = sc.nextInt() - 1;
+        Session selectedSession = sessionList.get(choice);
         cinema = selectedSession.getCinema();
         selectedSession.presentSeat();
         System.out.println("Select a seat");

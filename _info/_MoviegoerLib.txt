@@ -1,27 +1,27 @@
 #
-#Fri Nov 08 02:26:34 SGT 2013
+#Sun Nov 10 17:44:02 SGT 2013
 0_username=cly753
+0_numOfPaid=0
 0_emailAddress=cly753@ntu
+2_numOfUnpaid=0
 1_emailAddress=lushen@ntu
+0_numOfUnpaid=0
 1_password=LuShen
+1_numOfPaid=0
 0_age=20
 1_username=LuShengLiang
 1_mobileNumber=91924238
-2_age=21
 2_numOfPaid=0
+2_age=21
 2_emailAddress=gong@ntu
-__size=3
 2_password=JiuBuGaoSuNi
 0_name=Chen Liyang
+__size=3
 2_username=apollox1961
 0_password=YangShen
 1_name=Lu Shengliang
-1_age=20
-1_numOfPaid=0
-1_numOfUnpaid=0
 2_mobileNumber=81817492
-2_numOfUnpaid=0
+1_age=20
 0_mobileNumber=86466329
 2_name=Gong Yue
-0_numOfPaid=0
-0_numOfUnpaid=0
+1_numOfUnpaid=0

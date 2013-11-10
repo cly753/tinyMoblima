@@ -17,7 +17,17 @@ class User {
     public String getUsername() {
         return username;
     }
-
+    public String getUsernameWelcome() {
+        String tmp = "";
+        for (int i = 0; i < username.length(); i++) {
+            if (tmp.length() >= 7) break;
+            tmp += username.charAt(i);
+        }
+        while (tmp.length() < 7) {
+            tmp += " ";
+        }
+        return tmp;
+    }
     public boolean setPassword(String password) {
         this.password = password;
         return true;
