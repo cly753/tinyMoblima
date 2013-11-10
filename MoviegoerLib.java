@@ -178,7 +178,7 @@ class MoviegoerLib {
         sc.nextInt();
 
         ticketID = goer.getUnpaid().remove(index);
-        tiLib.searchTicketByID(ticketID).setBuyTime(tempTime.storeCurrentTime());
+        tiLib.searchTicketByID(ticketID).setBuyTime(tempTime.getCurrentTime());
         goer.getPaid().add(ticketID);
 
         System.out.println("paid!");
@@ -212,6 +212,7 @@ class MoviegoerLib {
                     break;
                 }
             }
+            System.out.println();
         }
     }
 
@@ -274,13 +275,15 @@ class MoviegoerLib {
         }
         selectedSession.assignSeat(row, col);
         int ticketID = tiLib.size();
-
+        Time bookTime = new Time().getCurrentTime();
         Ticket ti = new Ticket(toBook.getMovieName(),
                 toBook.getTypeOfMovie(),
                 cinema.getCinemaID(),
                 cinema.getClassOfCinema(),
                 cinema.getLocationOfCinema(),//Location!!!
                 goer.getTypeOfMoviegoer(),
+                null,
+                bookTime,
                 selectedSession.getTime(),
                 row,
                 col,

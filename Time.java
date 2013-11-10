@@ -66,23 +66,16 @@ class Time {
         newTime.setHour(sc.nextInt());
         System.out.println("Please enter minute: 0~59");
         newTime.setMinute(sc.nextInt());
-
         return newTime;
     }
 
-    public Time storeCurrentTime() {
+    public Time getCurrentTime() {
         year = Calendar.getInstance().get(Calendar.YEAR);
         month = Calendar.getInstance().get(Calendar.MONTH);
         this.day = Calendar.getInstance().get(Calendar.DATE);
         this.hour = Calendar.getInstance().get(Calendar.HOUR);
         this.minute = Calendar.getInstance().get(Calendar.MINUTE);
-        
-        if ((Calendar.DAY_OF_WEEK != Calendar.SUNDAY) && (Calendar.DAY_OF_WEEK != Calendar.SATURDAY)) {
-            this.weekday = true;
-        } else {
-            this.weekday = false;
-        }
-
+        this.setWeekday();
         publicHoliday = false;
 
         return this;
@@ -151,8 +144,12 @@ class Time {
         return minute;
     }
 
-    public boolean setWeekday(boolean weekday) {
-        this.weekday = weekday;
+    public boolean setWeekday() {
+        if ((Calendar.DAY_OF_WEEK != Calendar.SUNDAY) && (Calendar.DAY_OF_WEEK != Calendar.SATURDAY)) {
+            this.weekday = true;
+        } else {
+            this.weekday = false;
+        }
         return true;
     }
 
@@ -179,7 +176,7 @@ class Time {
         }
         for (int i = 0; i < weekendList.size(); i++) {
             if (weekendList.get(i).compareTo(timeStr) == 0) {
-                this.setWeekday(false);
+                this.setWeekday();
             }
         }
     }

@@ -1,5 +1,7 @@
 package Moblima;
 
+import java.math.BigInteger;
+
 public class Session {
 
     private Time time;
@@ -21,33 +23,24 @@ public class Session {
     
     public Session(Company company, String s) {
     	String[] temp = s.split("##");
-//    	for (int i = 0; i < temp.length; i++) {
-//    	    System.out.println(temp[i]);
-//    	}
     	this.time = new Time(temp[0]);
         for (int i = 0; i < company.size(); i++) {
             for (Cinema cine : company.get(i).get()) {
                 if (Integer.parseInt(temp[1]) == cine.getCinemaID()) {
                     this.cinema = cine;
-                    //System.out.println("I found a cine");
                     break;
                 }
             }
         }
         
     	this.setNumOfEmptySeat(this.cinema.getColumn() * this.cinema.getRow());
-            	
-    	String seatB = Integer.toBinaryString(Integer.parseInt(temp[2]));
-    	
-    	//System.out.format("row: %d, column: %d, length: %d\n", cinema.getRow(), cinema.getColumn(), seatB.length());
+        BigInteger seatInfo = new BigInteger(temp[2]);
+    	String seatB = seatInfo.toString(2);
     	//System.out.println(seatB);
-    	
-    	int need = cinema.getRow()*cinema.getColumn() - seatB.length();
-    	for (int i = 0; i < need; i++)
-    		seatB = "0" + seatB;
-    	//System.out.println(seatB);
-    	//System.out.println("length: " + seatB.length());
-    	
+
+    	while (seatB.length() < cinema.getColumn() * cinema.getRow()) {
+    	    seatB = "0" + seatB;
+    	}
     	seat = new Seat[this.cinema.getRow()][this.cinema.getColumn()];
     	for (int i = 0; i < cinema.getRow(); i++) {
     		for (int j = 0; j < cinema.getColumn(); j++) {
@@ -68,7 +61,8 @@ public class Session {
     			seatStr += seat[i][j].getAssign() ? "1" : "0";
     		}
     	}
-    	return time.toString() + "##" + cinema.getCinemaID() + "##" + Integer.parseInt(seatStr, 2);
+    	BigInteger seatInfo = new BigInteger(seatStr, 2);
+    	return time.toString() + "##" + cinema.getCinemaID() + "##" + seatInfo.toString();
     }
 
     public Time getTime() {
@@ -128,7 +122,7 @@ public class Session {
     
     public boolean seatAvailable(Integer x, Integer y) {
         if ((x >= 0 && x < cinema.getRow()) && (y >=0 && y < cinema.getColumn())) {
-            return seat[x][y].getAssign();
+            return (!seat[x][y].getAssign());
         } else {
             return false;
         }

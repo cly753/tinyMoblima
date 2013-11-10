@@ -65,8 +65,15 @@ public class TicketLib {
     		p.setProperty(String.format("%d_classOfCinema", i), tiLib.get(i).getClassOfCinema());
     		p.setProperty(String.format("%d_locationOfCineplex", i), tiLib.get(i).getLocationOfCineplex());
     		p.setProperty(String.format("%d_typeOfMoviegoer", i), tiLib.get(i).getTypeOfMoviegoer());
-    		p.setProperty(String.format("%d_buyTime", i), tiLib.get(i).getBuyTime().toString());
+    		
+    		if (tiLib.get(i).getBuyTime() == null) {
+    		    p.setProperty(String.format("%d_buyTime", i), "-1"); 
+    		} else {
+    		    p.setProperty(String.format("%d_buyTime", i), tiLib.get(i).getBuyTime().toString());
+    		}
+    		
     		p.setProperty(String.format("%d_bookTime", i), tiLib.get(i).getBookTime().toString());
+    		p.setProperty(String.format("%d_showtime", i), tiLib.get(i).getShowtime().toString());;
     		//p.setProperty(String.format("%d_price", i), Double.toString(tiLib.get(i).getPrice()));
     		p.setProperty(String.format("%d_seatRow", i), tiLib.get(i).getSeatRow().toString());
     		p.setProperty(String.format("%d_seatColumn", i), tiLib.get(i).getSeatColumn().toString());
@@ -97,20 +104,24 @@ public class TicketLib {
     	int size = Integer.parseInt(p.getProperty("__size"));
     	
     	for (int i = 0; i < size; i++) {
-    		Ticket temp = new Ticket(null, null, null, null, null, null, null, null, null, null);
+    		Ticket temp = new Ticket();
     		
     		temp.setMovieName(p.getProperty(i + "_movieName"));
-    		temp.setTypeOfMovie(p.getProperty(i + "typeOfMovie"));
-    		temp.setCinemaID(Integer.parseInt(p.getProperty(i + "cinemaID")));
-    		temp.setClassOfCinema(p.getProperty(i + "classOfCinema"));
+    		temp.setTypeOfMovie(p.getProperty(i + "_typeOfMovie"));
+    		temp.setCinemaID(Integer.parseInt(p.getProperty(i + "_cinemaID")));
+    		temp.setClassOfCinema(p.getProperty(i + "_classOfCinema"));
     		temp.setLocationOfCineplex(p.getProperty(i + "_locationOfCineplex"));
             temp.setTypeOfMoviegoer(p.getProperty(i + "_typeOfMoviegoer"));
-            
-            Time time = new Time(p.getProperty(i + "_buyTime"));
-            temp.setBuyTime(time);
-            time = new Time(p.getProperty(i + "_bookTime"));
+            String buyTime = p.getProperty(i + "_buyTime");
+            if (buyTime.compareTo("-1") == 0) {
+                temp.setBuyTime(null);
+            } else {
+                temp.setBuyTime(new Time(buyTime));
+            }
+            Time time = new Time(p.getProperty(i + "_bookTime"));
             temp.setBookTime(time);
-            //Double price = new Double(p.getProperty(i + "_price"));
+            time = new Time(p.getProperty(i + "_showtime"));
+            temp.setShowtime(time);
             temp.setPrice();
             
             temp.setSeatRow(Integer.parseInt(p.getProperty(i + "_seatRow")));

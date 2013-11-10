@@ -11,27 +11,26 @@ class Ticket {
     private String typeOfMoviegoer;
     private Time buyTime;
     private Time bookTime;
-    private Time showTime;
+    private Time showtime;
     private double price;
     private Integer seatRow;
     private Integer seatColumn;
     private Integer ticketID;
-    
-    //
-    //
-    // ticket constructor does not have Time, is it fine?
-    //
-    //
 
+    public Ticket() {
+        ;
+    }
     public Ticket(String movieName, String typeOfMovie, Integer cinemaID, String classOfCinema, String locationOfCineplex,
-            String typeOfMoviegoer, Time showTime, Integer row, Integer col, Integer ticketID) {
+            String typeOfMoviegoer, Time buyTime, Time bookTime, Time showtime, Integer row, Integer col, Integer ticketID) {
         this.setMovieName(movieName);
         this.setTypeOfMovie(typeOfMovie);
         this.setCinemaID(cinemaID);
         this.setClassOfCinema(classOfCinema);
         this.setLocationOfCineplex(locationOfCineplex);
         this.setTypeOfMoviegoer(typeOfMoviegoer);
-        this.setShowTime(showTime);
+        this.setBookTime(bookTime);
+        this.setBuyTime(buyTime);
+        this.setShowtime(showtime);
         this.setSeatRow(row);
         this.setSeatCol(col);
         this.setTicketID(ticketID);
@@ -61,11 +60,7 @@ class Ticket {
     public String getTypeOfMoviegoer() {
         return this.typeOfMoviegoer;
     }
-
-    public Time getShowTime() {
-        return this.showTime;
-    }
-
+    
     public double getPrice() {
         return this.price;
     }
@@ -82,6 +77,9 @@ class Ticket {
         return this.ticketID;
     }
 
+    public Time getShowtime() {
+        return showtime;
+    }
     public Time getBookTime() {
     	return bookTime;
     }
@@ -120,8 +118,8 @@ class Ticket {
         return true;
     }
 
-    public boolean setShowTime(Time showTime) {
-        this.showTime = showTime;
+    public boolean setShowtime(Time showtime) {
+        this.showtime = showtime;
         return true;
     }
 
@@ -153,7 +151,7 @@ class Ticket {
     public boolean setPrice() {
         if (this.typeOfMoviegoer == "Senior Citizen") {
             if (this.typeOfMovie == "Digital Movie") {
-                if (this.showTime.getWeekday()) {
+                if (this.showtime.getWeekday()) {
                     this.price = 4;
                     return true;
                 }
@@ -161,7 +159,7 @@ class Ticket {
         }
         if (this.typeOfMoviegoer == "Student") {
             if (this.typeOfMovie == "Digital Movie") {
-                if (this.showTime.getWeekday()) {
+                if (this.showtime.getWeekday()) {
                     this.price = 7;
                     return true;
                 }
@@ -170,7 +168,7 @@ class Ticket {
                 return true;
             }
         }
-        if (this.showTime.getWeekday()) {
+        if (this.showtime.getWeekday()) {
             if (this.typeOfMovie == "Digital Movie") {
                 this.price = 9.5;
             } else {
@@ -190,7 +188,7 @@ class Ticket {
     public static void display(Ticket ti) {
         System.out.println(">============================<");
         System.out.println(">||" + ti.getMovieName() + " " + ti.getTypeOfMovie());
-        System.out.println(">||" + ti.getShowTime());
+        System.out.println(">||" + ti.getShowtime());
         System.out.println(">||" + ti.getSeatRow() + " " + ti.getSeatColumn() + " " + ti.getTicketID() + " " + ti.getTypeOfMoviegoer());
         System.out.println(">||" + ti.getClassOfCinema() + " " + ti.getLocationOfCineplex());
         System.out.println(">============================<");

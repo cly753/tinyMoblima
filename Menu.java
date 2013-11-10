@@ -185,8 +185,11 @@ public class Menu {
                                 System.out.println(">pay (enter index)");
                                 System.out.println(">go back (enter other)");
                                 int toPay = sc.nextInt() - 1;
+                                
                                 if (0 <= toPay && toPay < curUser.getUnpaid().size()) {
                                     MoviegoerLib.pay(curUser, tiLib, toPay);
+                                } else {
+                                    break;
                                 }
                                 if (curUser.getUnpaid().size() == 0) {
                                     System.out.println(">No unpaid items");
