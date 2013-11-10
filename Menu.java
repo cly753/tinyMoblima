@@ -76,7 +76,7 @@ public class Menu {
                         if (bookOrNot == 1) {
                             if (curUser == null) {
                                 System.out.println(">Please login first.");
-                                System.out.println(">Please select 6 to login, Or select 8 to register");
+                                System.out.println(">Please select 6 to login, Or select 7 to register");
                                 break;
                             }
                             Ticket currentTicket = MoviegoerLib.book(curUser, searchResult.get(0), tiLib, company);
