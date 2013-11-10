@@ -34,19 +34,22 @@ public class Session {
         }
         
     	this.setNumOfEmptySeat(this.cinema.getColumn() * this.cinema.getRow());
+    	
         BigInteger seatInfo = new BigInteger(temp[2]);
+        
     	String seatB = seatInfo.toString(2);
-    	//System.out.println(seatB);
-
+    	
     	while (seatB.length() < cinema.getColumn() * cinema.getRow()) {
     	    seatB = "0" + seatB;
     	}
+    	
     	seat = new Seat[this.cinema.getRow()][this.cinema.getColumn()];
+    	
     	for (int i = 0; i < cinema.getRow(); i++) {
     		for (int j = 0; j < cinema.getColumn(); j++) {
     		    seat[i][j] = new Seat(i, j);
     		    seat[i][j].unAssign();
-    		    if ((seatB.charAt(cinema.getRow() * i + j)+"").compareTo("1") == 0) {
+    		    if ((seatB.charAt(cinema.getColumn() * i + j)+"").compareTo("1") == 0) {
     		        seat[i][j].assign();
     		        this.numOfEmptySeat--;
     		    }
@@ -58,10 +61,13 @@ public class Session {
     	String seatStr = "";
     	for (int i = 0; i < cinema.getRow(); i++) {
     		for (int j = 0; j < cinema.getColumn(); j++) {
-    			seatStr += seat[i][j].getAssign() ? "1" : "0";
+    			seatStr = seatStr + (seat[i][j].getAssign() ? "1" : "0");
     		}
     	}
     	BigInteger seatInfo = new BigInteger(seatStr, 2);
+    	
+    	System.out.println(seatInfo.toString());
+    	
     	return time.toString() + "##" + cinema.getCinemaID() + "##" + seatInfo.toString();
     }
 
