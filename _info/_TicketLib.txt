@@ -1,5 +1,5 @@
 #_TicketLib
-#Mon Nov 11 22:56:15 SGT 2013
+#Tue Nov 12 01:53:59 CST 2013
 1_cinemaID=3
 1_seatRow=3
 0_typeOfMoviegoer=Student
