@@ -14,10 +14,9 @@ class MoviegoerLib {
 
     public void load(String parentPath) throws IOException {
         String fileLocation = parentPath + "_MoviegoerLib.txt";
-//        try {
+        try {
             Properties properties = new Properties();
             properties.load(new FileInputStream(fileLocation));
-
             int size = Integer.parseInt(properties.getProperty("__size"));
             
             for (int i = 0; i < size; i++) {
@@ -36,11 +35,11 @@ class MoviegoerLib {
                     newGoer.getUnpaid().add(Integer.parseInt(properties.getProperty(i + "_unpaid_" + j)));
                 goerLib.add(newGoer);
             }
-//        } catch (Exception e) {
-//        	File f = new File(parentPath, "_MoviegoerLib.txt"); // create if file is not there
-//			f.createNewFile();
-//            System.out.println("Unable to process " + fileLocation);
-//        }
+        } catch (Exception e) {
+            File f = new File(parentPath, "_MoviegoerLib.txt"); // create if file is not there
+            f.createNewFile();
+            System.out.println("Unable to process " + fileLocation);
+        }
     }
 
     public void store(String parentPath) throws IOException {
@@ -75,7 +74,6 @@ class MoviegoerLib {
     }
 
     public Moviegoer add() {
-        //String username, String password, String name, Sting mobileNumber, String emailAddress, Integer age
 
         System.out.println("username: ");
         String newUsername = sc.next();
@@ -99,18 +97,17 @@ class MoviegoerLib {
         System.out.print("confirm? 1/0");
         Moviegoer newGoer;
         if (sc.nextInt() == 1) {
-            newGoer = new Moviegoer(
-                    newUsername,
-                    newPassword,
-                    newName,
-                    newMobileNumber,
-                    newEmailAddress,
-                    newAge);
+            newGoer = new Moviegoer(newUsername,
+                                    newPassword,
+                                    newName,
+                                    newMobileNumber,
+                                    newEmailAddress,
+                                    newAge);
             goerLib.add(newGoer);
         } else {
             newGoer = null;
         }
-
+        
         return newGoer;
     }
 
@@ -217,7 +214,6 @@ class MoviegoerLib {
     }
 
     public static Ticket book(Moviegoer goer, Movie toBook, TicketLib tiLib, Company company) {
-        //Cineplex selectedCineplex;
         Cinema cinema;
 
         System.out.println("Select a showtime");
@@ -226,22 +222,7 @@ class MoviegoerLib {
             System.out.print("Session> " + (i + 1) + ": " + sessionList.get(i).getTime().getStr()
                     + " @Cinema" + sessionList.get(i).getCinema().getCinemaID() + "    \n");
         }
-        /*Time selectedTime = showtimeList.get(sc.nextInt());
         
-         for (int i = 0; i < cLib.length; i++) {
-         System.out.println(cLib[i].getName());
-         }
-        
-         System.out.print("Select a cineplex: ");
-         cineplex = cLib[sc.nextInt()];
-         for (int i = 0; i < cLib.length; i++) {
-         System.out.println(cineplex.get(i).getNameOfCinema() + " " + cineplex.get(i).getClassOfCinema());
-         }
-        
-         System.out.print("Select a cinema: ");
-         cinema = cineplex.get(sc.nextInt());
-         Cinema.presentSeat(cinema);
-         */
         System.out.println("Please input your choice: ");
         int choice = sc.nextInt() - 1;
         if (choice < 0 || choice >= sessionList.size()) {

@@ -5,7 +5,6 @@ class Seat {
     private Integer row;
     private Integer no;
     private boolean assign;
-    //private Integer moviegoerId;
 
     public Seat(Integer row, Integer no) {
         this.row = row;
@@ -44,12 +43,4 @@ class Seat {
     public boolean getAssign() {
         return assign;
     }
-
-    // public boolean setMoviegoerId(boolean id) {
-    //     this.moviegoerId = id;
-    //     return true;
-    // }
-    // public Integer getMoviegoerId() {
-    //     return moviegoerId;
-    // }
 }

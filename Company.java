@@ -42,7 +42,6 @@ public class Company {
             	cineplex.setName(p.getProperty(i + "_name"));
             	cineplex.setLocation(p.getProperty(i + "_location"));
             	cineplex.setNumOfCinema(numOfCinema);
-            	//System.out.println(cineplex.getName());
             	cineplexList.add(cineplex);
             	
             }

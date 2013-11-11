@@ -1,14 +1,14 @@
 #_TicketLib
-#Sun Nov 10 23:28:57 CST 2013
+#Mon Nov 11 15:49:54 SGT 2013
 1_cinemaID=3
 1_seatRow=3
 0_typeOfMoviegoer=Student
 0_ticketID=0
 1_classOfCinema=sanjiaoxing
-1_buyTime=2013 10 10 11 28 false false
-1_typeOfMoviegoer=Student
 0_bookTime=2013 10 10 11 28 false false
 0_movieName=Man in Black
+1_typeOfMoviegoer=Student
+1_buyTime=2013 10 10 11 28 false false
 0_locationOfCineplex=1lou
 0_showtime=2013 12 14 6 23 false false
 1_movieName=Man in Black
@@ -16,12 +16,12 @@
 1_ticketID=1
 0_cinemaID=3
 0_classOfCinema=sanjiaoxing
-1_bookTime=2013 10 10 11 28 false false
-1_locationOfCineplex=1lou
-0_seatRow=0
 0_typeOfMovie=3D
+0_seatRow=0
+1_locationOfCineplex=1lou
+1_bookTime=2013 10 10 11 28 false false
 1_seatColumn=3
 __size=2
-1_showtime=2013 12 14 6 23 false false
 0_buyTime=2013 10 10 11 28 false false
+1_showtime=2013 12 14 6 23 false false
 1_typeOfMovie=3D

@@ -76,7 +76,7 @@ public class Menu {
                         if (bookOrNot == 1) {
                             if (curUser == null) {
                                 System.out.println(">Please login first.");
-                                System.out.println(">Please select 6 to login, Or select 8 to register");
+                                System.out.println(">Please select 6 to login, Or select 7 to register");
                                 break;
                             }
                             Ticket currentTicket = MoviegoerLib.book(curUser, searchResult.get(0), tiLib, company);
@@ -206,11 +206,14 @@ public class Menu {
                 case 8:
                     System.out.print(">password: ");
                     if (sc.next().compareTo(Main.adminPwd) == 0) {
+                        System.out.println("Welcome Admin!!");
                         staffMenu(movieLib, goerLib, tiLib, company);
+                    } else {
+                        System.out.println("Wrong Password!!");
                     }
                     break;
                 case 9:
-                    new NewJFrame().setVisible(true);
+                    new JFrameGUI().setVisible(true);
                     System.out.println("HAHA");
                     break;
                 default:
@@ -252,7 +255,7 @@ public class Menu {
                     if (i == 1) {
                         System.out.println("Choose");
                         for (int j = 0; j < company.get().size(); j++) {
-                            System.out.println(j + " " + company.get(i).getName());
+                            System.out.println(j + " " + company.get(j).getName());
                         }
                         int which = sc.nextInt();
                         if (0 <= which && which < company.get().size()) {
@@ -264,33 +267,49 @@ public class Menu {
                     }
                     System.out.print("Choose 1.daily 2.monthly 3.total?");
                     i = i * 10 + sc.nextInt();
-
-                    switch (i) {
-                        case 11:
-                        case 12:
-                        case 13:
-                        case 21:
-                        case 22:
-                            Time day = Time.manualNewATime();
-                            if (i == 11) {
-                                Revenue.getDailyCineplexRevenue(tiLib, cineplex, day);
-                            } else if (i == 12) {
-                                Revenue.getMonthlyCineplexRevenue(tiLib, cineplex, day);
-                            } else if (i == 13) {
-                                System.out.println("no such funtion...");
-                            } else if (i == 21) {
-                                Revenue.getDailyTotalRevenue(tiLib, day);
-                            } else if (i == 22) {
-                                Revenue.getMonthlyTotalRevenue(tiLib, day);
-                            }
-                            break;
-                        case 33:
-                            Revenue.getTotalRevenue(tiLib);
-                            break;
-                        default:
-                            System.out.println("invalid...");
+                    Time day = null;
+                    Integer year, month, date;
+                    if (i == 11) {
+                        System.out.println("Please enter year: ");
+                        year = sc.nextInt();
+                        System.out.println("Please enter month: 1~12:");
+                        month = sc.nextInt();
+                        System.out.println("Please enter day: ");
+                        date = sc.nextInt();
+                        day = new Time(year, month, date);
+                        Revenue.getDailyCineplexRevenue(tiLib, cineplex, day);
+                    } else if (i == 12) {
+                        System.out.println("Please enter year: ");
+                        year = sc.nextInt();
+                        System.out.println("Please enter month: 1~12:");
+                        month = sc.nextInt();
+                        date = 0;
+                        day = new Time(year, month, date);
+                        Revenue.getMonthlyCineplexRevenue(tiLib, cineplex, day);
+                    } else if (i == 13) {
+                        Revenue.getCineplexTotalRevenue(tiLib, cineplex);
+                    } else if (i == 21) {
+                        System.out.println("Please enter year: ");
+                        year = sc.nextInt();
+                        System.out.println("Please enter month: 1~12:");
+                        month = sc.nextInt();
+                        System.out.println("Please enter day: ");
+                        date = sc.nextInt();
+                        day = new Time(year, month, date);
+                        Revenue.getDailyTotalRevenue(tiLib, day);
+                    } else if (i == 22) {
+                        System.out.println("Please enter year: ");
+                        year = sc.nextInt();
+                        System.out.println("Please enter month: 1~12:");
+                        month = sc.nextInt();
+                        date = 0;
+                        day = new Time(year, month, date);
+                        Revenue.getMonthlyTotalRevenue(tiLib, day);
+                    } else if (i == 23) {
+                        Revenue.getTotalRevenue(tiLib);
+                    } else {
+                        System.out.println("invalid...");
                     }
-
                     break;
                 default:
                     System.out.println("Wrong Input.");
@@ -309,7 +328,7 @@ public class Menu {
             System.out.println("|3. Add a movie           |"); // call addMovie in MovieLib class
             System.out.println("|4. Update a movie        |"); // next level: modify >>> call xxx in Movie class
             System.out.println("|5. Remove a movie        |"); // call remove in MovieLib class
-            System.out.println("|0.back                   |"); // previous level: staff menu
+            System.out.println("|0. back                  |"); // previous level: staff menu
             System.out.println("+++++++++++++++++++++++++++");
             choice = sc.nextInt();
             if (choice == 0) {
@@ -327,16 +346,20 @@ public class Menu {
                     System.out.println("Please Enter the movie name:");
                     String nameOfMovie = sc.next();
                     ArrayList<Movie> result = movieLib.searchMovie(nameOfMovie);
-
+                    if (result.size() == 0) {
+                        System.out.println("Cannot find any movie");
+                        break;
+                    }
                     int sel = 0;
                     if (choice != 2) {
                         System.out.print("select: ");
                         sel = sc.nextInt();
                     }
                     if (choice == 4) {
-                        MovieLib.modify(result.get(sel), sel);
+                        modify(result.get(sel - 1));
                     } else if (choice == 5) {
-                        movieLib.get().remove(movieLib.get().indexOf(result.get(sel)));
+                        movieLib.get().remove(movieLib.get().indexOf(result.get(sel - 1)));
+                        System.out.println("Successful removed!");
                     }
                     break;
                 case 3:
@@ -350,8 +373,7 @@ public class Menu {
         }
     }
 
-    public static void modify(Movie movie, String nameOfMovie) { // call modify in MovieLib class
-        //System.out.println("list movies"); // call listMovie in MovieLib class
+    public static void modify(Movie movie) {
         int choice;
         while (true) {
             System.out.println("+++++++++++++++++++++++++++");
@@ -365,9 +387,8 @@ public class Menu {
             System.out.println("|6.runtime                |");
             System.out.println("|7.description            |");
             System.out.println("|8.openingTime            |");
-            System.out.println("|9.add showtime           |");
-            System.out.println("|10.delete showtime       |");
-            System.out.println("|11.rating                |");
+            System.out.println("|9.add a session          |");
+            System.out.println("|10.delete a session      |");
             System.out.println("|0.back                   |"); // previous level: staff menu
             System.out.println("+++++++++++++++++++++++++++");
             choice = sc.nextInt();
@@ -375,7 +396,10 @@ public class Menu {
                 System.out.println("Back...");
                 break;
             }
-            if (choice < 0 || choice > 11) {
+            if (choice == 12) {
+                movie.showInfo();
+            }
+            if (choice < 0 || choice > 12) {
                 System.out.println("Wrong Input.");
                 continue;
             }

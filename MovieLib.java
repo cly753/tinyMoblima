@@ -34,14 +34,12 @@ class MovieLib {
 
     public boolean add() {
         Scanner sc = new Scanner(System.in);
-        //here is the format of adding a movie.
-        //hopefully will be our data format inside a txt file.
 
         System.out.println(">Name: ");
         String nameOfNewMovie = sc.nextLine();
 
         System.out.println(">Type: ");
-        String typeOfNewMove = sc.next();
+        String typeOfNewMove = sc.nextLine();
 
         System.out.println(">Cast: ");
         String castOfNewMovie = sc.nextLine();
@@ -50,7 +48,7 @@ class MovieLib {
         String directorOfNewMovie = sc.nextLine();
 
         System.out.println(">Language: ");
-        String languageOfNewMovie = sc.next();
+        String languageOfNewMovie = sc.nextLine();
 
         System.out.println(">Runtime: ");
         int runtimeOfNewMovie = sc.nextInt();
@@ -111,7 +109,7 @@ class MovieLib {
                 break;
             case 2:
                 System.out.print(">New type: ");
-                toModify.setTypeOfMovie(sc.next());
+                toModify.setTypeOfMovie(sc.nextLine());
                 break;
             case 3:
                 System.out.print(">New cast: ");
@@ -123,7 +121,7 @@ class MovieLib {
                 break;
             case 5:
                 System.out.print(">New language: ");
-                toModify.setLanguage(sc.next());
+                toModify.setLanguage(sc.nextLine());
                 break;
             case 6:
                 System.out.print(">New runtime: ");
@@ -139,16 +137,13 @@ class MovieLib {
                 toModify.setOpeningTime(openingTime);
                 break;
             case 9:
-                System.out.print(">New showtime : ");
+                System.out.print(">New session : ");
                 Time showTime = Time.manualNewATime();
                 toModify.addSession(showTime);
                 break;
             case 10:
                 toModify.deleteSession();
                 break;
-//            case 11:
-//                toModify.setRatingBB();
-//                break;
             default:
                 System.out.println(">invalid. again: ");
                 return false;
@@ -249,7 +244,7 @@ class MovieLib {
         
     	for (int i = 0; i < size; i++) {
     		String movieName = p.getProperty(String.format("%d_movieName", i));
-    		//System.out.println(movieName);
+    		
     		String typeOfMovie = p.getProperty(String.format("%d_typeOfMovie", i));
     		
     		String cast = p.getProperty(String.format("%d_cast", i));
@@ -271,12 +266,10 @@ class MovieLib {
     		int sessionSize = Integer.parseInt(p.getProperty(String.format("%d_session__size", i)));
     		ArrayList<Session> sessionList = new ArrayList<Session>();
     		for (int j = 0; j < sessionSize; j++) {
-    		    //System.out.println(i + " " + j + " " + p.getProperty(String.format("%d_session_%d", i, j)));
     			Session temp = new Session(company, p.getProperty(String.format("%d_session_%d", i, j)));
     			sessionList.add(temp);
     			movie.addSession(temp);
     		}
-    		//System.out.println("add size: " + movie.getSessionList().size());
     	}
     	
     	FileOutputStream fout = new FileOutputStream(parentPath + "_MovieLib.txt");
