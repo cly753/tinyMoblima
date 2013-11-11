@@ -40,9 +40,7 @@ class Time {
     		publicHoliday = true;
     	
     }
-    public Time() {
-        
-    }
+    public Time() {}
 
     public Time(Integer year, Integer month, Integer day) {
         this.setDay(day);
@@ -91,6 +89,10 @@ class Time {
     
     public String toString() {
     	return String.format("%d %d %d %d %d %s %s", year, month, day, hour, minute, String.valueOf(weekday), String.valueOf(publicHoliday));
+    }
+    
+    public Integer toInt() {
+    	return this.year * 10000 + this.month * 100 + this.day;
     }
 
     public boolean setYear(Integer year) {
@@ -174,5 +176,13 @@ class Time {
                 this.setWeekday();
             }
         }
+    }
+    
+    public int compareTo(Time t) {
+    	if (this.toInt() > t.toInt())
+    		return 1;
+    	if (this.toInt() == t.toInt())
+    		return 0;
+    	return -1;
     }
 }

@@ -189,6 +189,7 @@ class Ticket {
         System.out.println(">||" + ti.getShowtime());
         System.out.println(">||" + (ti.getSeatRow() + 1) + " " + (ti.getSeatColumn() + 1) + " " + ti.getTicketID() + " " + ti.getTypeOfMoviegoer());
         System.out.println(">||" + ti.getClassOfCinema() + " " + ti.getLocationOfCineplex());
+        System.out.println(">||" + "price: " + ti.getPrice());
         System.out.println(">============================<");
     }
 }

@@ -49,11 +49,12 @@ public class Menu {
             switch (choice) {
                 case 1:
                     System.out.println(">List all movies:");
-                    movieLib.listMovie(false);
+                    movieLib.listMovie(false, false);
                     break;
                 case 2:
                 case 3:
-                    movieLib.listMovie(true);
+                	System.out.print("\n====  Movies on show  ====\n\n");
+                    movieLib.listMovie(true, false);
                     System.out.println(">Please Enter the movie name:");
                     String nameOfMovie = sc.next();
                     ArrayList<Movie> searchResult = movieLib.searchMovie(nameOfMovie);
@@ -214,7 +215,6 @@ public class Menu {
                     break;
                 case 9:
                     new JFrameGUI().setVisible(true);
-                    System.out.println("HAHA");
                     break;
                 default:
                     System.out.println(">Wrong input.");
@@ -250,7 +250,34 @@ public class Menu {
                 case 3:
                     System.out.println("1.by one Cineplex");
                     System.out.println("2.by all Cineplex");
+                    System.out.println("3.by movie");
                     int i = sc.nextInt();
+                    
+                    if (i == 3) {
+                        movieLib.listMovie(true, true);
+                        System.out.println(">Please Enter the movie name:");
+                        String nameOfMovie = sc.next();
+                        ArrayList<Movie> searchResult = movieLib.searchMovie(nameOfMovie);
+                        if (searchResult.size() == 0) {
+                            System.out.println(">Sorry, cannot find any movie!");
+                            break;
+                        }
+
+                        System.out.println(">Please input the index in front of the movie for detials: ");
+                        System.out.println(">input 0 to return");
+                        int selectMovie = sc.nextInt() - 1;
+
+                        if (selectMovie < 0 || selectMovie >= searchResult.size()) {
+                            System.out.println("back...");
+                            break;
+                        }
+
+                        Revenue.getMovieRevenue(tiLib, searchResult.get(selectMovie));
+                        break;
+                    }
+                    
+                    
+                    
                     Cineplex cineplex = null;
                     if (i == 1) {
                         System.out.println("Choose");
@@ -338,7 +365,7 @@ public class Menu {
             switch (choice) {
                 case 1:
                     System.out.println("List all movies:");
-                    movieLib.listMovie(false);
+                    movieLib.listMovie(false, true);
                     break;
                 case 2:
                 case 4:

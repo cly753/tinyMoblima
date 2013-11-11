@@ -134,4 +134,13 @@ class Revenue {
         }
         System.out.println("Total ticket sale : " + sumTotalTicketPrice);
     }
+
+    public static void getMovieRevenue(TicketLib tiLib, Movie movie) {
+    	double total = 0;
+    	for (int i = 0; i < tiLib.size(); i++) {
+    		if (tiLib.get(i).getMovieName().compareTo(movie.getMovieName()) == 0)
+    			total += tiLib.get(i).getPrice();
+    	}
+    	System.out.println("Total ticket sale for " + movie.getMovieName() +" : " + total);
+    }
 }

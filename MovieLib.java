@@ -151,7 +151,7 @@ class MovieLib {
         return true;
     }
 
-    public void listMovie(boolean listAll) {
+    public void listMovie(boolean listAll, boolean showPassed) {
         int start = 0;
         int end = movieList.size();
         if (!listAll) {
@@ -165,9 +165,11 @@ class MovieLib {
             }
         }
         int i = 1;
-        System.out.print("\n====  Movies on show  ====\n\n");
+        //System.out.print("\n====  Movies on show  ====\n\n");
         for (Movie m : movieList) {
             if (listAll || (start <= i && i <= end)) {
+            	if (m.getOpeningTime().compareTo((new Time()).getCurrentTime()) < 0 && (!showPassed))
+            		continue;
                 System.out.print(">" + (i++) + "." + m.getMovieName() + "\n");
             }
         }

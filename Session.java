@@ -81,19 +81,19 @@ public class Session {
         System.out.println("@Cinema : " + this.cinema.getCinemaID());
         System.out.print("  ");
         for (int j = 1; j < cinema.getColumn(); j++) {
-            System.out.print(" " + j);
+            System.out.format(" %2d", j);
         }
         System.out.println(" " + cinema.getColumn());
-        for (int j = 0; j < cinema.getColumn(); j++) {
-            System.out.print(" _");
+        for (int j = 0; j < cinema.getColumn() + 1; j++) {
+            System.out.print(" __");
         }
         for (int i = 0; i < cinema.getRow(); i++) {
-            System.out.print("\n" + (i + 1) + "|");
+            System.out.format("\n%2d|", i + 1);
             for (int j = 0; j < cinema.getColumn(); j++) {
                 if (seat[i][j].getAssign()) {
-                    System.out.print(" x");
+                    System.out.print(" x ");
                 } else {
-                    System.out.print(" 0");
+                    System.out.print(" 0 ");
                 }
             }
         }
