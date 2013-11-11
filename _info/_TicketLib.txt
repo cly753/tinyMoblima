@@ -1,5 +1,5 @@
 #_TicketLib
-#Mon Nov 11 00:36:43 SGT 2013
+#Mon Nov 11 15:49:54 SGT 2013
 1_cinemaID=3
 1_seatRow=3
 0_typeOfMoviegoer=Student
@@ -16,12 +16,12 @@
 1_ticketID=1
 0_cinemaID=3
 0_classOfCinema=sanjiaoxing
-1_bookTime=2013 10 10 11 28 false false
-1_locationOfCineplex=1lou
-0_seatRow=0
 0_typeOfMovie=3D
+0_seatRow=0
+1_locationOfCineplex=1lou
+1_bookTime=2013 10 10 11 28 false false
 1_seatColumn=3
 __size=2
-1_showtime=2013 12 14 6 23 false false
 0_buyTime=2013 10 10 11 28 false false
+1_showtime=2013 12 14 6 23 false false
 1_typeOfMovie=3D
