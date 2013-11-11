@@ -15,7 +15,6 @@ public class Main {
 
     public static Scanner sc = new Scanner(System.in);
     //private static final String fileParentLocation = ".\\src\\Moblima\\_info\\";
-
     private static final String fileParentLocation = "/home/lu/study/eclipse/Moblima/_info/";
 
     public static void main(String[] args) throws Exception {

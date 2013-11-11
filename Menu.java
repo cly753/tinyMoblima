@@ -213,7 +213,7 @@ public class Menu {
                     }
                     break;
                 case 9:
-                    new NewJFrame().setVisible(true);
+                    new JFrameGUI().setVisible(true);
                     System.out.println("HAHA");
                     break;
                 default:
