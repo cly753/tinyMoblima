@@ -30,6 +30,7 @@ class Movie {
         this.sessionList = new ArrayList<Session>();
         this.setRating(rating);
     }
+
     public Movie(String movieName, String typeOfMovie, String cast, String director, String language,
             int runtime, String description, Time openingTime, Time[] showtimeList, String rating) {
         this.setMovieName(movieName);
@@ -43,6 +44,7 @@ class Movie {
         this.setSessionList(showtimeList);
         this.setRating(rating);
     }
+    
     public Movie(String movieName, String typeOfMovie, String cast, String director, String language,
             int runtime, String description, Time openingTime, ArrayList<Session> sessionList, String rating) {
         this.setMovieName(movieName);
