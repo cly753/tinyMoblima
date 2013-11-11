@@ -27,6 +27,7 @@ class Movie {
         this.setRuntime(runtime);
         this.setDescription(description);
         this.setOpeningTime(openingTime);
+        sessionList = new ArrayList<Session>();
         this.sessionList = new ArrayList<Session>();
         this.setRating(rating);
     }
@@ -41,6 +42,7 @@ class Movie {
         this.setRuntime(runtime);
         this.setDescription(description);
         this.setOpeningTime(openingTime);
+        sessionList = new ArrayList<Session>();
         this.setSessionList(showtimeList);
         this.setRating(rating);
     }

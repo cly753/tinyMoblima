@@ -11,7 +11,6 @@ public class Menu {
         System.out.println("|                                | ");
         System.out.println("|             *^_^*              | ");
         System.out.println("|       Welcome to Moblima       | ");
-        System.out.println("|           Gong Da Shi          | ");
         System.out.println("|                                | ");
         System.out.println("++++++++++++++++++++++++++++++++++");
         System.out.println();
@@ -50,10 +49,11 @@ public class Menu {
             switch (choice) {
                 case 1:
                     System.out.println(">List all movies:");
-                    movieLib.listMovie();
+                    movieLib.listMovie(false);
                     break;
                 case 2:
                 case 3:
+                    movieLib.listMovie(true);
                     System.out.println(">Please Enter the movie name:");
                     String nameOfMovie = sc.next();
                     ArrayList<Movie> searchResult = movieLib.searchMovie(nameOfMovie);
@@ -338,7 +338,7 @@ public class Menu {
             switch (choice) {
                 case 1:
                     System.out.println("List all movies:");
-                    movieLib.listMovie();
+                    movieLib.listMovie(false);
                     break;
                 case 2:
                 case 4:

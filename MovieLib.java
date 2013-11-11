@@ -18,7 +18,7 @@ class MovieLib {
                 result.add(0, movieList.get(i));
             } else {
                 if (movieList.get(i).getMovieName().compareTo(query + "~") < 0
-                  && movieList.get(i).getMovieName().compareTo(query) > 0) {
+                        && movieList.get(i).getMovieName().compareTo(query) > 0) {
                     result.add(result.size(), movieList.get(i));
                 }
             }
@@ -80,7 +80,7 @@ class MovieLib {
                 ratingOfNewMovie);
 
         movieList.add(0, newMovie);
-        
+
         return true;
     }
 
@@ -151,26 +151,27 @@ class MovieLib {
         return true;
     }
 
-    public void listMovie() {
-        Scanner sc = new Scanner(System.in);
-        System.out.print(">From: 1 - " + movieList.size());
-        int start = sc.nextInt() - 1;
-        System.out.print(">To (max - " + movieList.size() + " ): ");
-        int end = sc.nextInt() - 1;
-        if (start < 0 || end >= movieList.size()) {
-            System.out.println(">invalid range...");
-        }
-        if (0 <= start && start <= end && end < movieList.size()) {
-            ListIterator<Movie> iterA = movieList.listIterator(start);
-            ListIterator<Movie> iterB = movieList.listIterator(end);
-
-            while (start <= end && iterA != iterB && iterA.hasNext()) {
-                System.out.println(">" + (++start) + "." + iterA.next().getMovieName());
+    public void listMovie(boolean listAll) {
+        int start = 0;
+        int end = movieList.size();
+        if (!listAll) {
+            Scanner sc = new Scanner(System.in);
+            System.out.print(">From: (1 - " + movieList.size() + "): ");
+            start = sc.nextInt() - 1;
+            System.out.print(">To: (max - " + movieList.size() + " ): ");
+            end = sc.nextInt();
+            if (start < 0 || end >= movieList.size() + 1) {
+                System.out.println(">invalid range...");
             }
-        } else {
-            System.out.println(">invalid range...");
         }
-        return;
+        int i = 1;
+        System.out.print("\n====  Movies on show  ====\n\n");
+        for (Movie m : movieList) {
+            if (listAll || (start <= i && i <= end)) {
+                System.out.print(">" + (i++) + "." + m.getMovieName() + "\n");
+            }
+        }
+        System.out.print("\n");
     }
 
     public ArrayList<Movie> get() {
@@ -182,99 +183,100 @@ class MovieLib {
     }
 
     public boolean store(String parentPath) throws IOException {
-    	Properties p = new Properties();
-    	
-    	try {
-    		FileInputStream fin = new FileInputStream(parentPath + "_MovieLib.txt");
-			p.load(fin);
-			fin.close();
-		} catch (FileNotFoundException e) {
-			File f = new File(parentPath, "_MovieLib.txt"); // create if file is not there
-			f.createNewFile();
-			FileInputStream fin = new FileInputStream(parentPath + "_MovieLib.txt");
-			p.load(new FileInputStream(parentPath + "_MovieLib.txt"));
-			fin.close();
-		}
-    	
-    	p.setProperty("__size", ((Integer)movieList.size()).toString());
-    	
-    	for (int i = 0; i < movieList.size(); i++) {
-    		p.setProperty(String.format("%d_movieName", i), movieList.get(i).getMovieName());
-    		p.setProperty(String.format("%d_typeOfMovie", i), movieList.get(i).getTypeOfMovie());
-    		
-    		p.setProperty(String.format("%d_cast", i), movieList.get(i).getCast());
-    		
-    		p.setProperty(String.format("%d_director", i), movieList.get(i).getDirector());
-    		
-    		p.setProperty(String.format("%d_language", i), movieList.get(i).getLanguage());
-    		
-    		p.setProperty(String.format("%d_runtime", i), ((Integer)movieList.get(i).getRuntime()).toString());
-    		
-    		p.setProperty(String.format("%d_description", i), movieList.get(i).getDescription());
-    		
-    		p.setProperty(String.format("%d_openingTime", i), movieList.get(i).getOpeningTime().toString());
-    		p.setProperty(String.format("%d_rating", i), movieList.get(i).getRating());
-    		
-    		p.setProperty(String.format("%d_session__size", i), movieList.get(i).getSessionList().size()+"");
-    		for (int j = 0; j < movieList.get(i).getSessionList().size(); j++)
-    			p.setProperty(String.format("%d_session_%d", i, j), movieList.get(i).getSessionList().get(j).toString());
-    		
-    	}
-    	
-    	FileOutputStream fout = new FileOutputStream(parentPath + "_MovieLib.txt");
-    	p.store(fout, "_MovieLib");
-    	fout.close();
-    	return true;	
+        Properties p = new Properties();
+
+        try {
+            FileInputStream fin = new FileInputStream(parentPath + "_MovieLib.txt");
+            p.load(fin);
+            fin.close();
+        } catch (FileNotFoundException e) {
+            File f = new File(parentPath, "_MovieLib.txt"); // create if file is not there
+            f.createNewFile();
+            FileInputStream fin = new FileInputStream(parentPath + "_MovieLib.txt");
+            p.load(new FileInputStream(parentPath + "_MovieLib.txt"));
+            fin.close();
+        }
+
+        p.setProperty("__size", ((Integer) movieList.size()).toString());
+
+        for (int i = 0; i < movieList.size(); i++) {
+            p.setProperty(String.format("%d_movieName", i), movieList.get(i).getMovieName());
+            p.setProperty(String.format("%d_typeOfMovie", i), movieList.get(i).getTypeOfMovie());
+
+            p.setProperty(String.format("%d_cast", i), movieList.get(i).getCast());
+
+            p.setProperty(String.format("%d_director", i), movieList.get(i).getDirector());
+
+            p.setProperty(String.format("%d_language", i), movieList.get(i).getLanguage());
+
+            p.setProperty(String.format("%d_runtime", i), ((Integer) movieList.get(i).getRuntime()).toString());
+
+            p.setProperty(String.format("%d_description", i), movieList.get(i).getDescription());
+
+            p.setProperty(String.format("%d_openingTime", i), movieList.get(i).getOpeningTime().toString());
+            p.setProperty(String.format("%d_rating", i), movieList.get(i).getRating());
+
+            p.setProperty(String.format("%d_session__size", i), movieList.get(i).getSessionList().size() + "");
+            for (int j = 0; j < movieList.get(i).getSessionList().size(); j++) {
+                p.setProperty(String.format("%d_session_%d", i, j), movieList.get(i).getSessionList().get(j).toString());
+            }
+
+        }
+
+        FileOutputStream fout = new FileOutputStream(parentPath + "_MovieLib.txt");
+        p.store(fout, "_MovieLib");
+        fout.close();
+        return true;
     }
-    
+
     public boolean load(Company company, String parentPath) throws IOException {
-    	
-    	Properties p = new Properties();
-    	
-    	try {
-    		FileInputStream fin = new FileInputStream(parentPath + "_MovieLib.txt");
-			p.load(fin);
-			fin.close();
-		} catch (FileNotFoundException e) {
-			File f = new File(parentPath, "_MovieLib.txt"); // create if file is not there
-			f.createNewFile();
-			System.out.println("dont have");
-		}
-    	int size = Integer.parseInt(p.getProperty("__size"));
-        
-    	for (int i = 0; i < size; i++) {
-    		String movieName = p.getProperty(String.format("%d_movieName", i));
-    		
-    		String typeOfMovie = p.getProperty(String.format("%d_typeOfMovie", i));
-    		
-    		String cast = p.getProperty(String.format("%d_cast", i));
-    		
-    		String director = p.getProperty(String.format("%d_director", i));
-    		
-    		String language = p.getProperty(String.format("%d_language", i));
-    		
-    		Integer runtime = Integer.parseInt(p.getProperty(String.format("%d_runtime", i)));
-    		
-    		String description = p.getProperty(String.format("%d_description", i));
-    		
-    		Time openingTime = new Time(p.getProperty(String.format("%d_openingTime", i)));
-    	
-    		String rating = p.getProperty(String.format("%d_rating", i));
-    		Movie movie = new Movie(movieName, typeOfMovie, cast, director, language, runtime, description, openingTime, rating);
+
+        Properties p = new Properties();
+
+        try {
+            FileInputStream fin = new FileInputStream(parentPath + "_MovieLib.txt");
+            p.load(fin);
+            fin.close();
+        } catch (FileNotFoundException e) {
+            File f = new File(parentPath, "_MovieLib.txt"); // create if file is not there
+            f.createNewFile();
+            System.out.println("dont have");
+        }
+        int size = Integer.parseInt(p.getProperty("__size"));
+
+        for (int i = 0; i < size; i++) {
+            String movieName = p.getProperty(String.format("%d_movieName", i));
+
+            String typeOfMovie = p.getProperty(String.format("%d_typeOfMovie", i));
+
+            String cast = p.getProperty(String.format("%d_cast", i));
+
+            String director = p.getProperty(String.format("%d_director", i));
+
+            String language = p.getProperty(String.format("%d_language", i));
+
+            Integer runtime = Integer.parseInt(p.getProperty(String.format("%d_runtime", i)));
+
+            String description = p.getProperty(String.format("%d_description", i));
+
+            Time openingTime = new Time(p.getProperty(String.format("%d_openingTime", i)));
+
+            String rating = p.getProperty(String.format("%d_rating", i));
+            Movie movie = new Movie(movieName, typeOfMovie, cast, director, language, runtime, description, openingTime, rating);
             movieList.add(movie);
-            
-    		int sessionSize = Integer.parseInt(p.getProperty(String.format("%d_session__size", i)));
-    		ArrayList<Session> sessionList = new ArrayList<Session>();
-    		for (int j = 0; j < sessionSize; j++) {
-    			Session temp = new Session(company, p.getProperty(String.format("%d_session_%d", i, j)));
-    			sessionList.add(temp);
-    			movie.addSession(temp);
-    		}
-    	}
-    	
-    	FileOutputStream fout = new FileOutputStream(parentPath + "_MovieLib.txt");
-    	p.store(fout, "_MovieLib");
-    	fout.close();
-    	return true;	
+
+            int sessionSize = Integer.parseInt(p.getProperty(String.format("%d_session__size", i)));
+            ArrayList<Session> sessionList = new ArrayList<Session>();
+            for (int j = 0; j < sessionSize; j++) {
+                Session temp = new Session(company, p.getProperty(String.format("%d_session_%d", i, j)));
+                sessionList.add(temp);
+                movie.addSession(temp);
+            }
+        }
+
+        FileOutputStream fout = new FileOutputStream(parentPath + "_MovieLib.txt");
+        p.store(fout, "_MovieLib");
+        fout.close();
+        return true;
     }
 }
