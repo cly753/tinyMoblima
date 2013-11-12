@@ -14,10 +14,10 @@ class Ticket {
     private Integer seatRow;
     private Integer seatColumn;
     private Integer ticketID;
+    private String transactionID;
 
-    public Ticket() {
-        ;
-    }
+    public Ticket() {}
+    
     public Ticket(String movieName, String typeOfMovie, Integer cinemaID, String classOfCinema, String locationOfCineplex,
             String typeOfMoviegoer, Time buyTime, Time bookTime, Time showtime, Integer row, Integer col, Integer ticketID) {
         this.setMovieName(movieName);
@@ -33,6 +33,7 @@ class Ticket {
         this.setSeatCol(col);
         this.setTicketID(ticketID);
         this.setPrice();
+        this.setTransactionID();
     }
 
     public String getMovieName() {
@@ -143,6 +144,7 @@ class Ticket {
     
     public boolean setBuyTime(Time buyTime) {
         this.buyTime = buyTime;
+        setTransactionID();
         return true;
     }
 
@@ -173,12 +175,20 @@ class Ticket {
     }
 
     public static void display(Ticket ti) {
-        System.out.println(">=================================<");
+        System.out.println(">================================<");
         System.out.println(">||Name: " + ti.getMovieName() + " (" + ti.getTypeOfMovie() + ")");
         System.out.println(">||Showtime: " + ti.getShowtime().toFormat());
         System.out.println(">||Row: " + (ti.getSeatRow() + 1) + " Col: " + (ti.getSeatColumn() + 1) + " type: " + ti.getTypeOfMoviegoer());
         System.out.println(">||" + ti.getClassOfCinema() + " " + ti.getLocationOfCineplex());
         System.out.println(">||" + "price: " + ti.getPrice());
+        System.out.println(">||Transaction ID: " + ti.getTransactionID());
         System.out.println(">================================<");
+    }
+
+    public String getTransactionID() {
+        return transactionID;
+    }
+    private void setTransactionID() {
+        transactionID = String.format("%2d", cinemaID) + buyTime.toInt();
     }
 }

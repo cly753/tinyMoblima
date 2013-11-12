@@ -80,16 +80,22 @@ public class Session {
     public void presentSeat() {
         System.out.println("@Cinema : " + this.cinema.getCinemaID());
         System.out.print("  ");
-        for (int j = 1; j < cinema.getColumn(); j++) {
-            System.out.format(" %2d", j);
+        for (int j = 0; j < cinema.getColumn() - 1; j++) {
+            if (j == cinema.getColumn()/2)
+                System.out.print(" ||");
+            System.out.format(" %2d", j+1);
         }
         System.out.println(" " + cinema.getColumn());
         for (int j = 0; j < cinema.getColumn() + 1; j++) {
+            if (j == cinema.getColumn()/2)
+                System.out.print("__");
             System.out.print(" __");
         }
         for (int i = 0; i < cinema.getRow(); i++) {
             System.out.format("\n%2d|", i + 1);
             for (int j = 0; j < cinema.getColumn(); j++) {
+                if (j == cinema.getColumn()/2)
+                    System.out.print("||");
                 if (seat[i][j].getAssign()) {
                     System.out.print(" x ");
                 } else {
