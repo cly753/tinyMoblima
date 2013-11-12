@@ -50,8 +50,11 @@ public class Menu {
                     break;
                 case 2:
                 case 3:
-                	System.out.print("\n====  Movies on show  ====\n\n");
-                    movieLib.listMovie(true, false);
+                    /*
+                    if (choice == 3) {
+                        System.out.print("\n====  Movies on show  ====\n\n");
+                        movieLib.listMovie(true, false);
+                    }*/
                     System.out.println(">Please Enter the movie name:");
                     String nameOfMovie = sc.next();
                     ArrayList<Movie> searchResult = movieLib.searchMovie(nameOfMovie);
@@ -60,7 +63,7 @@ public class Menu {
                         break;
                     }
 
-                    if (searchResult.size() == 1 && choice == 3) {
+                    if (searchResult.size() == 1) {
                         //if find the only one movie, then it's available for booking
                         System.out.println(">Do want to see details about this movie?");
                         System.out.println(">1 for yes, others for no");
@@ -204,10 +207,10 @@ public class Menu {
                 case 8:
                     System.out.print(">password: ");
                     if (sc.next().compareTo(Main.adminPwd) == 0) {
-                        System.out.println("Welcome Admin!!");
+                        System.out.println(">Welcome Admin!!");
                         staffMenu(movieLib, goerLib, tiLib, company);
                     } else {
-                        System.out.println("Wrong Password!!");
+                        System.out.println(">Wrong Password!!");
                     }
                     break;
                 case 9:
@@ -224,7 +227,7 @@ public class Menu {
         int choice;
         while (true) {
             System.out.println("+++++++++++++++++++++++++++++++");
-            System.out.println("|Enter your choice, Da Shen!  |");
+            System.out.println("|Enter your choice, Admin!    |");
             System.out.println("|1. Add/Modify/Remove a movie |");
             System.out.println("|2. Set holidays              |"); // call setHoliday in Time class
             System.out.println("|3. Generate revenue report   |"); // call generateRevenueReport in Revenue class
@@ -233,7 +236,7 @@ public class Menu {
 
             choice = sc.nextInt();
             if (choice == 0) {
-                System.out.println(">Bye-Bye Da Shen! ");
+                System.out.println(">Bye-Bye Admin! ");
                 break;
             }
             switch (choice) {
@@ -246,43 +249,30 @@ public class Menu {
                     sc.next();
                     break;
                 case 3:
-                    System.out.println("1.by one Cineplex");
-                    System.out.println("2.by all Cineplex");
-                    System.out.println("3.by movie");
+                    System.out.println("1. by one Cineplex");
+                    System.out.println("2. by all Cineplex");
+                    System.out.println("3. by movie");
                     int i = sc.nextInt();
                     
                     if (i == 3) {
-                        movieLib.listMovie(true, true);
-                        System.out.println(">Please Enter the movie name:");
-                        String nameOfMovie = sc.next();
-                        ArrayList<Movie> searchResult = movieLib.searchMovie(nameOfMovie);
+                        ArrayList<Movie> searchResult = movieLib.get();
                         if (searchResult.size() == 0) {
                             System.out.println(">Sorry, cannot find any movie!");
                             break;
                         }
-
-                        System.out.println(">Please input the index in front of the movie for detials: ");
-                        System.out.println(">input 0 to return");
-                        int selectMovie = sc.nextInt() - 1;
-
-                        if (selectMovie < 0 || selectMovie >= searchResult.size()) {
-                            System.out.println("back...");
-                            break;
+                        for (Movie selectedMovie : searchResult) {
+                            System.out.println(selectedMovie.getMovieName() + ": SGD "  + Revenue.getMovieRevenue(tiLib, selectedMovie));
                         }
-
-                        Revenue.getMovieRevenue(tiLib, searchResult.get(selectMovie));
                         break;
                     }
-                    
-                    
                     
                     Cineplex cineplex = null;
                     if (i == 1) {
                         System.out.println("Choose");
                         for (int j = 0; j < company.get().size(); j++) {
-                            System.out.println(j + " " + company.get(j).getName());
+                            System.out.println((j + 1) + " " + company.get(j).getName());
                         }
-                        int which = sc.nextInt();
+                        int which = sc.nextInt() - 1;
                         if (0 <= which && which < company.get().size()) {
                             cineplex = company.get(which);
                         } else {
@@ -308,7 +298,7 @@ public class Menu {
                         year = sc.nextInt();
                         System.out.println("Please enter month: 1~12:");
                         month = sc.nextInt();
-                        date = 0;
+                        date = 3;
                         day = new Time(year, month, date);
                         Revenue.getMonthlyCineplexRevenue(tiLib, cineplex, day);
                     } else if (i == 13) {
@@ -327,7 +317,7 @@ public class Menu {
                         year = sc.nextInt();
                         System.out.println("Please enter month: 1~12:");
                         month = sc.nextInt();
-                        date = 0;
+                        date = 3;
                         day = new Time(year, month, date);
                         Revenue.getMonthlyTotalRevenue(tiLib, day);
                     } else if (i == 23) {

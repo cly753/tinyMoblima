@@ -29,7 +29,7 @@ class Revenue {
             for (Ticket paidTicket : revenueOfCinema.get(i)) {
                 sumCinemaTicketPrice += paidTicket.getPrice();
             }
-            System.out.println(currentCinema.get(i).getCinemaID() + " ticket sale : " + sumCinemaTicketPrice);
+            System.out.println("Cinema " + currentCinema.get(i).getCinemaID() + ": ticket sale SGD" + sumCinemaTicketPrice);
         }
     }
     
@@ -57,7 +57,7 @@ class Revenue {
             for (Ticket paidTicket : revenueOfCinema.get(i)) {
                 sumCinemaTicketPrice += paidTicket.getPrice();
             }
-            System.out.println(currentCinema.get(i).getCinemaID() + " ticket sale : " + sumCinemaTicketPrice);
+            System.out.println("Cinema " + currentCinema.get(i).getCinemaID() + ": ticket sale SGD" + sumCinemaTicketPrice);
         }
     }
 
@@ -84,7 +84,7 @@ class Revenue {
             for (Ticket paidTicket : revenueOfCinema.get(i)) {
                 sumCinemaTicketPrice += paidTicket.getPrice();
             }
-            System.out.println(currentCinema.get(i).getCinemaID() + " ticket sale : " + sumCinemaTicketPrice);
+            System.out.println("Cinema " + currentCinema.get(i).getCinemaID() + ": ticket sale :\nSGD " + sumCinemaTicketPrice);
         }
     }
     
@@ -104,7 +104,7 @@ class Revenue {
         for (Ticket paidTicket : revenueOfCinema) {
             sumTotalTicketPrice += paidTicket.getPrice();
         }
-        System.out.println("Total ticket sale : " + sumTotalTicketPrice);
+        System.out.println("Total ticket sale : \nSGD " + sumTotalTicketPrice);
     }
 
     public static void getMonthlyTotalRevenue(TicketLib tiLib, Time day) {
@@ -122,7 +122,7 @@ class Revenue {
         for (Ticket paidTicket : revenueOfCinema) {
             sumTotalTicketPrice += paidTicket.getPrice();
         }
-        System.out.println("Total ticket sale : " + sumTotalTicketPrice);
+        System.out.println("Total ticket sale : \nSGD " + sumTotalTicketPrice);
     }
 
     public static void getTotalRevenue(TicketLib tiLib) {
@@ -132,15 +132,16 @@ class Revenue {
             Ticket paidTicket = tiLib.get(index);
             sumTotalTicketPrice += paidTicket.getPrice();
         }
-        System.out.println("Total ticket sale : " + sumTotalTicketPrice);
+        System.out.println("Total ticket sale : \nSGD " + sumTotalTicketPrice);
     }
 
-    public static void getMovieRevenue(TicketLib tiLib, Movie movie) {
+    public static double getMovieRevenue(TicketLib tiLib, Movie movie) {
     	double total = 0;
     	for (int i = 0; i < tiLib.size(); i++) {
     		if (tiLib.get(i).getMovieName().compareTo(movie.getMovieName()) == 0)
     			total += tiLib.get(i).getPrice();
     	}
-    	System.out.println("Total ticket sale for " + movie.getMovieName() +" : " + total);
+    	return total;
+    	//System.out.println("Total ticket sale for " + movie.getMovieName() +" :\nSGD " + total);
     }
 }

@@ -37,7 +37,7 @@ class Time {
         updateWeekend();
     	
     	publicHoliday = false;
-    	if (value[6].compareTo("true") == 0)
+    	if (value[5].compareTo("true") == 0)
     		publicHoliday = true;
     }
     public Time() {}
@@ -47,7 +47,6 @@ class Time {
         this.setMonth(month);
         this.setYear(year);
         this.updateWeekend();
-        //this.updatePublicHoliday();
     }
     
     public static Time manualNewATime() {
@@ -120,7 +119,7 @@ class Time {
 
     public boolean setDay(Integer day) {
         this.day = day;
-        this.updateWeekend();
+        //this.updateWeekend();
         return true;
     }
 
@@ -185,6 +184,25 @@ class Time {
         }
     }
 
+    public String toFormat() {
+        String ph = "";
+        if (this.publicHoliday)
+            ph = "PH";
+        String weekDay = "";
+        Calendar cal = new GregorianCalendar(year, month - 1, day);
+        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+        switch (dayOfWeek - 1) {
+            case 0 : weekDay = "SUN";
+            case 1 : weekDay = "MON";
+            case 2 : weekDay = "TUE";
+            case 3 : weekDay = "WED";
+            case 4 : weekDay = "THU";
+            case 5 : weekDay = "FRI";
+            case 6 : weekDay = "SAT";
+        }
+        return (this.year + "-" + this.month + "-" + this.day + " " + weekDay + " " + this.hour + ":" + this.minute + " " + ph);
+    }
+    
     public int compareTo(Time t) {
         if (this.toInt() > t.toInt())
             return 1;

@@ -15,11 +15,17 @@ class MovieLib {
         ArrayList<Movie> result = new ArrayList<Movie>();
         for (int i = 0; i < movieList.size(); i++) {
             if (movieList.get(i).getMovieName().compareTo(query) == 0) {
-                result.add(0, movieList.get(i));
+                ArrayList<Session> session = movieList.get(i).getSessionList(false);
+                if (session.size() != 0) {
+                    result.add(0, movieList.get(i));
+                }
             } else {
                 if (movieList.get(i).getMovieName().compareTo(query + "~") < 0
                         && movieList.get(i).getMovieName().compareTo(query) > 0) {
-                    result.add(result.size(), movieList.get(i));
+                    ArrayList<Session> session = movieList.get(i).getSessionList(false);
+                    if (session.size() != 0) {
+                        result.add(result.size(), movieList.get(i));
+                    }
                 }
             }
         }
@@ -53,8 +59,8 @@ class MovieLib {
         System.out.println(">Runtime: ");
         int runtimeOfNewMovie = sc.nextInt();
 
-        System.out.println(">Description:");
-        String description = sc.nextLine();
+        //System.out.println(">Description:");
+        String description = "new movie";
 
         System.out.println(">number of Showtime: ");
         int numOfShowtime = sc.nextInt();
@@ -152,28 +158,60 @@ class MovieLib {
     }
 
     public void listMovie(boolean listAll, boolean showPassed) {
-        int start = 0;
-        int end = movieList.size();
-        if (!listAll) {
-            Scanner sc = new Scanner(System.in);
-            System.out.print(">From: (1 - " + movieList.size() + "): ");
-            start = sc.nextInt() - 1;
-            System.out.print(">To: (max - " + movieList.size() + " ): ");
-            end = sc.nextInt();
-            if (start < 0 || end >= movieList.size() + 1) {
-                System.out.println(">invalid range...");
-            }
-        }
+        int size = 0;
         int i = 1;
-        //System.out.print("\n====  Movies on show  ====\n\n");
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Movie> result = new ArrayList<Movie>();
+        if (showPassed) {
+            for (Movie m : movieList) {
+                System.out.println(">" + (i++) + "." + m.getMovieName());
+            }
+            return;
+        }
         for (Movie m : movieList) {
-            if (listAll || (start <= i && i <= end)) {
-            	if (m.getOpeningTime().compareTo((new Time()).getCurrentTime()) < 0 && (!showPassed))
-            		continue;
-                System.out.print(">" + (i++) + "." + m.getMovieName() + "\n");
+            ArrayList<Session> session = m.getSessionList(false);
+            if (session.size() != 0) {
+                result.add(m);
             }
         }
-        System.out.print("\n");
+        if (result.size() == 0) {
+            System.out.println("Sorry, no movie is currently on show");
+            return;
+        }
+        System.out.println(">From: (1 -" + result.size() + ")");
+        int start = sc.nextInt() - 1;
+        System.out.println(">To: Max = " + result.size());
+        int end = sc.nextInt() - 1;
+        if (start < 0 || end >= result.size()) {
+            System.out.println(">Invalid range...");
+            return;
+        }
+        for (i = start; i <= end; i++) {
+            System.out.println(">" + (i + 1) + ". " + result.get(i).getMovieName());
+        }
+        System.out.println();
+        return;
+//        int start = 0;
+//        int end = movieList.size();
+//        if (!listAll) {
+//            Scanner sc = new Scanner(System.in);
+//            System.out.print(">From: (1 - " + end + "): ");
+//            start = sc.nextInt() - 1;
+//            System.out.print(">To: (max - " + end + " ): ");
+//            end = sc.nextInt();
+//            if (start < 0 || end >= movieList.size() + 1) {
+//                System.out.println(">invalid range...");
+//            }
+//        }
+//        int i = 1;
+//        //System.out.print("\n====  Movies on show  ====\n\n");
+//        for (Movie m : movieList) {
+//            if (listAll || (start <= i && i <= end)) {
+//                if (m.getOpeningTime().compareTo((new Time()).getCurrentTime()) < 0 && (!showPassed))
+//            	    continue;
+//                System.out.print(">" + (i++) + "." + m.getMovieName() + "\n");
+//            }
+//        }
     }
 
     public ArrayList<Movie> get() {

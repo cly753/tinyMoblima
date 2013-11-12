@@ -270,7 +270,7 @@ class MoviegoerLib {
                 col,
                 ticketID);
 
-        goer.setUnpaid(ti.getTicketID());
+        goer.setUnpaid(ticketID);
         System.out.println("Successed!");
         System.out.println("Please choose 4 to check, 5 to pay");
         return ti;
