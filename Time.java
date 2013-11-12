@@ -17,7 +17,7 @@ class Time {
         "JUL", "AUG", "SEP",
         "OCT", "NOV", "DEC"};
 
-    private static ArrayList<String> pubHoliList = new ArrayList<String>();
+    //private static ArrayList<String> pubHoliList = new ArrayList<String>();
     // format: yyyymmdd
     private static ArrayList<String> weekendList = new ArrayList<String>();
     // format: yyyymmdd
@@ -31,9 +31,10 @@ class Time {
     	hour = Integer.parseInt(value[3]);
     	minute = Integer.parseInt(value[4]);
     	
-    	weekday = false;
-    	if (value[5].compareTo("true") == 0)
-    		weekday = true;
+    	// weekday = false;
+    	// if (value[5].compareTo("true") == 0)
+    	// 	weekday = true;
+        updateWeekend();
     	
     	publicHoliday = false;
     	if (value[6].compareTo("true") == 0)
@@ -45,6 +46,8 @@ class Time {
         this.setDay(day);
         this.setMonth(month);
         this.setYear(year);
+        this.updateWeekend();
+        this.updatePublicHoliday();
     }
     
     public static Time manualNewATime() {
@@ -60,12 +63,14 @@ class Time {
         newTime.setHour(sc.nextInt());
         System.out.println("Please enter minute: 0~59");
         newTime.setMinute(sc.nextInt());
+        newTime.updateWeekend();
+        newTime.updatePublicHoliday();
         return newTime;
     }
 
     public Time getCurrentTime() {
         year = Calendar.getInstance().get(Calendar.YEAR);
-        month = Calendar.getInstance().get(Calendar.MONTH);
+        month = Calendar.getInstance().get(Calendar.MONTH) + 1;
         this.day = Calendar.getInstance().get(Calendar.DATE);
         this.hour = Calendar.getInstance().get(Calendar.HOUR);
         this.minute = Calendar.getInstance().get(Calendar.MINUTE);
@@ -87,7 +92,8 @@ class Time {
     }
     
     public String toString() {
-    	return String.format("%d %d %d %d %d %s %s", year, month, day, hour, minute, String.valueOf(weekday), String.valueOf(publicHoliday));
+    	//return String.format("%d %d %d %d %d %s %s", year, month, day, hour, minute, String.valueOf(weekday), String.valueOf(publicHoliday));
+        return String.format("%d %d %d %d %d %s", year, month, day, hour, minute, String.valueOf(publicHoliday));
     }
     
     public Integer toInt() {
@@ -151,35 +157,39 @@ class Time {
         return weekday;
     }
 
-    public static boolean setPublicHoliday(String publicHoliday) {
-        pubHoliList.add(publicHoliday);
-        return true;
-    }
+    // public static boolean setPublicHoliday(String publicHoliday) {
+    //     pubHoliList.add(publicHoliday);
+    //     return true;
+    // }
 
-    public static ArrayList<String> getPublicHoliday() {
-        return pubHoliList;
-    }
+    // public static ArrayList<String> getPublicHoliday() {
+    //     return pubHoliList;
+    // }
 
-    public void updatePubHoliAndWkend() {
-        String timeStr = Integer.toString(this.year) + Integer.toString(this.month) + Integer.toString(this.day);
+    // public void updatePublicHoliday() {
+    //     String timeStr = Integer.toString(this.year) + Integer.toString(this.month) + Integer.toString(this.day);
 
-        for (int i = 0; i < pubHoliList.size(); i++) {
-            if (pubHoliList.get(i).compareTo(timeStr) == 0) {
-                publicHoliday = true;
-            }
+    //     for (int i = 0; i < pubHoliList.size(); i++) {
+    //         if (pubHoliList.get(i).compareTo(timeStr) == 0) {
+    //             publicHoliday = true;
+    //         }
+    //     }
+    // }
+
+    public void updateWeekend() {
+        Calendar cal = new GregorianCalendar(year, month - 1, day);
+        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+        this.weekday = true;
+        if (Calendar.SUNDAY == dayOfWeek || Calendar.SATURDAY == dayOfWeek) {
+            this.weekday = false;
         }
-        for (int i = 0; i < weekendList.size(); i++) {
-            if (weekendList.get(i).compareTo(timeStr) == 0) {
-                this.setWeekday();
-            }
-        }
     }
-    
+
     public int compareTo(Time t) {
-    	if (this.toInt() > t.toInt())
-    		return 1;
-    	if (this.toInt() == t.toInt())
-    		return 0;
-    	return -1;
+        if (this.toInt() > t.toInt())
+            return 1;
+        if (this.toInt() == t.toInt())
+            return 0;
+        return -1;
     }
 }
