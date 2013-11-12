@@ -1,3 +1,21 @@
 #
-#Tue Nov 12 12:21:30 SGT 2013
-__size=0
+#Tue Nov 12 16:07:30 SGT 2013
+0_username=ce2002
+0_emailAddress=LT1A@ntu.edu.sg
+0_numOfPaid=9
+0_numOfUnpaid=0
+0_age=24
+0_unpaid_0=3
+0_paid_8=8
+0_paid_7=7
+0_paid_6=6
+0_paid_5=5
+0_paid_4=4
+0_paid_3=3
+0_paid_2=2
+0_paid_1=1
+0_paid_0=0
+0_name=java
+__size=1
+0_password=ce2002
+0_mobileNumber=999

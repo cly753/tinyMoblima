@@ -163,7 +163,7 @@ class Movie {
         Cineplex selectedCineplex = Main.company.get(choice-1);
         System.out.println(">Please select cinema: ");
         for (int i = 0; i < selectedCineplex.get().size(); i++) {
-            System.out.println((i + 1) + " : " + selectedCineplex.get(i).getCinemaID());
+            System.out.println((i + 1) + " : Cinema " + selectedCineplex.get(i).getCinemaID());
         }
         choice = sc.nextInt();
         Cinema selectedCinema = selectedCineplex.get(choice - 1);
@@ -186,7 +186,7 @@ class Movie {
             System.out.println();
         }
         System.out.print("Delete: ");
-        x = sc.nextInt();
+        x = sc.nextInt() - 1;
         this.sessionList.remove(x);
         return true;
     }
