@@ -241,6 +241,9 @@ class MoviegoerLib {
         Session selectedSession = sessionList.get(choice);
         cinema = selectedSession.getCinema();
         selectedSession.presentSeat();
+//        if (selectedSession.getNumOfEmptySeat() == 0) {
+//        	return null;
+//        }
         System.out.println("Select a seat");
         System.out.print("row:");
         int row = sc.nextInt() - 1;

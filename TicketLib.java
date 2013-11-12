@@ -22,7 +22,6 @@ public class TicketLib {
     
     public Ticket searchTicketByID(int ticketID) {
         for (Ticket t: tiLib) {
-            System.out.println("=====" + t.getTicketID());
             if (t.getTicketID() == ticketID)
                 return t;
         }
