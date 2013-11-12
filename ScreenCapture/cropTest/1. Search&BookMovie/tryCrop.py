@@ -1,5 +1,3 @@
-
-
 from PIL import Image, ImageDraw
 
 image = Image.open("french_flat7.png")
