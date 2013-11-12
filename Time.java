@@ -42,13 +42,13 @@ class Time {
     }
     public Time() {}
 
-    // public Time(Integer year, Integer month, Integer day) {
-    //     this.setDay(day);
-    //     this.setMonth(month);
-    //     this.setYear(year);
-    //     this.updateWeekend();
-    //     //this.updatePublicHoliday();
-    // }
+    public Time(Integer year, Integer month, Integer day) {
+        this.setDay(day);
+        this.setMonth(month);
+        this.setYear(year);
+        this.updateWeekend();
+        //this.updatePublicHoliday();
+    }
     
     public static Time manualNewATime() {
         Scanner sc = new Scanner(System.in);
@@ -64,21 +64,21 @@ class Time {
         System.out.println("Please enter minute: 0~59");
         newTime.setMinute(sc.nextInt());
         newTime.updateWeekend();
-        newTime.updatePublicHoliday();
+        //newTime.updatePublicHoliday();
         return newTime;
     }
 
-    // public Time getCurrentTime() {
-    //     year = Calendar.getInstance().get(Calendar.YEAR);
-    //     month = Calendar.getInstance().get(Calendar.MONTH) + 1;
-    //     this.day = Calendar.getInstance().get(Calendar.DATE);
-    //     this.hour = Calendar.getInstance().get(Calendar.HOUR);
-    //     this.minute = Calendar.getInstance().get(Calendar.MINUTE);
-    //     this.setWeekday();
-    //     publicHoliday = false;
+    public Time getCurrentTime() {
+        year = Calendar.getInstance().get(Calendar.YEAR);
+        month = Calendar.getInstance().get(Calendar.MONTH) + 1;
+        this.day = Calendar.getInstance().get(Calendar.DATE);
+        this.hour = Calendar.getInstance().get(Calendar.HOUR);
+        this.minute = Calendar.getInstance().get(Calendar.MINUTE);
+        this.setWeekday();
+        publicHoliday = false;
 
-    //     return this;
-    // }
+        return this;
+    }
 
     public void printTime() {
         System.out.format("%2d %s %4d\n   %2d:%2d", day,
@@ -120,7 +120,7 @@ class Time {
 
     public boolean setDay(Integer day) {
         this.day = day;
-        updatePubHoliAndWkend();
+        this.updateWeekend();
         return true;
     }
 
@@ -157,10 +157,10 @@ class Time {
         return weekday;
     }
 
-    // public static boolean setPublicHoliday(String publicHoliday) {
-    //     pubHoliList.add(publicHoliday);
-    //     return true;
-    // }
+//    public static boolean setPublicHoliday(String publicHoliday) {
+//        pubHoliList.add(publicHoliday);
+//        return true;
+//    }
 
     // public static ArrayList<String> getPublicHoliday() {
     //     return pubHoliList;

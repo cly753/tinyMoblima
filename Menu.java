@@ -245,7 +245,8 @@ public class Menu {
                     break;
                 case 2:
                     System.out.print(">New public holiday(yyyymmdd): ");
-                    Time.setPublicHoliday(sc.next());
+                    //Time.setPublicHoliday(sc.next());
+                    sc.next();
                     break;
                 case 3:
                     System.out.println("1.by one Cineplex");

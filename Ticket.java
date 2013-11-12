@@ -147,40 +147,29 @@ class Ticket {
     }
 
     public boolean setPrice() {
-        if (this.typeOfMoviegoer == "Senior Citizen") {
-            if (this.typeOfMovie != "3D") {
-                if (this.showtime.getWeekday()) {
-                    this.price = 4;
-                    return true;
-                }
-            }
-        }
-        if (this.typeOfMoviegoer == "Student") {
-            if (this.typeOfMovie != "3D") {
-                if (this.showtime.getWeekday()) {
-                    this.price = 7;
-                    return true;
-                }
-            } else {
-                this.price = 9;
-                return true;
-            }
-        }
-        if (this.showtime.getWeekday()) {
-            if (this.typeOfMovie != "3D") {
-                this.price = 9.5;
-            } else {
-                this.price = 11;
-            }
-            return true;
-        } else {
-            if (this.typeOfMovie != "3D") {
-                this.price = 11;
-            } else {
-                this.price = 15;
-            }
-            return true;
-        }
+    	this.price = 0;
+    	
+    	if (this.typeOfMoviegoer == "Senior Citizen")
+    		this.price += 4;
+    	else if (this.typeOfMoviegoer == "Student")
+    		this.price += 5;
+    	else
+    		this.price += 6;
+    	
+    	if (this.typeOfMovie != "3D")
+    		this.price += 4;
+    	else
+    		this.price += 6;
+    	
+    	if (this.showtime.getWeekday())
+    		this.price += 3;
+    	else 
+    		this.price += 5;
+    	
+    	if (this.classOfCinema == "VIP")
+    		this.price += 3;
+
+    	return true;
     }
 
     public static void display(Ticket ti) {
