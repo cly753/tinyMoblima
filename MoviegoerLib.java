@@ -67,7 +67,7 @@ class MoviegoerLib {
             
             properties.store(new FileOutputStream(fileLocation), "");
         } catch (Exception e) {
-        	File f = new File(parentPath, "_MoviegoerLib.txt"); // create if file is not there
+        	File f = new File(parentPath, "_MoviegoerLib.txt");
 			f.createNewFile();
             System.out.println("Unable to process " + fileLocation);
         }
@@ -241,9 +241,7 @@ class MoviegoerLib {
         Session selectedSession = sessionList.get(choice);
         cinema = selectedSession.getCinema();
         selectedSession.presentSeat();
-//        if (selectedSession.getNumOfEmptySeat() == 0) {
-//        	return null;
-//        }
+
         System.out.println("Select a seat");
         System.out.print("row:");
         int row = sc.nextInt() - 1;

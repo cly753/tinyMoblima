@@ -190,28 +190,7 @@ class MovieLib {
             System.out.println(">" + (i + 1) + ". " + result.get(i).getMovieName());
         }
         System.out.println();
-        return;
-//        int start = 0;
-//        int end = movieList.size();
-//        if (!listAll) {
-//            Scanner sc = new Scanner(System.in);
-//            System.out.print(">From: (1 - " + end + "): ");
-//            start = sc.nextInt() - 1;
-//            System.out.print(">To: (max - " + end + " ): ");
-//            end = sc.nextInt();
-//            if (start < 0 || end >= movieList.size() + 1) {
-//                System.out.println(">invalid range...");
-//            }
-//        }
-//        int i = 1;
-//        //System.out.print("\n====  Movies on show  ====\n\n");
-//        for (Movie m : movieList) {
-//            if (listAll || (start <= i && i <= end)) {
-//                if (m.getOpeningTime().compareTo((new Time()).getCurrentTime()) < 0 && (!showPassed))
-//            	    continue;
-//                System.out.print(">" + (i++) + "." + m.getMovieName() + "\n");
-//            }
-//        }
+        return ;
     }
 
     public ArrayList<Movie> get() {
@@ -242,21 +221,15 @@ class MovieLib {
         for (int i = 0; i < movieList.size(); i++) {
             p.setProperty(String.format("%d_movieName", i), movieList.get(i).getMovieName());
             p.setProperty(String.format("%d_typeOfMovie", i), movieList.get(i).getTypeOfMovie());
-
             p.setProperty(String.format("%d_cast", i), movieList.get(i).getCast());
-
             p.setProperty(String.format("%d_director", i), movieList.get(i).getDirector());
-
             p.setProperty(String.format("%d_language", i), movieList.get(i).getLanguage());
-
             p.setProperty(String.format("%d_runtime", i), ((Integer) movieList.get(i).getRuntime()).toString());
-
             p.setProperty(String.format("%d_description", i), movieList.get(i).getDescription());
-
             p.setProperty(String.format("%d_openingTime", i), movieList.get(i).getOpeningTime().toString());
             p.setProperty(String.format("%d_rating", i), movieList.get(i).getRating());
-
             p.setProperty(String.format("%d_session__size", i), movieList.get(i).getSessionList(true).size() + "");
+            
             for (int j = 0; j < movieList.get(i).getSessionList(true).size(); j++) {
                 p.setProperty(String.format("%d_session_%d", i, j), movieList.get(i).getSessionList(true).get(j).toString());
             }

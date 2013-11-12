@@ -73,7 +73,6 @@ public class TicketLib {
     		
     		p.setProperty(String.format("%d_bookTime", i), tiLib.get(i).getBookTime().toString());
     		p.setProperty(String.format("%d_showtime", i), tiLib.get(i).getShowtime().toString());;
-    		//p.setProperty(String.format("%d_price", i), Double.toString(tiLib.get(i).getPrice()));
     		p.setProperty(String.format("%d_seatRow", i), tiLib.get(i).getSeatRow().toString());
     		p.setProperty(String.format("%d_seatColumn", i), tiLib.get(i).getSeatColumn().toString());
     		p.setProperty(String.format("%d_ticketID", i), tiLib.get(i).getTicketID().toString());

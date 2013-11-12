@@ -142,6 +142,5 @@ class Revenue {
     			total += tiLib.get(i).getPrice();
     	}
     	return total;
-    	//System.out.println("Total ticket sale for " + movie.getMovieName() +" :\nSGD " + total);
     }
 }

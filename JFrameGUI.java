@@ -1,25 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Moblima;
 
 import javax.swing.JComboBox;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-/**
- *
- * @author Yue
- */
 public class JFrameGUI extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1L;
 
     public JFrameGUI() {
         try {
-            // Set System L&F
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
         }
@@ -32,7 +22,6 @@ public class JFrameGUI extends javax.swing.JFrame {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -122,21 +111,16 @@ public class JFrameGUI extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void jButtonCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckActionPerformed
+    private void jButtonCheckActionPerformed(java.awt.event.ActionEvent evt) {
         for (Movie m : Main.movieLib.searchMovie((String) jComboBoxMovie.getSelectedItem(), false)) {
             for (Session s : m.getSessionList(false)) {
                 jComboBoxSession.addItem(s.getTime().getStr());
             }
         }
-    }//GEN-LAST:event_jButtonCheckActionPerformed
+    }
 
-    /**
-     * @param args the command line arguments
-     */
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCheck;
     private javax.swing.JComboBox jComboBoxMovie;
@@ -144,5 +128,4 @@ public class JFrameGUI extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBoxSession;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    // End of variables declaration//GEN-END:variables
 }

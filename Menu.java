@@ -12,7 +12,6 @@ public class Menu {
         System.out.println("|          *^_^*           | ");
         System.out.println("|    Welcome to Moblima    | ");
         System.out.println("|                          | ");
-        //System.out.println("++++++++++++++++++++++++++++");
     }
 
     public static void toplevel(Moviegoer curUser, MovieLib movieLib, MoviegoerLib goerLib, TicketLib tiLib, Company company) {
@@ -23,11 +22,11 @@ public class Menu {
                 System.out.println("|Welcome: " + curUser.getUsernameWelcome() + "          |");
             }
             System.out.println("|Please Enter Your Choice: |");
-            System.out.println("|>1. List all movies       |"); // call listAllMovie
-            System.out.println("|>2. Search movies         |"); // call search
-            System.out.println("|>3. Book movie            |"); // select and call search/listAllMovie
-            System.out.println("|>4. Check status/history  |"); // call checkLogin
-            System.out.println("|>5. Pay                   |"); // call checkLogin
+            System.out.println("|>1. List all movies       |"); 
+            System.out.println("|>2. Search movies         |"); 
+            System.out.println("|>3. Book movie            |"); 
+            System.out.println("|>4. Check status/history  |"); 
+            System.out.println("|>5. Pay                   |"); 
             if (curUser == null) {
                 System.out.println("|>6. Login                 |");
             } else {
@@ -50,11 +49,6 @@ public class Menu {
                     break;
                 case 2:
                 case 3:
-                    /*
-                    if (choice == 3) {
-                        System.out.print("\n====  Movies on show  ====\n\n");
-                        movieLib.listMovie(true, false);
-                    }*/
                     System.out.println(">Please Enter the movie name:");
                     String nameOfMovie = sc.next();
                     ArrayList<Movie> searchResult = movieLib.searchMovie(nameOfMovie, false);
@@ -64,7 +58,6 @@ public class Menu {
                     }
 
                     if (searchResult.size() == 1) {
-                        //if find the only one movie, then it's available for booking
                         System.out.println(">Do want to see details about this movie?");
                         System.out.println(">1 for yes, others for no");
                         int showOrNot = sc.nextInt();

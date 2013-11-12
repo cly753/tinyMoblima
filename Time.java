@@ -17,11 +17,7 @@ class Time {
         "JUL", "AUG", "SEP",
         "OCT", "NOV", "DEC"};
 
-    //private static ArrayList<String> pubHoliList = new ArrayList<String>();
-    // format: yyyymmdd
-    private static ArrayList<String> weekendList = new ArrayList<String>();
-    // format: yyyymmdd
-
+    private static ArrayList<String> weekendList = new ArrayList<String>(); // format: yyyymmdd
 
     public Time(String time) {
     	String[] value = time.split(" ");
@@ -31,9 +27,6 @@ class Time {
     	hour = Integer.parseInt(value[3]);
     	minute = Integer.parseInt(value[4]);
     	
-    	// weekday = false;
-    	// if (value[5].compareTo("true") == 0)
-    	// 	weekday = true;
         updateWeekend();
     	
     	publicHoliday = false;
@@ -63,7 +56,6 @@ class Time {
         System.out.println("Please enter minute: 0~59");
         newTime.setMinute(sc.nextInt());
         newTime.updateWeekend();
-        //newTime.updatePublicHoliday();
         return newTime;
     }
 
@@ -91,7 +83,6 @@ class Time {
     }
     
     public String toString() {
-    	//return String.format("%d %d %d %d %d %s %s", year, month, day, hour, minute, String.valueOf(weekday), String.valueOf(publicHoliday));
         return String.format("%d %d %d %d %d %s", year, month, day, hour, minute, String.valueOf(publicHoliday));
     }
     
@@ -119,7 +110,6 @@ class Time {
 
     public boolean setDay(Integer day) {
         this.day = day;
-        //this.updateWeekend();
         return true;
     }
 
@@ -150,30 +140,10 @@ class Time {
         this.weekday = false;
         return true;
     }
-    //=================================
 
     public boolean getWeekday() {
         return weekday;
     }
-
-//    public static boolean setPublicHoliday(String publicHoliday) {
-//        pubHoliList.add(publicHoliday);
-//        return true;
-//    }
-
-    // public static ArrayList<String> getPublicHoliday() {
-    //     return pubHoliList;
-    // }
-
-    // public void updatePublicHoliday() {
-    //     String timeStr = Integer.toString(this.year) + Integer.toString(this.month) + Integer.toString(this.day);
-
-    //     for (int i = 0; i < pubHoliList.size(); i++) {
-    //         if (pubHoliList.get(i).compareTo(timeStr) == 0) {
-    //             publicHoliday = true;
-    //         }
-    //     }
-    // }
 
     public void updateWeekend() {
         Calendar cal = new GregorianCalendar(year, month - 1, day);
