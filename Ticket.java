@@ -175,12 +175,17 @@ class Ticket {
     }
 
     public static void display(Ticket ti) {
+<<<<<<< HEAD
         System.out.println(">================================<");
+=======
+        System.out.println(">=================================<");
+>>>>>>> dd2fcf50533487b0f1fb3480f1ed86842b29e234
         System.out.println(">||Name: " + ti.getMovieName() + " (" + ti.getTypeOfMovie() + ")");
         System.out.println(">||Showtime: " + ti.getShowtime().toFormat());
         System.out.println(">||Row: " + (ti.getSeatRow() + 1) + " Col: " + (ti.getSeatColumn() + 1) + " type: " + ti.getTypeOfMoviegoer());
         System.out.println(">||" + ti.getClassOfCinema() + " " + ti.getLocationOfCineplex());
         System.out.println(">||" + "price: " + ti.getPrice());
+<<<<<<< HEAD
         System.out.println(">||Transaction ID: " + ti.getTransactionID());
         System.out.println(">================================<");
     }
@@ -190,5 +195,8 @@ class Ticket {
     }
     private void setTransactionID() {
         transactionID = String.format("%2d", cinemaID) + buyTime.toInt();
+=======
+        System.out.println(">================================<");
+>>>>>>> dd2fcf50533487b0f1fb3480f1ed86842b29e234
     }
 }
