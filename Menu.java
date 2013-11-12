@@ -57,7 +57,7 @@ public class Menu {
                     }*/
                     System.out.println(">Please Enter the movie name:");
                     String nameOfMovie = sc.next();
-                    ArrayList<Movie> searchResult = movieLib.searchMovie(nameOfMovie);
+                    ArrayList<Movie> searchResult = movieLib.searchMovie(nameOfMovie, false);
                     if (searchResult.size() == 0) {
                         System.out.println(">Sorry, cannot find any movie!");
                         break;
@@ -360,7 +360,7 @@ public class Menu {
                 case 5:
                     System.out.println("Please Enter the movie name:");
                     String nameOfMovie = sc.next();
-                    ArrayList<Movie> result = movieLib.searchMovie(nameOfMovie);
+                    ArrayList<Movie> result = movieLib.searchMovie(nameOfMovie, true);
                     if (result.size() == 0) {
                         System.out.println("Cannot find any movie");
                         break;

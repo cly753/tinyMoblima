@@ -125,7 +125,7 @@ public class JFrameGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckActionPerformed
-        for (Movie m : Main.movieLib.searchMovie((String) jComboBoxMovie.getSelectedItem())) {
+        for (Movie m : Main.movieLib.searchMovie((String) jComboBoxMovie.getSelectedItem(), false)) {
             for (Session s : m.getSessionList(false)) {
                 jComboBoxSession.addItem(s.getTime().getStr());
             }

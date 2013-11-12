@@ -11,18 +11,18 @@ class MovieLib {
         movieList = new ArrayList<Movie>();
     }
 
-    public ArrayList<Movie> searchMovie(String query) {
+    public ArrayList<Movie> searchMovie(String query, boolean showPass) {
         ArrayList<Movie> result = new ArrayList<Movie>();
         for (int i = 0; i < movieList.size(); i++) {
             if (movieList.get(i).getMovieName().compareTo(query) == 0) {
-                ArrayList<Session> session = movieList.get(i).getSessionList(false);
+                ArrayList<Session> session = movieList.get(i).getSessionList(showPass);
                 if (session.size() != 0) {
                     result.add(0, movieList.get(i));
                 }
             } else {
                 if (movieList.get(i).getMovieName().compareTo(query + "~") < 0
                         && movieList.get(i).getMovieName().compareTo(query) > 0) {
-                    ArrayList<Session> session = movieList.get(i).getSessionList(false);
+                    ArrayList<Session> session = movieList.get(i).getSessionList(showPass);
                     if (session.size() != 0) {
                         result.add(result.size(), movieList.get(i));
                     }
