@@ -7,15 +7,12 @@ public class Menu {
     private static Scanner sc = new Scanner(System.in);
 
     public static void welcome() {
-        System.out.println("++++++++++++++++++++++++++++++++++");
-        System.out.println("|                                | ");
-        System.out.println("|             *^_^*              | ");
-        System.out.println("|       Welcome to Moblima       | ");
-        System.out.println("|                                | ");
-        System.out.println("++++++++++++++++++++++++++++++++++");
-        System.out.println();
-        System.out.println();
-        System.out.println();
+        System.out.println("++++++++++++++++++++++++++++");
+        System.out.println("|                          | ");
+        System.out.println("|          *^_^*           | ");
+        System.out.println("|    Welcome to Moblima    | ");
+        System.out.println("|                          | ");
+        //System.out.println("++++++++++++++++++++++++++++");
     }
 
     public static void toplevel(Moviegoer curUser, MovieLib movieLib, MoviegoerLib goerLib, TicketLib tiLib, Company company) {
@@ -38,7 +35,7 @@ public class Menu {
             }
             System.out.println("|>7. Register              |");
             System.out.println("|>8. Staff                 |");
-            System.out.println("|>9. GUI Trial             |");
+            System.out.println("|>9. GUI                   |");
             System.out.println("|>0. Exit                  |");
             System.out.println("++++++++++++++++++++++++++++");
             choice = sc.nextInt();
