@@ -148,7 +148,7 @@ class Ticket {
 
     public boolean setPrice() {
         if (this.typeOfMoviegoer == "Senior Citizen") {
-            if (this.typeOfMovie == "Digital Movie") {
+            if (this.typeOfMovie != "3D") {
                 if (this.showtime.getWeekday()) {
                     this.price = 4;
                     return true;
@@ -156,7 +156,7 @@ class Ticket {
             }
         }
         if (this.typeOfMoviegoer == "Student") {
-            if (this.typeOfMovie == "Digital Movie") {
+            if (this.typeOfMovie != "3D") {
                 if (this.showtime.getWeekday()) {
                     this.price = 7;
                     return true;
@@ -167,14 +167,14 @@ class Ticket {
             }
         }
         if (this.showtime.getWeekday()) {
-            if (this.typeOfMovie == "Digital Movie") {
+            if (this.typeOfMovie != "3D") {
                 this.price = 9.5;
             } else {
                 this.price = 11;
             }
             return true;
         } else {
-            if (this.typeOfMovie == "Digital Movie") {
+            if (this.typeOfMovie != "3D") {
                 this.price = 11;
             } else {
                 this.price = 15;

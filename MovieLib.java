@@ -218,9 +218,9 @@ class MovieLib {
             p.setProperty(String.format("%d_openingTime", i), movieList.get(i).getOpeningTime().toString());
             p.setProperty(String.format("%d_rating", i), movieList.get(i).getRating());
 
-            p.setProperty(String.format("%d_session__size", i), movieList.get(i).getSessionList().size() + "");
-            for (int j = 0; j < movieList.get(i).getSessionList().size(); j++) {
-                p.setProperty(String.format("%d_session_%d", i, j), movieList.get(i).getSessionList().get(j).toString());
+            p.setProperty(String.format("%d_session__size", i), movieList.get(i).getSessionList(true).size() + "");
+            for (int j = 0; j < movieList.get(i).getSessionList(true).size(); j++) {
+                p.setProperty(String.format("%d_session_%d", i, j), movieList.get(i).getSessionList(true).get(j).toString());
             }
 
         }

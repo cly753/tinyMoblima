@@ -38,7 +38,6 @@ class Time {
     	publicHoliday = false;
     	if (value[6].compareTo("true") == 0)
     		publicHoliday = true;
-    	
     }
     public Time() {}
 
@@ -140,15 +139,13 @@ class Time {
     public Integer getMinute() {
         return minute;
     }
-
+    //FIX HERE!!!!
+    //=================================
     public boolean setWeekday() {
-        if ((Calendar.DAY_OF_WEEK != Calendar.SUNDAY) && (Calendar.DAY_OF_WEEK != Calendar.SATURDAY)) {
-            this.weekday = true;
-        } else {
-            this.weekday = false;
-        }
+        this.weekday = false;
         return true;
     }
+    //=================================
 
     public boolean getWeekday() {
         return weekday;

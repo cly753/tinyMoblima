@@ -217,7 +217,7 @@ class MoviegoerLib {
         Cinema cinema;
 
         System.out.println("Select a showtime");
-        ArrayList<Session> sessionList = toBook.getSessionList();
+        ArrayList<Session> sessionList = toBook.getSessionList(false);
         for (int i = 0; i < sessionList.size(); i++) {
             System.out.print("Session> " + (i + 1) + ": " + sessionList.get(i).getTime().getStr()
                     + " @Cinema" + sessionList.get(i).getCinema().getCinemaID() + "    \n");

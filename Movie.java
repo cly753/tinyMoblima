@@ -93,8 +93,17 @@ class Movie {
         return this.openingTime;
     }
 
-    public ArrayList<Session> getSessionList() {
-        return this.sessionList;
+    public ArrayList<Session> getSessionList(boolean showPass) {
+        if (showPass) {
+            return this.sessionList;
+        }
+        ArrayList<Session> availableSession = new ArrayList<Session>();
+        for (Session s : sessionList) {
+            if (s.getTime().compareTo(new Time().getCurrentTime()) > 0) {
+                availableSession.add(s);
+            }
+        }
+        return availableSession;
     }
 
     public String getRating() {
